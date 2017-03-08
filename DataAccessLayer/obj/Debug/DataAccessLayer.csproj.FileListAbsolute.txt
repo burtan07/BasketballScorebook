@@ -1,0 +1,5 @@
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

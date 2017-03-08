@@ -26,7 +26,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
-                cmd.Parameters.AddWithValue()
+                //cmd.Parameters.AddWithValue()
 
 
                 cmd.ExecuteNonQuery();

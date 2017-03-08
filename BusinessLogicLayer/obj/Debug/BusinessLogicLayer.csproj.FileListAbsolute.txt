@@ -1,0 +1,7 @@
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojResolveAssemblyReference.cache
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\admin2\Documents\Visual Studio 2015\Projects\BasketballScoreBook\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
