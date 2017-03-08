@@ -1,0 +1,86 @@
+﻿@model BasketballScoreBook.Models.UserViewModel
+@{
+    ViewBag.Title = "RegisterUser";
+}
+
+<h2>RegisterUser</h2>
+
+@using (Html.BeginForm("RegisterUser", "User", FormMethod.Post))
+{
+    <div class="DivTextBoxPosition">
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.FirstName)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.FirstName, new { @class = "form-control", placeholder = "First Name", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.LastName)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.LastName, new { @class = "form-control", placeholder = "Last Name", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.EmailAddress)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.EmailAddress, new { @class = "form-control", placeholder = "Email Address", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.UserName)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.UserName, new { @class = "form-control", placeholder = "UserName", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.Password)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.Password, new { @class = "form-control", placeholder = "Password", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.SecurityQuestion)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.DropDownListFor(m => m.SingleUser.SecurityQuestion, new List<SelectListItem>
+                    {
+                    new SelectListItem {Text=" -- " },
+                    new SelectListItem {Text="What is your mother's maiden name?" },
+                    new SelectListItem {Text="What city were you born in?" },
+                    new SelectListItem {Text="What year did you graduate high school?" } })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.SecurityAnswer)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.SecurityAnswer, new { @class = "form-control", placeholder = "Security Answer", @type = "text" })
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+}
+
