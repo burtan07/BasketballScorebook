@@ -132,13 +132,13 @@
     <Content Include="Web.config" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\RegisterUser.cshtml" />
-    <Content Include="Views\User\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BasketballGameController.cs" />
     <Compile Include="Controllers\BasketballTeamController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,6 +175,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\BasketballGame\" />
     <Folder Include="Views\BasketballTeam\" />
+    <Folder Include="Views\Player\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
