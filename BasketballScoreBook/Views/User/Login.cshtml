@@ -1,7 +1,32 @@
-﻿
+﻿@model BasketballScoreBook.Models.UserViewModel
 @{
     ViewBag.Title = "Login";
 }
 
 <h2>Login</h2>
 
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <div class="DivTextBoxPosition">
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.UserName)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.UserName, new { @class = "form-control", placeholder = "Username", @type = "text" })
+            </div>
+        </div>
+
+        <div>
+            <div class="LabelSpacing">
+                @Html.LabelFor(m => m.SingleUser.Password)
+            </div>
+            <div class="DivTextBoxPos">
+                @Html.TextBoxFor(m => m.SingleUser.Password, new { @class = "form-control", placeholder = "Password", @type = "password" })
+            </div>
+        </div>
+
+        <input type="submit" value="Submit" />
+    </div>
+
+}
