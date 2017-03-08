@@ -13,7 +13,7 @@ namespace DataAccessLayer
 {
     public class PlayerDataAccess
     {
-        string _connection = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
-        string _FileLocation = @"C:/Users/Admin2/Desktop/ErrorLog.txt";
+        //string _connection = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+        //string _FileLocation = @"C:/Users/Admin2/Desktop/ErrorLog.txt";
     }
 }

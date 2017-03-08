@@ -63,7 +63,7 @@ namespace BasketballScoreBook.Controllers
         {
             LogicUser boUser = new LogicUser();
 
-            var type_userVM = userVM.GetType();
+            var type_userVM = userVM.SingleUser.GetType();
             var type_boUser = boUser.GetType();
 
             foreach (var field_userVM in type_userVM.GetFields())

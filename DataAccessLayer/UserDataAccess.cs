@@ -26,9 +26,14 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
-                //cmd.Parameters.AddWithValue()
-
-
+                cmd.Parameters.AddWithValue("@UserName", daUser.UserName);
+                cmd.Parameters.AddWithValue("@UserPassword", daUser.Password);
+                cmd.Parameters.AddWithValue("@FirstName", daUser.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", daUser.LastName);
+                cmd.Parameters.AddWithValue("@EmailAddress", daUser.EmailAddress);
+                cmd.Parameters.AddWithValue("@SecurityQuestion", daUser.SecurityQuestion);
+                cmd.Parameters.AddWithValue("@SecurityAnswer", daUser.SecurityAnswer);
+                
                 cmd.ExecuteNonQuery();
 
             }
