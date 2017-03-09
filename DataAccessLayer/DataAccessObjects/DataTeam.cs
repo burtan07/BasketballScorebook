@@ -8,6 +8,7 @@ namespace DataAccessLayer.DataAccessObjects
 {
     public class DataTeam
     {
+        public int TeamID { get; set; }
         public string TeamName { get; set; }
         public string TeamLevel { get; set; }
         public string TeamGender { get; set; }
