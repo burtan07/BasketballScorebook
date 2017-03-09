@@ -1,0 +1,25 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.UserViewModel
+    @{
+        ViewBag.Title = "ViewUsers";
+    }
+
+    <h2>ViewUsers</h2>
+
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Role ID</th>
+        </tr>
+        @foreach(UserModel user in Model.Users)
+        {  
+            <tr>
+                <td>@Html.DisplayFor(m => m.SingleUser.UserID</td>
+                <td>@Html.DisplayFor(m => m.SingleUser.UserName</td>
+                <td>@Html.DisplayFor(m => m.SingleUser.RoleID</td>
+            </tr>
+
+        }
+
+    </table>

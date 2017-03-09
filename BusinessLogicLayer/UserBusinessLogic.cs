@@ -36,10 +36,34 @@ namespace BusinessLogicLayer
         }
 
 
+        public List<LogicUser> ViewUsers()
+        {
+            List<DataUser> dataUsers = new List<DataUser>();
+            List<LogicUser> userList = UserMap(dataUsers);
+            return userList;
+        }
+
+        static List<LogicUser> UserMap(List<DataUser> dataUsers)
+        {
+            List<LogicUser> logicUsers = new List<LogicUser>();
+            foreach(DataUser dUser in dataUsers)
+            {
+                LogicUser lUser = new LogicUser();
+                lUser.UserID = dUser.UserID;
+                lUser.RoleID = dUser.RoleID;
+                lUser.UserName = dUser.UserName;
+                lUser.Password = dUser.Password;
+                logicUsers.Add(lUser);
+            }
+            return logicUsers;
+        }
+
         public void CreateUser(LogicUser boUser)  //Calls Mapper BOuser to DAuser & sends down to DAL
         {
             DataUser daUser = Map(boUser);
             _userDAL.CreateUser(daUser);
         }
+
+
     }
 }

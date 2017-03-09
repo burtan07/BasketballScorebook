@@ -57,6 +57,31 @@ namespace BasketballScoreBook.Controllers
         //    return View(); 
         //}
 
+            [HttpGet]
+            public ActionResult ViewUsers()
+        {
+            UserViewModel viewModel = new UserViewModel();
+            viewModel.Users = new List<UserModel>();
+            List<LogicUser> logicUsers = _userBLL.ViewUsers();
+            viewModel.Users = MapUser(logicUsers);
+            return View(viewModel);
+        }
+
+        static List<UserModel> MapUser(List<LogicUser> LogicUsers)
+        {
+            List<UserModel> userList = new List<UserModel>();
+            foreach (LogicUser lUser in LogicUsers)
+            {
+                UserModel user = new UserModel();
+                user.UserID = lUser.UserID;
+                user.UserName = lUser.UserName;
+                user.RoleID = lUser.RoleID;
+                user.Password = lUser.Password;
+                userList.Add(user);
+            }
+            return userList;
+        }
+        
 
 
         static LogicUser Map(UserViewModel userVM)  //Maps userVM to boUser

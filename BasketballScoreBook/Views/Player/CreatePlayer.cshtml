@@ -1,4 +1,5 @@
-﻿@model BasketballScoreBook.Models.PlayerViewModel
+﻿
+@model BasketballScoreBook.Models.PlayerViewModel
 @{
     ViewBag.Title = "CreatePlayer";
 }
@@ -7,6 +8,33 @@
 
 @using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
 {
+    <table>
+        <tr>
+            <th>Player LastName</th>
+            <th>Player First Initial</th>
+            <th>Player Number</th>
+            <th>Player Role</th>
+            @*<th>Player Points</th>
+            <th>Player Shot Attempts</th>
+            <th>Player Shot Makes</th>*@
+            
+        </tr>
+       
+        
+            <tr>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerLastName)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.JerseyNum)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerRole)</td>
+                @*<td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes)</td>*@
+ 
+            </tr>
+
+        
+
+    </table>
 
 }
 

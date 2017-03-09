@@ -20,10 +20,22 @@
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["RoleID"] != null)
+                {
+                    if ((int)Session["RoleID"] == 3)
+                    {
+                        @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                    if ((int)Session["RoleID"] == 2)
+                    {
+                        //should be able to view teams and change player stats
+                        @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })
+
+                    }
+                }
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
