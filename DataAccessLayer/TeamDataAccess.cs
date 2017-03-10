@@ -29,7 +29,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@TeamName", daTeam.TeamName);
                 cmd.Parameters.AddWithValue("@TeamLevel", daTeam.TeamLevel);
                 cmd.Parameters.AddWithValue("@TeamGender", daTeam.TeamGender);
-                cmd.Parameters.AddWithValue("@TeamHomeStatus", daTeam.TeamHomeStatus);
+               
                 //cmd.Parameters.AddWithValue("@TeamTimeouts", daTeam.TeamTimeouts);
                 //cmd.Parameters.AddWithValue("@TeamFouls", daTeam.TeamFouls);
                 //cmd.Parameters.AddWithValue("@TeamTurnovers", daTeam.TeamTurnovers);

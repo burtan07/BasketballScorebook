@@ -21,5 +21,7 @@ namespace DataAccessLayer.DataAccessObjects
         public int TeamScore { get; set; }
         public DataPlayer SingleTeamPlayer { get; set; }
         public List<DataPlayer> TeamPlayers { get; set; }
+
+        public List<DataTeam> TeamList { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace BasketballScoreBook.Controllers
         {
             LogicTeam boTeam = Map(teamVM);
             _teamBLL.CreateTeam(boTeam);
-            return View();
+            return View(); //redirect to action()
         }
 
         static LogicTeam Map(TeamViewModel teamVM)

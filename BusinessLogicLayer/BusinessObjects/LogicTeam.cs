@@ -21,5 +21,6 @@ namespace BusinessLogicLayer.BusinessObjects
         public int TeamScore { get; set; }
         public LogicPlayer SingleTeamPlayer { get; set; }
         public List<LogicPlayer> TeamPlayers { get; set; }
+        public List<LogicTeam> TeamList { get; set; }
     }
 }

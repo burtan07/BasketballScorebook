@@ -19,6 +19,9 @@
                 </button>
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
+               
+                @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
+
                 @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
                 @if (Session["RoleID"] != null)
                 {

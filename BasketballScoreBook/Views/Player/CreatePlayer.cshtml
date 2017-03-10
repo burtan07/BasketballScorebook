@@ -22,6 +22,12 @@
        
         
             <tr>
+                <td>@Html.DropDownListFor(m => m.SinglePlayer.TeamID, new List<SelectListItem>
+               {
+                   new SelectListItem {Text=" -- " },
+                   new SelectListItem {Text=" ACA Eagles " }
+
+               } </td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerLastName)</td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial)</td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.JerseyNum)</td>
