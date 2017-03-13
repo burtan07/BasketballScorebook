@@ -46,7 +46,7 @@ namespace BusinessLogicLayer
         static List<LogicUser> UserMap(List<DataUser> dataUsers)
         {
             List<LogicUser> logicUsers = new List<LogicUser>();
-            foreach(DataUser dUser in dataUsers)
+            foreach (DataUser dUser in dataUsers)
             {
                 LogicUser lUser = new LogicUser();
                 lUser.UserID = dUser.UserID;
@@ -64,6 +64,15 @@ namespace BusinessLogicLayer
             _userDAL.CreateUser(daUser);
         }
 
+        public void UpdateUser(LogicUser boUpdatedUser)
+        {
+            DataUser updatedDAuser = Map(boUpdatedUser);
+            _userDAL.UpdateUser(updatedDAuser);
+        }
 
+        public void DeleteUser(int UserIDtoDelete)
+        {
+            _userDAL.DeleteUser(UserIDtoDelete);
+        }
     }
 }

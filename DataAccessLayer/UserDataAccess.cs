@@ -130,5 +130,36 @@ namespace DataAccessLayer
                 lConnection.Close();
             }
         }
+
+
+        public void DeleteUser(int UserIDtoDelete)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_DeleteUser", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@UserID", UserIDtoDelete);
+
+                cmd.ExecuteNonQuery();
+                
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+
+
+        }
     }
 }

@@ -73,7 +73,7 @@ namespace BasketballScoreBook.Controllers
         {
             //needs to pull updated info for the user
             LogicUser boUpdatedUser = Map(updatedUserVM);
-            _userBLL.CreateUser(boUpdatedUser);
+            _userBLL.UpdateUser(boUpdatedUser);
 
             return View("ViewUsers");
         }
@@ -86,14 +86,11 @@ namespace BasketballScoreBook.Controllers
         public ActionResult DeleteUser(int UserID)
         {
             //needs to display selected Users: FirstName,LastName ,username,password and roleID 
-            UserViewModel userToDelete = new UserViewModel();
-            userToDelete.SingleUser.UserID = UserID;
-            
-            LogicUser boDeleteUser = Map(userToDelete);
-            _userBLL.CreateUser(boDeleteUser);
+           
+            _userBLL.DeleteUser(UserID);
 
 
-            return View(userToDelete);
+            return View("ViewUser");
         }
 
        
