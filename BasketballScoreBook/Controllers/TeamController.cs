@@ -32,6 +32,8 @@ namespace BasketballScoreBook.Controllers
             return View(); //redirect to action()
         }
 
+        
+
         static LogicTeam Map(TeamViewModel teamVM)
         {
             LogicTeam boTeam = new LogicTeam();

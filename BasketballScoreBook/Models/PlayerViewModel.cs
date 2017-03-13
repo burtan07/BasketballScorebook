@@ -9,5 +9,7 @@ namespace BasketballScoreBook.Models
     {
         public PlayerModel SinglePlayer { get; set; }
         public List<PlayerModel> Players { get; set; }
+
+        public List<TeamModel> TeamsList { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult Login(UserViewModel userVM)
         {
+           
             return View();
         }
 
@@ -42,6 +43,12 @@ namespace BasketballScoreBook.Controllers
             LogicUser boUser = Map(userVM);
             _userBLL.CreateUser(boUser);
             return View("Login");
+
+        }
+
+        [HttpGet]
+        public ActionResult UpdateUser(int UserID)
+        {
 
         }
 

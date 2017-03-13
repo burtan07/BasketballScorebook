@@ -7,9 +7,9 @@ namespace BasketballScoreBook.Models
 {
     public class TeamModel
     {
+        public int TeamID { get; set; }
         public string TeamName { get; set; }
-        public string TeamLevel { get; set; }
-        public string TeamGender { get; set; }
+       
         public bool TeamHomeStatus { get; set; }
         public int TeamTimeouts { get; set; }
         public int TeamFouls { get; set; }
@@ -19,7 +19,7 @@ namespace BasketballScoreBook.Models
         public int TeamScore { get; set; }
         public PlayerModel SingleTeamPlayer { get; set; }
         public List<PlayerModel> TeamPlayers { get; set; }
-        public List<TeamModel> TeamList { get; set; }
+        
 
     }
 }

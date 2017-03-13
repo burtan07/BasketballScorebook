@@ -12,6 +12,7 @@ namespace BasketballScoreBook.Controllers
     public class PlayerController : Controller
     {
         static PlayerBusinessLogic _playerBLL = new PlayerBusinessLogic();
+        static TeamBusinessLogic _teamBLL = new TeamBusinessLogic();
         // GET: Player
         public ActionResult Index()
         {
@@ -21,18 +22,40 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult CreatePlayer()
         {
+            PlayerViewModel playerVM = new PlayerViewModel();
+
+            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
+            List<TeamModel> TeamsList = Map(boTeamList);
+            playerVM.TeamsList = new List<TeamModel>();
+           
+            ViewBag.TeamsList = TeamsList;
             return View();
         }
 
         [HttpPost]
         public ActionResult CreatePlayer(PlayerViewModel playerVM)
         {
+            
             LogicPlayer boPlayer = Map(playerVM);
             _playerBLL.CreatePlayer(boPlayer);
-            
+
+
             return View();
         }
 
+        static List<TeamModel> Map(List<LogicTeam> boTeams)
+        {
+            List<TeamModel> playerTeams = new List<TeamModel>();
+            foreach (LogicTeam lTeam in boTeams)
+            {
+                TeamModel team = new TeamModel();
+                team.TeamID = lTeam.TeamID;
+                team.TeamName = lTeam.TeamName;
+                
+                playerTeams.Add(team);
+            }
+            return playerTeams;
+        }
         static LogicPlayer Map(PlayerViewModel playerVM)  //Maps userVM to boUser
         {
             LogicPlayer boPlayer = new LogicPlayer();

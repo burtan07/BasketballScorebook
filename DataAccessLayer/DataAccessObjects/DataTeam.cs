@@ -10,8 +10,7 @@ namespace DataAccessLayer.DataAccessObjects
     {
         public int TeamID { get; set; }
         public string TeamName { get; set; }
-        public string TeamLevel { get; set; }
-        public string TeamGender { get; set; }
+        
         public bool TeamHomeStatus { get; set; }
         public int TeamTimeouts { get; set; }
         public int TeamFouls { get; set; }

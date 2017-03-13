@@ -27,8 +27,7 @@ namespace DataAccessLayer
                 lConnection.Open();
 
                 cmd.Parameters.AddWithValue("@TeamName", daTeam.TeamName);
-                cmd.Parameters.AddWithValue("@TeamLevel", daTeam.TeamLevel);
-                cmd.Parameters.AddWithValue("@TeamGender", daTeam.TeamGender);
+               
                
                 //cmd.Parameters.AddWithValue("@TeamTimeouts", daTeam.TeamTimeouts);
                 //cmd.Parameters.AddWithValue("@TeamFouls", daTeam.TeamFouls);
@@ -51,6 +50,45 @@ namespace DataAccessLayer
             {
                 lConnection.Close();
             }
+        }
+
+        public List<DataTeam> ReadTeams()
+        {
+            List<DataTeam> ldaTeamList = new List<DataTeam>();
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_ReadTeamTable", lConnection);
+
+            try
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while(rdr.Read())
+                    {
+                        DataTeam daReadTeam = new DataTeam();
+                        daReadTeam.TeamID = rdr.GetInt32(rdr.GetOrdinal("TeamID"));
+                        daReadTeam.TeamName = (string)rdr["TeamName"];
+                        
+
+                        ldaTeamList.Add(daReadTeam);
+                    }
+                }
+            }
+            catch(SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+            return ldaTeamList;
         }
     }
 }

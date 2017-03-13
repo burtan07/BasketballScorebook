@@ -20,7 +20,30 @@ namespace BusinessLogicLayer
             _teamDAL.CreateTeam(daTeam);
         }
 
-        static DataTeam Map(LogicTeam boTeam)
+        public List<LogicTeam> ReadTeams()
+        {
+            List<DataTeam> daTeamList = _teamDAL.ReadTeams();
+            List<LogicTeam> boTeamList = ListMap(daTeamList);
+
+            return boTeamList;
+        }
+
+
+        static List<LogicTeam> ListMap(List<DataTeam> daTeams)
+        {
+            List<LogicTeam> boTeams = new List<LogicTeam>();
+            foreach (DataTeam dTeam in daTeams)
+            {
+                LogicTeam lTeam = new LogicTeam();
+                lTeam.TeamID = dTeam.TeamID;
+                lTeam.TeamName = dTeam.TeamName;
+               
+                boTeams.Add(lTeam);
+            }
+
+            return boTeams;
+        }
+        static DataTeam Map(LogicTeam boTeam)  //Maps from BO to DA
         {
             DataTeam daTeam = new DataTeam();
 
