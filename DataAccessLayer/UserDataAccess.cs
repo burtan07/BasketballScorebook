@@ -101,5 +101,34 @@ namespace DataAccessLayer
             }
             return ldaUserList;
         }
+
+
+        public void UpdateUser(DataUser updatedDAuser)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_UpdateUserByUserID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@UserID", updatedDAuser.UserID);
+                cmd.Parameters.AddWithValue("@RoleID", updatedDAuser.RoleID);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
     }
 }

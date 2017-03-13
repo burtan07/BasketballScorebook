@@ -167,6 +167,7 @@
     <Content Include="Views\Player\CreatePlayer.cshtml" />
     <Content Include="Views\User\ViewUsers.cshtml" />
     <Content Include="Views\Team\CreateTeam.cshtml" />
+    <Content Include="Views\User\UpdateUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

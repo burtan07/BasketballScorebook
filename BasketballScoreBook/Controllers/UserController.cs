@@ -18,6 +18,9 @@ namespace BasketballScoreBook.Controllers
             return View();
         }
 
+
+
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -30,6 +33,10 @@ namespace BasketballScoreBook.Controllers
            
             return View();
         }
+
+
+
+
 
         [HttpGet]
         public ActionResult RegisterUser()
@@ -46,11 +53,80 @@ namespace BasketballScoreBook.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult UpdateUser(int UserID)
-        {
 
+
+
+        [HttpGet]
+        public ActionResult UpdateUser(int UserID, string UserName, int RoleID) //can this pull the entire user object?
+        {
+            //needs to display selected Users: FirstName,LastName ,username,password and roleID
+            UserViewModel userToUpdate = new UserViewModel();
+            userToUpdate.SingleUser.UserID = UserID;
+            userToUpdate.SingleUser.UserName = UserName;
+            userToUpdate.SingleUser.RoleID = RoleID;
+
+            return View(userToUpdate);
         }
+
+        [HttpPost]
+        public ActionResult UpdateUser(UserViewModel updatedUserVM)
+        {
+            //needs to pull updated info for the user
+            LogicUser boUpdatedUser = Map(updatedUserVM);
+            _userBLL.CreateUser(boUpdatedUser);
+
+            return View("ViewUsers");
+        }
+
+
+
+
+
+        [HttpGet]
+        public ActionResult DeleteUser(int UserID)
+        {
+            //needs to display selected Users: FirstName,LastName ,username,password and roleID 
+            UserViewModel userToDelete = new UserViewModel();
+            userToDelete.SingleUser.UserID = UserID;
+            
+            LogicUser boDeleteUser = Map(userToDelete);
+            _userBLL.CreateUser(boDeleteUser);
+
+
+            return View(userToDelete);
+        }
+
+       
+
+
+
+       [HttpGet]
+       public ActionResult PasswordReset(int UserID, string UserName, int RoleID)
+        {
+            UserViewModel userToUpdate = new UserViewModel();
+            userToUpdate.SingleUser.UserID = UserID;
+            userToUpdate.SingleUser.UserName = UserName;
+            userToUpdate.SingleUser.RoleID = RoleID;
+
+            return View(userToUpdate);
+        }
+
+        [HttpPost]
+        public ActionResult PasswordReset(int UserID, string ResetPassword)
+        {
+            UserViewModel updatedUserPassword = new UserViewModel();
+            updatedUserPassword.SingleUser.UserID = UserID;
+            updatedUserPassword.SingleUser.Password = ResetPassword;
+
+            LogicUser boUpdatedUser = Map(updatedUserPassword);
+            _userBLL.CreateUser(boUpdatedUser);
+
+            return View("ViewUsers");
+        }
+
+
+
+
 
         //[HttpGet]
         //public ActionResult Game()
@@ -74,6 +150,9 @@ namespace BasketballScoreBook.Controllers
             return View(viewModel);
         }
 
+
+
+
         static List<UserModel> MapUser(List<LogicUser> LogicUsers)
         {
             List<UserModel> userList = new List<UserModel>();
@@ -89,6 +168,8 @@ namespace BasketballScoreBook.Controllers
             return userList;
         }
         
+
+
 
 
         static LogicUser Map(UserViewModel userVM)  //Maps userVM to boUser
