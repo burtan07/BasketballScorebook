@@ -168,6 +168,7 @@
     <Content Include="Views\User\ViewUsers.cshtml" />
     <Content Include="Views\Team\CreateTeam.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
+    <Content Include="Views\User\PasswordReset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

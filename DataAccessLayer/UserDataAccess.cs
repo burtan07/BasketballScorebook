@@ -161,5 +161,62 @@ namespace DataAccessLayer
 
 
         }
+
+        public void UserPasswordReset(DataUser daUserPasswordReset)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_UserPasswordResetByUserID", lConnection);
+
+            try
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@UserID", daUserPasswordReset.UserID);
+                cmd.Parameters.AddWithValue("@UserPassword", daUserPasswordReset.Password);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
+
+        public DataUser CheckLogin(DataUser daUserToCheck)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_CheckUserLogin", lConnection);
+
+            try
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+
+
+
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
     }
 }

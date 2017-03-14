@@ -74,5 +74,11 @@ namespace BusinessLogicLayer
         {
             _userDAL.DeleteUser(UserIDtoDelete);
         }
+
+        public void UserPasswordReset(LogicUser boUserPasswordReset)
+        {
+            DataUser daUserPasswordReset = Map(boUserPasswordReset);
+            _userDAL.UserPasswordReset(daUserPasswordReset);
+        }
     }
 }

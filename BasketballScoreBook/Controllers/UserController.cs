@@ -65,7 +65,7 @@ namespace BasketballScoreBook.Controllers
             userToUpdate.SingleUser.UserName = UserName;
             userToUpdate.SingleUser.RoleID = RoleID;
 
-            return View(userToUpdate);
+            return View("UpdateUser",userToUpdate);
         }
 
         [HttpPost]
@@ -105,7 +105,7 @@ namespace BasketballScoreBook.Controllers
             userToUpdate.SingleUser.UserName = UserName;
             userToUpdate.SingleUser.RoleID = RoleID;
 
-            return View(userToUpdate);
+            return View("PasswordReset",userToUpdate);
         }
 
         [HttpPost]
@@ -116,7 +116,7 @@ namespace BasketballScoreBook.Controllers
             updatedUserPassword.SingleUser.Password = ResetPassword;
 
             LogicUser boUpdatedUser = Map(updatedUserPassword);
-            _userBLL.CreateUser(boUpdatedUser);
+            _userBLL.UserPasswordReset(boUpdatedUser);
 
             return View("ViewUsers");
         }
