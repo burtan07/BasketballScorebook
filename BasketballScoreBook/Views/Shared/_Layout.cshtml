@@ -17,26 +17,32 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
-               
-                @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="ActionLinksHeader">
+                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
 
-                @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
-                @if (Session["RoleID"] != null)
-                {
-                    if ((int)Session["RoleID"] == 3)
-                    {
-                        @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })
-                    }
-                    if ((int)Session["RoleID"] == 2)
-                    {
-                        //should be able to view teams and change player stats
-                        @*@Html.ActionLink("ViewTeams", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
 
+                    @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+                    @if (Session["RoleID"] != null)
+                    {
+                        if ((int)Session["RoleID"] == 3)
+                        {
+                            @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })
+                        }
+                        if ((int)Session["RoleID"] == 2)
+                        {
+                            //should be able to view teams and change player stats
+                            @*@Html.ActionLink("ViewTeams", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                        }
+                        if ((int)Session["RoleID"] == 1)
+                        {
+                            @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                        }
                     }
-                }
+                </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>

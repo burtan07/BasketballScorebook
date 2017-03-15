@@ -30,8 +30,25 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult Login(UserViewModel userVM)
         {
-           
-            return View();
+            LogicUser boUserLogin = Map(userVM);
+            LogicUser boStoredUser = _userBLL.GetUserByUsername(userVM.SingleUser.UserName);
+          bool passwordCorrect = _userBLL.CheckLogin(boUserLogin.Password, boStoredUser.Password);
+            string actionResult = "";
+            string controller = "";
+            if(passwordCorrect)
+            {
+                Session["Username"] = boStoredUser.UserName;
+                Session["RoleID"] = boStoredUser.RoleID;
+                actionResult = "Index";
+                controller = "Home"; 
+            }
+            else
+            {
+                actionResult = "Login";
+                controller = "User";
+            }
+            //redirect to action
+            return RedirectToAction(actionResult,controller);
         }
 
 

@@ -15,4 +15,8 @@ select,
 textarea {
     max-width: 280px;
 }
+.ActionLinksHeader :hover{
+       text-decoration:underline;
+       font-size: larger;
+}
 

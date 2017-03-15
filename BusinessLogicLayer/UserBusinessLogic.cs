@@ -35,15 +35,38 @@ namespace BusinessLogicLayer
             return daUser;
         }
 
+        static LogicUser Map(DataUser daUser) //Maps daUser to boUser
+        {
+            LogicUser boUser = new LogicUser();
 
-        public List<LogicUser> ViewUsers()
+            var type_daUser = daUser.GetType();
+            var type_boUser = boUser.GetType();
+
+            foreach (var field_daUser in type_daUser.GetFields())
+            {
+                var field_boUser = type_boUser.GetField(field_daUser.Name);
+                field_boUser.SetValue(boUser, field_daUser.GetValue(daUser));
+            }
+
+            foreach (var prop_daUser in type_daUser.GetProperties())
+            {
+                var prop_boUser = type_boUser.GetProperty(prop_daUser.Name);
+                prop_boUser.SetValue(boUser, prop_daUser.GetValue(daUser));
+            }
+
+            return boUser;
+
+        }
+
+
+        public List<LogicUser> ViewUsers()  //Calls ListMapper method and returns Logic List 
         {
             List<DataUser> dataUsers = new List<DataUser>();
             List<LogicUser> userList = UserMap(dataUsers);
             return userList;
         }
 
-        static List<LogicUser> UserMap(List<DataUser> dataUsers)
+        static List<LogicUser> UserMap(List<DataUser> dataUsers) //List Mapper from daUserList to LogicUserList
         {
             List<LogicUser> logicUsers = new List<LogicUser>();
             foreach (DataUser dUser in dataUsers)
@@ -58,27 +81,54 @@ namespace BusinessLogicLayer
             return logicUsers;
         }
 
-        public void CreateUser(LogicUser boUser)  //Calls Mapper BOuser to DAuser & sends down to DAL
+        public void CreateUser(LogicUser boUser)  //Creates User Calls Mapper BOuser to DAuser & sends down to DAL
         {
             DataUser daUser = Map(boUser);
             _userDAL.CreateUser(daUser);
         }
 
-        public void UpdateUser(LogicUser boUpdatedUser)
+        public void UpdateUser(LogicUser boUpdatedUser) //Maps LogicUser to daUser & Sends Updated daUser to DAL
         {
             DataUser updatedDAuser = Map(boUpdatedUser);
             _userDAL.UpdateUser(updatedDAuser);
         }
 
-        public void DeleteUser(int UserIDtoDelete)
+        public void DeleteUser(int UserIDtoDelete) //Takes in int for UserID (from Presentation) that will be deleted & sends to DAL
         {
             _userDAL.DeleteUser(UserIDtoDelete);
         }
 
-        public void UserPasswordReset(LogicUser boUserPasswordReset)
+        public void UserPasswordReset(LogicUser boUserPasswordReset) //Takes in boUser's reset password, Maps to daUser & Sends to DAL
         {
             DataUser daUserPasswordReset = Map(boUserPasswordReset);
             _userDAL.UserPasswordReset(daUserPasswordReset);
+        }
+
+        public bool CheckLogin(string LoginPassword, string StoredPassword)
+        {
+            //takes in UserLoginToCheck from Presentation, Maps to daUser, Sends daUserLoginToCheck to DAL, 
+            //returnedCheckeduser catches return from CheckLogin in DAL, returnedCheckeduser is Mapped to LogicUser and sent back up to Presentation
+
+            bool passwordCorrect = false;
+            
+            if (LoginPassword == StoredPassword)
+            {
+                passwordCorrect = true;
+            }
+            else
+            {
+                passwordCorrect = false;
+            }
+            return passwordCorrect;
+        }
+
+        public LogicUser GetUserByUsername(string Username)
+        {
+            DataUser daReturnUser = _userDAL.GetUserByUsername(Username);
+            LogicUser returnedUser = Map(daReturnUser);
+            
+
+            return returnedUser;
         }
     }
 }

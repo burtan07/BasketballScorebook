@@ -16,7 +16,7 @@ namespace DataAccessLayer
         string _connection = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
         string _FileLocation = @"C:/Users/Admin2/Desktop/ErrorLog.txt";
 
-        public void CreateUser(DataUser daUser)
+        public void CreateUser(DataUser daUser)  //Registers new Users
         {
             SqlConnection lConnection = new SqlConnection(_connection);
             SqlCommand cmd = new SqlCommand("sp_RegisterUser", lConnection);
@@ -55,7 +55,7 @@ namespace DataAccessLayer
 
         }
 
-        public List<DataUser> ReadUsers()
+        public List<DataUser> ReadUsers()  //Reads the current List of Users, calls SP_ReadUsers, returns the List of Users
         {
             List<DataUser> ldaUserList = new List<DataUser>();
             SqlConnection lConnection = new SqlConnection(_connection);
@@ -88,7 +88,7 @@ namespace DataAccessLayer
                 }
 
             }
-            catch(SqlException error)
+            catch (SqlException error)
             {
                 using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
                 {
@@ -103,7 +103,7 @@ namespace DataAccessLayer
         }
 
 
-        public void UpdateUser(DataUser updatedDAuser)
+        public void UpdateUser(DataUser updatedDAuser)  //Sends Updated RoleID for a User to SP_UpdatedUserByUserID
         {
             SqlConnection lConnection = new SqlConnection(_connection);
             SqlCommand cmd = new SqlCommand("sp_UpdateUserByUserID", lConnection);
@@ -118,7 +118,7 @@ namespace DataAccessLayer
 
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException error)
+            catch (SqlException error)
             {
                 using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
                 {
@@ -132,7 +132,7 @@ namespace DataAccessLayer
         }
 
 
-        public void DeleteUser(int UserIDtoDelete)
+        public void DeleteUser(int UserIDtoDelete)  //takes in UserID & Sends to SP_DeleteUser
         {
             SqlConnection lConnection = new SqlConnection(_connection);
             SqlCommand cmd = new SqlCommand("sp_DeleteUser", lConnection);
@@ -145,7 +145,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@UserID", UserIDtoDelete);
 
                 cmd.ExecuteNonQuery();
-                
+
             }
             catch (SqlException error)
             {
@@ -162,7 +162,7 @@ namespace DataAccessLayer
 
         }
 
-        public void UserPasswordReset(DataUser daUserPasswordReset)
+        public void UserPasswordReset(DataUser daUserPasswordReset)  //Takes in ResetPassword and sends into DB
         {
             SqlConnection lConnection = new SqlConnection(_connection);
             SqlCommand cmd = new SqlCommand("sp_UserPasswordResetByUserID", lConnection);
@@ -191,8 +191,10 @@ namespace DataAccessLayer
             }
         }
 
-        public DataUser CheckLogin(DataUser daUserToCheck)
+        public DataUser GetUserByUsername(string username)
+        //takes in daUser that needs Login check & calls "SP_checkLogin", sends userToCheck to SP, SP returns UserRole if UserName & Password match, this method is called in userBLL
         {
+            DataUser checkedUser = new DataUser();
             SqlConnection lConnection = new SqlConnection(_connection);
             SqlCommand cmd = new SqlCommand("sp_CheckUserLogin", lConnection);
 
@@ -202,10 +204,21 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
+                cmd.Parameters.AddWithValue("@UserName", username);
 
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        //DataUser daUser = new DataUser();
+                        checkedUser.UserName = (string)rdr["UserName"];
+                        checkedUser.Password = (string)rdr["UserPassword"];
+                        checkedUser.RoleID = rdr.GetInt32(rdr.GetOrdinal("RoleID"));
 
-
+                    }
+                }
             }
+
             catch (SqlException error)
             {
                 using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
@@ -213,10 +226,13 @@ namespace DataAccessLayer
                     lWriter.WriteLine(error.Message);
                 }
             }
+
             finally
             {
                 lConnection.Close();
             }
+            return checkedUser;
+
         }
     }
 }

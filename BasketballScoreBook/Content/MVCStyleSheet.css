@@ -1,4 +1,6 @@
-﻿
+﻿.ActionLinksHeader{
+    text-decoration:underline;
+}
 .LabelSpacing{
     margin-top: 15px;
 }
