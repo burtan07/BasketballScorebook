@@ -30,7 +30,13 @@
                 @Html.DisplayFor(m => m.SingleUser.RoleID)
             </div>
             <div class="TextBoxPos">
-                @Html.TextBoxFor(m => m.SingleUser.RoleID, new { @class = "form-control", placeholder = "Change User RoleID to 1,2 or 3", @type = "number" })
+                @Html.DropDownListFor(m => m.SingleUser.RoleID, new List<SelectListItem>
+                    {
+                    new SelectListItem {Text=" -- ", },
+                    new SelectListItem {Text="1" },
+                    new SelectListItem {Text="2" },
+                    new SelectListItem {Text="3" } })
+                
             </div>
         </div>
 

@@ -19,7 +19,7 @@
                 <td>@Html.DisplayFor(m => user.UserName)</td>
                 <td>@Html.DisplayFor(m => user.RoleID)</td>
                 <td>@Html.ActionLink("Update User", "UpdateUser", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName, RoleID = user.RoleID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-                <td>@Html.ActionLink("Password Reset", "PasswordReset", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName, RoleID = user.RoleID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+                <td>@Html.ActionLink("Password Reset", "PasswordReset", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
                 <td>@Html.ActionLink("Delete User", "DeleteUser", "User", routeValues: new { UserID = user.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
                 
             </tr>

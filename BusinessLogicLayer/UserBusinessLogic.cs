@@ -61,7 +61,7 @@ namespace BusinessLogicLayer
 
         public List<LogicUser> ViewUsers()  //Calls ListMapper method and returns Logic List 
         {
-            List<DataUser> dataUsers = new List<DataUser>();
+            List<DataUser> dataUsers = _userDAL.ReadUsers();
             List<LogicUser> userList = UserMap(dataUsers);
             return userList;
         }

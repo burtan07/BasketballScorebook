@@ -74,10 +74,11 @@ namespace BasketballScoreBook.Controllers
 
 
         [HttpGet]
-        public ActionResult UpdateUser(int UserID, string UserName, int RoleID) //can this pull the entire user object?
+        public ActionResult UpdateUser(int UserID, string UserName, int RoleID) 
         {
             //needs to display selected Users: FirstName,LastName ,username,password and roleID
             UserViewModel userToUpdate = new UserViewModel();
+            userToUpdate.SingleUser = new UserModel();
             userToUpdate.SingleUser.UserID = UserID;
             userToUpdate.SingleUser.UserName = UserName;
             userToUpdate.SingleUser.RoleID = RoleID;
@@ -92,7 +93,7 @@ namespace BasketballScoreBook.Controllers
             LogicUser boUpdatedUser = Map(updatedUserVM);
             _userBLL.UpdateUser(boUpdatedUser);
 
-            return View("ViewUsers");
+            return RedirectToAction("ViewUsers","User");
         }
 
 
@@ -107,7 +108,7 @@ namespace BasketballScoreBook.Controllers
             _userBLL.DeleteUser(UserID);
 
 
-            return View("ViewUser");
+            return RedirectToAction("ViewUsers", "User");
         }
 
        
@@ -115,27 +116,29 @@ namespace BasketballScoreBook.Controllers
 
 
        [HttpGet]
-       public ActionResult PasswordReset(int UserID, string UserName, int RoleID)
+       public ActionResult PasswordReset(int UserID, string UserName)
         {
             UserViewModel userToUpdate = new UserViewModel();
+            userToUpdate.SingleUser = new UserModel();
             userToUpdate.SingleUser.UserID = UserID;
             userToUpdate.SingleUser.UserName = UserName;
-            userToUpdate.SingleUser.RoleID = RoleID;
-
+           
             return View("PasswordReset",userToUpdate);
         }
 
         [HttpPost]
-        public ActionResult PasswordReset(int UserID, string ResetPassword)
+        public ActionResult PasswordReset(UserViewModel userNewPasswordVM)
         {
             UserViewModel updatedUserPassword = new UserViewModel();
-            updatedUserPassword.SingleUser.UserID = UserID;
-            updatedUserPassword.SingleUser.Password = ResetPassword;
+            updatedUserPassword.SingleUser = new UserModel();
+            updatedUserPassword.SingleUser.UserID = userNewPasswordVM.SingleUser.UserID;
+            
+            updatedUserPassword.SingleUser.Password = userNewPasswordVM.SingleUser.Password;
 
             LogicUser boUpdatedUser = Map(updatedUserPassword);
             _userBLL.UserPasswordReset(boUpdatedUser);
 
-            return View("ViewUsers");
+            return RedirectToAction("ViewUsers", "User");
         }
 
 
