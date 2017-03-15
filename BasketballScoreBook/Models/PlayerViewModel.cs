@@ -7,6 +7,11 @@ namespace BasketballScoreBook.Models
 {
     public class PlayerViewModel
     {
+        public PlayerViewModel ()
+        {
+            SinglePlayer = new PlayerModel();
+
+        }
         public PlayerModel SinglePlayer { get; set; }
         public List<PlayerModel> Players { get; set; }
 

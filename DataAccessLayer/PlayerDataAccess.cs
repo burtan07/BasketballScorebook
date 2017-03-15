@@ -26,7 +26,8 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
-                cmd.Parameters.AddWithValue("@TeamID", daPlayer.PlayerTeamID);
+                cmd.Parameters.AddWithValue("@TeamID", daPlayer.TeamID);
+                cmd.Parameters.AddWithValue("@PlayerID", daPlayer.PlayerID);
                 cmd.Parameters.AddWithValue("@PlayerLastName", daPlayer.PlayerLastName);
                 cmd.Parameters.AddWithValue("@PlayerFirstInitial", daPlayer.PlayerFirstInitial);
                 cmd.Parameters.AddWithValue("@PlayerRole", daPlayer.PlayerRole);
@@ -52,6 +53,42 @@ namespace DataAccessLayer
             {
                 lConnection.Close();
             }
+        }
+
+
+        public List<DataPlayer> ReadPlayersTable()
+        {
+            List<DataPlayer> ldaPlayerList = new List<DataPlayer>();
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_ReadPlayersTable", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while(rdr.Read())
+                    {
+                        DataPlayer daReadPlayer = new DataPlayer();
+                        daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
+                        daReadPlayer.
+
+
+
+                    }
+
+
+
+                }
+
+
+
+            }
+
+
+
         }
     }
 }

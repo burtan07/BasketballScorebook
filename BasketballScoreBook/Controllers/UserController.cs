@@ -32,15 +32,15 @@ namespace BasketballScoreBook.Controllers
         {
             LogicUser boUserLogin = Map(userVM);
             LogicUser boStoredUser = _userBLL.GetUserByUsername(userVM.SingleUser.UserName);
-          bool passwordCorrect = _userBLL.CheckLogin(boUserLogin.Password, boStoredUser.Password);
+            bool passwordCorrect = _userBLL.CheckLogin(boUserLogin.Password, boStoredUser.Password);
             string actionResult = "";
             string controller = "";
-            if(passwordCorrect)
+            if (passwordCorrect)
             {
                 Session["Username"] = boStoredUser.UserName;
                 Session["RoleID"] = boStoredUser.RoleID;
                 actionResult = "Index";
-                controller = "Home"; 
+                controller = "Home";
             }
             else
             {
@@ -48,7 +48,7 @@ namespace BasketballScoreBook.Controllers
                 controller = "User";
             }
             //redirect to action
-            return RedirectToAction(actionResult,controller);
+            return RedirectToAction(actionResult, controller);
         }
 
 
@@ -74,16 +74,15 @@ namespace BasketballScoreBook.Controllers
 
 
         [HttpGet]
-        public ActionResult UpdateUser(int UserID, string UserName, int RoleID) 
+        public ActionResult UpdateUser(int UserID, string UserName, int RoleID)
         {
             //needs to display selected Users: FirstName,LastName ,username,password and roleID
             UserViewModel userToUpdate = new UserViewModel();
-            userToUpdate.SingleUser = new UserModel();
             userToUpdate.SingleUser.UserID = UserID;
             userToUpdate.SingleUser.UserName = UserName;
             userToUpdate.SingleUser.RoleID = RoleID;
 
-            return View("UpdateUser",userToUpdate);
+            return View("UpdateUser", userToUpdate);
         }
 
         [HttpPost]
@@ -93,7 +92,7 @@ namespace BasketballScoreBook.Controllers
             LogicUser boUpdatedUser = Map(updatedUserVM);
             _userBLL.UpdateUser(boUpdatedUser);
 
-            return RedirectToAction("ViewUsers","User");
+            return RedirectToAction("ViewUsers", "User");
         }
 
 
@@ -104,35 +103,32 @@ namespace BasketballScoreBook.Controllers
         public ActionResult DeleteUser(int UserID)
         {
             //needs to display selected Users: FirstName,LastName ,username,password and roleID 
-           
+
             _userBLL.DeleteUser(UserID);
 
 
             return RedirectToAction("ViewUsers", "User");
         }
 
-       
 
 
 
-       [HttpGet]
-       public ActionResult PasswordReset(int UserID, string UserName)
+
+        [HttpGet]
+        public ActionResult PasswordReset(int UserID, string UserName)
         {
             UserViewModel userToUpdate = new UserViewModel();
-            userToUpdate.SingleUser = new UserModel();
             userToUpdate.SingleUser.UserID = UserID;
             userToUpdate.SingleUser.UserName = UserName;
-           
-            return View("PasswordReset",userToUpdate);
+
+            return View("PasswordReset", userToUpdate);
         }
 
         [HttpPost]
         public ActionResult PasswordReset(UserViewModel userNewPasswordVM)
         {
             UserViewModel updatedUserPassword = new UserViewModel();
-            updatedUserPassword.SingleUser = new UserModel();
             updatedUserPassword.SingleUser.UserID = userNewPasswordVM.SingleUser.UserID;
-            
             updatedUserPassword.SingleUser.Password = userNewPasswordVM.SingleUser.Password;
 
             LogicUser boUpdatedUser = Map(updatedUserPassword);
@@ -157,8 +153,8 @@ namespace BasketballScoreBook.Controllers
         //    return View(); 
         //}
 
-            [HttpGet]
-            public ActionResult ViewUsers()
+        [HttpGet]
+        public ActionResult ViewUsers()
         {
             UserViewModel viewModel = new UserViewModel();
             viewModel.Users = new List<UserModel>();
@@ -184,7 +180,7 @@ namespace BasketballScoreBook.Controllers
             }
             return userList;
         }
-        
+
 
 
 
@@ -202,7 +198,7 @@ namespace BasketballScoreBook.Controllers
                 field_boUser.SetValue(boUser, field_userVM.GetValue(userVM.SingleUser));
             }
 
-            foreach(var prop_userVM in type_userVM.GetProperties())
+            foreach (var prop_userVM in type_userVM.GetProperties())
             {
                 var prop_boUser = type_boUser.GetProperty(prop_userVM.Name);
                 prop_boUser.SetValue(boUser, prop_userVM.GetValue(userVM.SingleUser));
