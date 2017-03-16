@@ -21,6 +21,44 @@ namespace BusinessLogicLayer
             _playerDAL.CreatePlayer(daPlayer);
         }
 
+        public List<LogicPlayer> ViewPlayers()
+        {
+            List<DataPlayer> daPlayers = _playerDAL.ReadPlayersTable();
+            List<LogicPlayer> boPlayerList = ListMap(daPlayers);
+
+            return boPlayerList;
+        }
+
+
+        static List<LogicPlayer> ListMap(List<DataPlayer> daPlayers)  //Maps daPlayerList to boPlayerList
+        {
+            List<LogicPlayer> logicPlayers = new List<LogicPlayer>();
+            foreach(DataPlayer daPlayer in daPlayers)
+            {
+                LogicPlayer boPlayer = new LogicPlayer();
+
+                var type_daPlayer = daPlayer.GetType();
+                var type_boPlayer = boPlayer.GetType();
+
+                foreach(var field_daPlayer in type_daPlayer.GetFields())
+                {
+                    var field_boPlayer = type_boPlayer.GetField(field_daPlayer.Name);
+                    field_boPlayer.SetValue(boPlayer, field_daPlayer.GetValue(daPlayer));
+                }
+                foreach(var prop_daPlayer in type_boPlayer.GetProperties())
+                {
+                    var prop_boPlayer = type_boPlayer.GetProperty(prop_daPlayer.Name);
+                    prop_boPlayer.SetValue(boPlayer, prop_daPlayer.GetValue(daPlayer));
+                }
+
+                logicPlayers.Add(boPlayer);
+
+            }
+            
+            return logicPlayers;
+        }
+
+
         static DataPlayer Map(LogicPlayer boPlayer)
         {
             DataPlayer daPlayer = new DataPlayer();

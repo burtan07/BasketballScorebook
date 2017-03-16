@@ -10,6 +10,8 @@ namespace BasketballScoreBook.Models
         public PlayerViewModel ()
         {
             SinglePlayer = new PlayerModel();
+            Players = new List<PlayerModel>();
+            TeamsList = new List<TeamModel>();
 
         }
         public PlayerModel SinglePlayer { get; set; }

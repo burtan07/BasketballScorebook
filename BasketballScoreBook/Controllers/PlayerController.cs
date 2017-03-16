@@ -27,7 +27,7 @@ namespace BasketballScoreBook.Controllers
             List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
             List<TeamModel> TeamsList = Map(boTeamList);
             playerVM.TeamsList = new List<TeamModel>();
-           
+
             ViewBag.TeamsList = TeamsList;
             return View();
         }
@@ -35,15 +35,28 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult CreatePlayer(PlayerViewModel playerVM)
         {
-            
+            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
+            List<TeamModel> TeamsList = Map(boTeamList);
+            ViewBag.TeamsList = TeamsList;
             LogicPlayer boPlayer = Map(playerVM);
             _playerBLL.CreatePlayer(boPlayer);
-
 
             return View();
         }
 
-        static List<TeamModel> Map(List<LogicTeam> boTeams)
+
+        [HttpGet]
+        public ActionResult ViewPlayers()
+        {
+            PlayerViewModel playerVM = new PlayerViewModel();
+
+            List<LogicPlayer> boPlayersList = _playerBLL.ViewPlayers();
+            playerVM.Players = ListMap(boPlayersList);
+
+            return View(playerVM);
+        }
+
+        static List<TeamModel> Map(List<LogicTeam> boTeams) //Pulls the list of teams from DB to Display in the CreatePlayer View
         {
             List<TeamModel> playerTeams = new List<TeamModel>();
             foreach (LogicTeam lTeam in boTeams)
@@ -51,7 +64,7 @@ namespace BasketballScoreBook.Controllers
                 TeamModel team = new TeamModel();
                 team.TeamID = lTeam.TeamID;
                 team.TeamName = lTeam.TeamName;
-                
+
                 playerTeams.Add(team);
             }
             return playerTeams;
@@ -77,6 +90,36 @@ namespace BasketballScoreBook.Controllers
             return boPlayer;
         }
 
+        static List<PlayerModel> ListMap(List<LogicPlayer> boPlayersList)
+        {
+            //foreach LogicPlayer object in the List, get the data types(classes) for each object,
+            //Gets the fields(name & value) foreach Type in boPlayers & assigns to playerVM using SetValue Method,
+            //Gets the properties(name & value)foeach Type in boPlayers & assigns to playerVM using SetValue Method
+            //then adds the playerVM obj to the List of PLayerModel
+
+            List<PlayerModel> playersList = new List<PlayerModel>();
+            foreach(LogicPlayer boPlayer in boPlayersList)  
+            {
+                PlayerModel playerVM = new PlayerModel();
+
+                var type_boPlayer = boPlayer.GetType();
+                var type_playerVM = playerVM.GetType();
+
+                foreach(var field_boPlayer in type_boPlayer.GetFields())
+                {
+                    var field_playerVM = type_playerVM.GetField(field_boPlayer.Name);
+                    field_playerVM.SetValue(playerVM, field_boPlayer.GetValue(boPlayer));
+                }
+
+                foreach(var prop_boPlayer in type_boPlayer.GetProperties())
+                {
+                    var prop_playerVM = type_playerVM.GetProperty(prop_boPlayer.Name);
+                    prop_playerVM.SetValue(playerVM, prop_boPlayer.GetValue(boPlayer));
+                }
+                playersList.Add(playerVM);
+            }
+            return playersList;
+        }
 
     }
 }

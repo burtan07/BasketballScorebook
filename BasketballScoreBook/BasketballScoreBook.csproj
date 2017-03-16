@@ -169,6 +169,7 @@
     <Content Include="Views\Team\CreateTeam.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
     <Content Include="Views\User\PasswordReset.cshtml" />
+    <Content Include="Views\Player\ViewPlayers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

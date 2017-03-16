@@ -157,7 +157,7 @@ namespace BasketballScoreBook.Controllers
         public ActionResult ViewUsers()
         {
             UserViewModel viewModel = new UserViewModel();
-            viewModel.Users = new List<UserModel>();
+            //viewModel.Users = new List<UserModel>();
             List<LogicUser> logicUsers = _userBLL.ViewUsers();
             viewModel.Users = MapUser(logicUsers);
             return View(viewModel);

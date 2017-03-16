@@ -26,8 +26,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
-                cmd.Parameters.AddWithValue("@TeamID", daPlayer.TeamID);
-                cmd.Parameters.AddWithValue("@PlayerID", daPlayer.PlayerID);
+                cmd.Parameters.AddWithValue("@Team_ID", daPlayer.TeamID);
                 cmd.Parameters.AddWithValue("@PlayerLastName", daPlayer.PlayerLastName);
                 cmd.Parameters.AddWithValue("@PlayerFirstInitial", daPlayer.PlayerFirstInitial);
                 cmd.Parameters.AddWithValue("@PlayerRole", daPlayer.PlayerRole);
@@ -69,26 +68,28 @@ namespace DataAccessLayer
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    while(rdr.Read())
+                    while (rdr.Read())
                     {
                         DataPlayer daReadPlayer = new DataPlayer();
-                        daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
-                        daReadPlayer.TeamID = rdr.GetInt32(rdr.GetOrdinal("TeamID"));
-                        daReadPlayer.PlayerLastName = (string)rdr["PlayerLastName"];
-                        daReadPlayer.PlayerFirstInitial = (string)rdr["PlayerFirstInitial"];
-                        daReadPlayer.PlayerRole = (string)rdr["PlayerRole"];
-                        daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("PlayerJerseyNum"));
-                        daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));
-                        daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("PlayerFouls"));
-                        daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("PlayerPoints"));
-                        daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
-                        daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
-                        daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
-
-                        ldaPlayerList.Add(daReadPlayer);
+                        //daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
+                        //daReadPlayer.TeamID = rdr.GetInt32(rdr.GetOrdinal("Player.Team_ID"));
+                        daReadPlayer.TeamName = (string)rdr["Team.TeamName"];
+                        daReadPlayer.PlayerLastName = (string)rdr["Player.PlayerLastName"];
+                        daReadPlayer.PlayerFirstInitial = (string)rdr["Player.PlayerFirstInitial"];
+                        daReadPlayer.PlayerRole = (string)rdr["Player.PlayerRole"];
+                        daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerJerseyNum"));
+                        daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerAssists"));
+                        daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerFouls"));
+                        daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerPoints"));
+                        daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerQuartersPlayed"));
+                        daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerShotAttempts"));
+                        daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("Player.PlayerShotMakes"));
                         
+                        ldaPlayerList.Add(daReadPlayer);
                     }
-                    catch (SqlException error)
+                }
+            }
+            catch (SqlException error)
             {
                 using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
                 {
@@ -102,16 +103,8 @@ namespace DataAccessLayer
             return ldaPlayerList;
         }
 
-
-
     }
-
-
 
 }
 
 
-
-        }
-    }
-}

@@ -10,6 +10,7 @@ namespace BasketballScoreBook.Models
         public int TeamID { get; set; }
                      
         public int PlayerID { get; set; }
+        public string TeamName { get; set; }
         public string PlayerLastName { get; set; }
         public string PlayerFirstInitial { get; set; }
         public string PlayerRole { get; set; }

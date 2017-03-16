@@ -1,0 +1,41 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.PlayerViewModel
+@{
+    ViewBag.Title = "ViewPlayers";
+}
+
+<h2>ViewPlayers</h2>
+
+<table>
+    <tr>
+        <th>Team Name</th>
+        <th>Last Name</th>
+        <th>First Initial</th>
+        <th>Jersey Number</th>
+        <th>Position</th>
+        <th>Fouls</th>
+        <th>Assists</th>
+        <th>Points Scored</th>
+        <th>Shot Attempts</th>
+        <th>Shot Makes</th>
+        <th>Quarters Played</th>
+    </tr>
+
+    @foreach (PlayerModel player in Model.Players)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => player.TeamName) </td>
+            <td>@Html.DisplayFor(m => player.PlayerLastName) </td>
+            <td>@Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+            <td>@Html.DisplayFor(m => player.JerseyNum)</td>
+            <td>@Html.DisplayFor(m => player.PlayerRole)</td>
+            <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
+            <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
+            <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
+            <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
+            <td>@Html.DisplayFor(m => player.PlayerShotMakes) </td>
+            <td>@Html.DisplayFor(m => player.QuarterPlayed) </td>
+        </tr>
+    }
+
+</table>

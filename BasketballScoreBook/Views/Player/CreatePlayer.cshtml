@@ -15,10 +15,10 @@
             <th>Player First Initial</th>
             <th>Player Number</th>
             <th>Player Role</th>
-
-            @*<th>Player Points</th>
+            <th>Player Points</th>
             <th>Player Shot Attempts</th>
-            <th>Player Shot Makes</th>*@
+            <th>Player Shot Makes</th>
+            <th>Quarters Played</th>
             
         </tr>
        
@@ -29,9 +29,10 @@
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial)</td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.JerseyNum)</td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerRole)</td>
-                @*<td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints)</td>
                 <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts)</td>
-                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes)</td>*@
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed)</td>
  
             </tr>
 
