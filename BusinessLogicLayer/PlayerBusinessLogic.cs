@@ -45,7 +45,7 @@ namespace BusinessLogicLayer
                     var field_boPlayer = type_boPlayer.GetField(field_daPlayer.Name);
                     field_boPlayer.SetValue(boPlayer, field_daPlayer.GetValue(daPlayer));
                 }
-                foreach(var prop_daPlayer in type_boPlayer.GetProperties())
+                foreach(var prop_daPlayer in type_daPlayer.GetProperties())
                 {
                     var prop_boPlayer = type_boPlayer.GetProperty(prop_daPlayer.Name);
                     prop_boPlayer.SetValue(boPlayer, prop_daPlayer.GetValue(daPlayer));

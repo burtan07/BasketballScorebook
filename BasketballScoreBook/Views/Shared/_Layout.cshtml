@@ -1,4 +1,5 @@
-﻿@model BasketballScoreBook.Models.UserViewModel
+﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,33 +21,40 @@
                 </button>
                 <div class="ActionLinksHeader">
                     @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ActionLinksHeader" })
-                    @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
 
-                    @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                    @if ((string)Session["UserName"] == null) //if user hasnt logged in display these links
+                    {
+                        @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+                    }
 
-                    @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
                     @if (Session["RoleID"] != null)
                     {
                         if ((int)Session["RoleID"] == 3)
                         {
                             @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand AdminActionLinks" })
+                            @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
                         }
                         if ((int)Session["RoleID"] == 2)
                         {
-                            //should be able to view teams and change player stats
-                            @*@Html.ActionLink("ViewTeams", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand" })*@
+                            //should be able to change player stats
+
+                            @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
 
                         }
                         if ((int)Session["RoleID"] == 1)
                         {
                             @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
+
+
                         }
                     }
                 </div>
             </div>
             <div>
-                @if(Session["Username"] != null)
+                @if (Session["Username"] != null)
                 {
                     <label>Hey @Session["Username"]!</label>
                 }

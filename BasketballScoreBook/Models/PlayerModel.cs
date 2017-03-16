@@ -8,7 +8,7 @@ namespace BasketballScoreBook.Models
     public class PlayerModel
     {
         public int TeamID { get; set; }
-                     
+                 
         public int PlayerID { get; set; }
         public string TeamName { get; set; }
         public string PlayerLastName { get; set; }

@@ -17,11 +17,18 @@ textarea {
 }
 
 .AdminActionLinks a:link{
-   text-decoration-color: black;
+   color: black;
 }
 
 .ActionLinksHeader a:hover{
        text-decoration: underline;
        font-size: larger;
+}
+
+.ViewPlayerTableClass th{
+    width: 30px;
+}
+.ViewPlayerTableClass td{
+    width: 30px;
 }
 

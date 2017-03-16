@@ -8,9 +8,10 @@ namespace DataAccessLayer.DataAccessObjects
 {
    public  class DataPlayer
     {
+        public int PlayerID { get; set; }
         public int TeamID { get; set; }
         public string TeamName { get; set; }
-        public int PlayerID { get; set; }
+        
         public string PlayerLastName { get; set; }
         public string PlayerFirstInitial { get; set; }
         public string PlayerRole { get; set; }
