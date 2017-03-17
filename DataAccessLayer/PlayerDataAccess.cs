@@ -84,7 +84,7 @@ namespace DataAccessLayer
                         daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
                         daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
                         daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
-                        
+
                         ldaPlayerList.Add(daReadPlayer);
                     }
                 }
@@ -124,7 +124,36 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@PlayerQuartersPlayed", daPlayer.QuarterPlayed);
                 cmd.Parameters.AddWithValue("@PlayerShotAttempts", daPlayer.PlayerShotAttempts);
                 cmd.Parameters.AddWithValue("@PlayerShotMakes", daPlayer.PlayerShotMakes);
-                
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
+
+        public void DeletePlayerByPlayerID(int playerToDelete)
+        {
+            //takes in Player to Delete's ID & Sends to SP_DeletePlayerByPlayerID 
+
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_DeletePlayerByPlayerID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@PlayerID", playerToDelete);
+
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException error)

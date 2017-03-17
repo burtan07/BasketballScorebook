@@ -37,6 +37,7 @@
             <td>@Html.DisplayFor(m => player.QuarterPlayed) </td>
 
             <td>@Html.ActionLink("Update Player", "UpdatePlayer", "Player", routeValues: new { PlayerID = player.PlayerID}, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+            <td>@Html.ActionLink("Delete Player", "DeletePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
         </tr>
     }
 

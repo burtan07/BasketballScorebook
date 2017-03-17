@@ -36,6 +36,11 @@ namespace BusinessLogicLayer
 
         }
 
+        public void DeletePlayerByPlayerID(int playerToDelete)
+        {
+            _playerDAL.DeletePlayerByPlayerID(playerToDelete);
+        }
+
 
         static List<LogicPlayer> ListMap(List<DataPlayer> daPlayers)  //Maps daPlayerList to boPlayerList
         {

@@ -1,0 +1,26 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.TeamViewModel
+
+@{
+    ViewBag.Title = "ViewTeams";
+}
+
+<h2>ViewTeams</h2>
+
+<table class="ViewTeamTableClass">
+    <tr>
+        <th>Team Name</th>
+      
+    </tr>
+    @foreach(TeamModel team in Model.TeamList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => team.TeamID)</td>
+            <td>@Html.DisplayFor(m => team.TeamName)</td>
+
+            <td>@Html.ActionLink("Update Team", "UpdateTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+            <td>@Html.ActionLink("Delete Team", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+    </tr>
+       
+    }
+    </table>

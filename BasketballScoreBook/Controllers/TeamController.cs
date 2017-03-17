@@ -29,7 +29,28 @@ namespace BasketballScoreBook.Controllers
         {
             LogicTeam boTeam = Map(teamVM);
             _teamBLL.CreateTeam(boTeam);
-            return View(); //redirect to action()
+
+            return RedirectToAction("ViewTeams", "Team"); //redirect to action()
+        }
+
+        [HttpGet]
+        public ActionResult ViewTeams()
+        {
+            TeamViewModel teamVM = new TeamViewModel();
+
+            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
+            teamVM.TeamList = ListMap(boTeamList);
+
+            return View(teamVM);
+
+        }
+
+        [HttpGet]
+        public ActionResult UpdateTeam(int TeamID)
+        {
+
+            return View();
+
         }
 
         
@@ -54,6 +75,20 @@ namespace BasketballScoreBook.Controllers
             }
 
             return boTeam;
+        }
+
+        static List<TeamModel> ListMap(List<LogicTeam> boTeams) //Pulls the list of teams from DB to Display in the CreatePlayer View
+        {
+            List<TeamModel> teamsList = new List<TeamModel>();
+            foreach (LogicTeam lTeam in boTeams)
+            {
+                TeamModel team = new TeamModel();
+                team.TeamID = lTeam.TeamID;
+                team.TeamName = lTeam.TeamName;
+
+                teamsList.Add(team);
+            }
+            return teamsList;
         }
 
     }

@@ -93,12 +93,20 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult UpdatePlayer(PlayerViewModel updatedPlayerVM)
         {
-            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
-            List<TeamModel> TeamsList = Map(boTeamList);
-            ViewBag.TeamsList = TeamsList;
+            //Maps & sends Updated Player to BLL
 
             LogicPlayer boUpdatedPlayer = Map(updatedPlayerVM);
             _playerBLL.UpdatePlayerByPlayerID(boUpdatedPlayer);
+
+            return RedirectToAction("ViewPlayers", "Player");
+        }
+
+
+        [HttpGet]
+        public ActionResult DeletePlayer(int PlayerID) 
+        {
+            // Pulls Player to Deletes ID and sends down to BLL
+            _playerBLL.DeletePlayerByPlayerID(PlayerID);
 
             return RedirectToAction("ViewPlayers", "Player");
         }

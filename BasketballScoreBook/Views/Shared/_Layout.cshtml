@@ -35,18 +35,23 @@
                             @Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand AdminActionLinks" })
                             @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
                             @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("View Teams", "ViewTeams", "Team", new { area = "" }, new { @class = "navbar-brand" })
                         }
                         if ((int)Session["RoleID"] == 2)
                         {
                             //should be able to change player stats
 
                             @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("View Teams", "ViewTeams", "Team", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
                             @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                           
 
                         }
                         if ((int)Session["RoleID"] == 1)
                         {
                             @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
 
 
                         }
