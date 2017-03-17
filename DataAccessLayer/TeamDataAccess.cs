@@ -120,32 +120,32 @@ namespace DataAccessLayer
             }
         }
 
-        public void DeleteTeamByTeamID(int daTeamID)
-        {
-            SqlConnection lConnection = new SqlConnection(_connection);
-            SqlCommand cmd = new SqlCommand("sp_DeleteTeamByTeamID", lConnection);
+        //public void DeleteTeamByTeamID(int daTeamID)
+        //{
+        //    SqlConnection lConnection = new SqlConnection(_connection);
+        //    SqlCommand cmd = new SqlCommand("sp_DeleteTeamByTeamID", lConnection);
 
-            try
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                lConnection.Open();
+        //    try
+        //    {
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        lConnection.Open();
 
-                cmd.Parameters.AddWithValue("@TeamID", daTeamID);
+        //        cmd.Parameters.AddWithValue("@TeamID", daTeamID);
 
-                cmd.ExecuteNonQuery();
-            }
+        //        cmd.ExecuteNonQuery();
+        //    }
 
-            catch (SqlException error)
-            {
-                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
-                {
-                    lWriter.WriteLine(error.Message);
-                }
-            }
-            finally
-            {
-                lConnection.Close();
-            }
-        }
+        //    catch (SqlException error)
+        //    {
+        //        using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+        //        {
+        //            lWriter.WriteLine(error.Message);
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lConnection.Close();
+        //    }
+        //}
     }
 }

@@ -77,6 +77,14 @@ namespace BasketballScoreBook.Controllers
         }
 
 
+        //[HttpGet]
+        //public ActionResult DeleteTeam(int TeamID)
+        //{
+        //    _teamBLL.DeleteTeamByTeamID(TeamID);
+
+        //    return RedirectToAction("ViewTeams", "Team");
+        //}
+
 
         static LogicTeam Map(TeamViewModel teamVM)
         {

@@ -36,6 +36,12 @@ namespace BusinessLogicLayer
         }
 
 
+        //public void DeleteTeamByTeamID(int boTeamIDtoDEL)
+        //{
+          
+        //    _teamDAL.DeleteTeamByTeamID(boTeamIDtoDEL);
+        //}
+
         static List<LogicTeam> ListMap(List<DataTeam> daTeams)
         {
             List<LogicTeam> boTeams = new List<LogicTeam>();
