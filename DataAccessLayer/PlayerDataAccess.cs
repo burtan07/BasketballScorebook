@@ -103,6 +103,43 @@ namespace DataAccessLayer
             return ldaPlayerList;
         }
 
+
+        public void UpdatePlayerByPlayerID(DataPlayer daPlayer)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_UpdatePlayerByPlayerID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@PlayerID", daPlayer.PlayerID);
+                cmd.Parameters.AddWithValue("@Team_ID", daPlayer.TeamID);
+                cmd.Parameters.AddWithValue("@PlayerRole", daPlayer.PlayerRole);
+                cmd.Parameters.AddWithValue("@PlayerJerseyNum", daPlayer.JerseyNum);
+                cmd.Parameters.AddWithValue("@PlayerAssists", daPlayer.JerseyNum);
+                cmd.Parameters.AddWithValue("@PlayerFouls", daPlayer.PlayerFouls);
+                cmd.Parameters.AddWithValue("@PlayerPoints", daPlayer.PlayerPoints);
+                cmd.Parameters.AddWithValue("@PlayerQuartersPlayed", daPlayer.QuarterPlayed);
+                cmd.Parameters.AddWithValue("@PlayerShotAttempts", daPlayer.PlayerShotAttempts);
+                cmd.Parameters.AddWithValue("@PlayerShotMakes", daPlayer.PlayerShotMakes);
+                
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
+
     }
 
 }

@@ -33,11 +33,12 @@ namespace BasketballScoreBook.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePlayer(PlayerViewModel playerVM)
+        public ActionResult CreatePlayer(PlayerViewModel playerVM) //Displays List of Teams using ViewBag & Creates Player with TeamID = TeamNameSelected
         {
             List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
             List<TeamModel> TeamsList = Map(boTeamList);
             ViewBag.TeamsList = TeamsList;
+
             LogicPlayer boPlayer = Map(playerVM);
             _playerBLL.CreatePlayer(boPlayer);
 
@@ -46,7 +47,7 @@ namespace BasketballScoreBook.Controllers
 
 
         [HttpGet]
-        public ActionResult ViewPlayers()
+        public ActionResult ViewPlayers() //Views Current List of Players
         {
             PlayerViewModel playerVM = new PlayerViewModel();
 
@@ -55,6 +56,54 @@ namespace BasketballScoreBook.Controllers
 
             return View(playerVM);
         }
+
+
+        [HttpGet]
+        public ActionResult UpdatePlayer(int PlayerID)  
+        {
+            //Available to PowerUser from ViewPlayers View Table |  
+            //Pulls the selected Players ID that needs updated , checks if it's equal to PlayersList.PLayers.PLayerID
+
+            PlayerViewModel playerVM = new PlayerViewModel();
+            PlayerViewModel playerToUpdate = new PlayerViewModel();
+
+            List<LogicPlayer> boPlayersList = _playerBLL.ViewPlayers();
+            playerVM.Players = ListMap(boPlayersList);
+
+            foreach (PlayerModel player in playerVM.Players)
+            {
+                if (PlayerID == player.PlayerID)
+                {
+                    playerToUpdate.SinglePlayer = player;
+                    playerToUpdate.SinglePlayer.PlayerID = PlayerID;
+                }
+            }
+
+            PlayerViewModel playerTeamsVM = new PlayerViewModel();
+
+            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
+            List<TeamModel> TeamsList = Map(boTeamList);
+            playerTeamsVM.TeamsList = new List<TeamModel>();
+
+            ViewBag.TeamsList = TeamsList;
+
+            return View("UpdatePlayer", playerToUpdate);
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePlayer(PlayerViewModel updatedPlayerVM)
+        {
+            List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
+            List<TeamModel> TeamsList = Map(boTeamList);
+            ViewBag.TeamsList = TeamsList;
+
+            LogicPlayer boUpdatedPlayer = Map(updatedPlayerVM);
+            _playerBLL.UpdatePlayerByPlayerID(boUpdatedPlayer);
+
+            return RedirectToAction("ViewPlayers", "Player");
+        }
+
+
 
         static List<TeamModel> Map(List<LogicTeam> boTeams) //Pulls the list of teams from DB to Display in the CreatePlayer View
         {
@@ -98,20 +147,20 @@ namespace BasketballScoreBook.Controllers
             //then adds the playerVM obj to the List of PLayerModel
 
             List<PlayerModel> playersList = new List<PlayerModel>();
-            foreach(LogicPlayer boPlayer in boPlayersList)  
+            foreach (LogicPlayer boPlayer in boPlayersList)
             {
                 PlayerModel playerVM = new PlayerModel();
 
                 var type_boPlayer = boPlayer.GetType();
                 var type_playerVM = playerVM.GetType();
 
-                foreach(var field_boPlayer in type_boPlayer.GetFields())
+                foreach (var field_boPlayer in type_boPlayer.GetFields())
                 {
                     var field_playerVM = type_playerVM.GetField(field_boPlayer.Name);
                     field_playerVM.SetValue(playerVM, field_boPlayer.GetValue(boPlayer));
                 }
 
-                foreach(var prop_boPlayer in type_boPlayer.GetProperties())
+                foreach (var prop_boPlayer in type_boPlayer.GetProperties())
                 {
                     var prop_playerVM = type_playerVM.GetProperty(prop_boPlayer.Name);
                     prop_playerVM.SetValue(playerVM, prop_boPlayer.GetValue(boPlayer));

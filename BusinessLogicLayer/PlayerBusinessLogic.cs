@@ -29,6 +29,13 @@ namespace BusinessLogicLayer
             return boPlayerList;
         }
 
+        public void UpdatePlayerByPlayerID(LogicPlayer boUpdatedPlayer)
+        {
+            DataPlayer daUpdatedPlayer = Map(boUpdatedPlayer);
+            _playerDAL.UpdatePlayerByPlayerID(daUpdatedPlayer);
+
+        }
+
 
         static List<LogicPlayer> ListMap(List<DataPlayer> daPlayers)  //Maps daPlayerList to boPlayerList
         {
@@ -59,7 +66,7 @@ namespace BusinessLogicLayer
         }
 
 
-        static DataPlayer Map(LogicPlayer boPlayer)
+        static DataPlayer Map(LogicPlayer boPlayer)  //Maps boPlayer to daPlayer
         {
             DataPlayer daPlayer = new DataPlayer();
 

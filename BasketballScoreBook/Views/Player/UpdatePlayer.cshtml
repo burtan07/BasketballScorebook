@@ -1,0 +1,58 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.PlayerViewModel
+@{
+    ViewBag.Title = "UpdatePlayer";
+}
+
+<h2>UpdatePlayer</h2>
+
+@using (Html.BeginForm("UpdatePlayer", "Player", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.SinglePlayer.PlayerID)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerID)
+    @Html.TextBoxFor(m => m.SinglePlayer.PlayerID, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerID", @readonly="readonly" })
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerLastName)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerLastName)
+
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerFirstInitial)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerFirstInitial)
+
+    @Html.LabelFor(m => m.SinglePlayer.TeamName)
+    @Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList (ViewBag.TeamsList, "TeamID", "TeamName"))
+
+    @Html.LabelFor(m => m.SinglePlayer.JerseyNum)
+    @Html.DisplayFor(m => m.SinglePlayer.JerseyNum)
+    @Html.TextBoxFor(m => m.SinglePlayer.JerseyNum, new { @class = "form-control", placeholder = "Jersey Number", @type = "number" })
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerRole)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerRole)
+   @Html.DropDownListFor(m => m.SinglePlayer.PlayerRole, new List<SelectListItem>
+                    {
+                    new SelectListItem {Text=" -- ", },
+                    new SelectListItem {Text="Point Guard" },
+                    new SelectListItem {Text="Shooting Guard" },
+                    new SelectListItem {Text="Small Forward" },
+                    new SelectListItem {Text="Power Forward" },
+                    new SelectListItem {Text="Center" }})
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerPoints)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerPoints)
+    @Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerPoints", @type = "number" })
+
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerShotAttempts)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerShotAttempts)
+    @Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerShotAttempts", @type = "number" })
+
+    @Html.LabelFor(m => m.SinglePlayer.PlayerShotMakes)
+    @Html.DisplayFor(m => m.SinglePlayer.PlayerShotMakes)
+    @Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerShotMakes", @type = "number" })
+
+    @Html.LabelFor(m => m.SinglePlayer.QuarterPlayed)
+    @Html.DisplayFor(m => m.SinglePlayer.QuarterPlayed)
+    @Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.QuarterPlayed", @type = "number" })
+
+    <input type="submit" value="Submit" />
+}
