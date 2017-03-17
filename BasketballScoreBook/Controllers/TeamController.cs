@@ -46,14 +46,37 @@ namespace BasketballScoreBook.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdateTeam(int TeamID)
+        public ActionResult UpdateTeamName(int TeamID)
         {
+            TeamViewModel teamsListVM = new TeamViewModel();
+            TeamViewModel teamNameToUpdate = new TeamViewModel();
 
-            return View();
+            List<LogicTeam> boTeamsList = _teamBLL.ReadTeams();
+            teamsListVM.TeamList = ListMap(boTeamsList);
 
+            foreach (TeamModel team in teamsListVM.TeamList)
+            {
+                if (TeamID == team.TeamID)
+                {
+                    teamNameToUpdate.SingleTeam = team;
+                    teamNameToUpdate.SingleTeam.TeamID = TeamID;
+                }
+            }
+
+            return View("UpdateTeamName", teamNameToUpdate);
         }
 
-        
+
+        [HttpPost]
+        public ActionResult UpdateTeamName(TeamViewModel updatedTeamVM)
+        {
+            LogicTeam boUpdatedTeamName = Map(updatedTeamVM);
+            _teamBLL.UpdateTeamNameByTeamID(boUpdatedTeamName);
+
+            return RedirectToAction("ViewTeams", "Team");
+        }
+
+
 
         static LogicTeam Map(TeamViewModel teamVM)
         {
@@ -62,7 +85,7 @@ namespace BasketballScoreBook.Controllers
             var type_teamVM = teamVM.SingleTeam.GetType();
             var type_boTeam = boTeam.GetType();
 
-            foreach(var field_teamVM in type_teamVM.GetFields())
+            foreach (var field_teamVM in type_teamVM.GetFields())
             {
                 var field_boTeam = type_boTeam.GetField(field_teamVM.Name);
                 field_boTeam.SetValue(boTeam, field_teamVM.GetValue(teamVM.SingleTeam));

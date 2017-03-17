@@ -29,6 +29,13 @@ namespace BusinessLogicLayer
         }
 
 
+        public void UpdateTeamNameByTeamID(LogicTeam boUpdatedTeam)
+        {
+            DataTeam daUpdatedTeam = Map(boUpdatedTeam);
+            _teamDAL.UpdateTeamName(daUpdatedTeam);
+        }
+
+
         static List<LogicTeam> ListMap(List<DataTeam> daTeams)
         {
             List<LogicTeam> boTeams = new List<LogicTeam>();

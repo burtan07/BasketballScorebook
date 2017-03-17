@@ -1,0 +1,20 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.TeamViewModel
+@{
+    ViewBag.Title = "UpdateTeamName";
+}
+
+<h2>UpdateTeamName</h2>
+
+@using (Html.BeginForm("UpdateTeamName", "Team", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.SingleTeam.TeamID)
+    @Html.DisplayFor(m => m.SingleTeam.TeamID)
+    @Html.TextBoxFor(m => m.SingleTeam.TeamID, new { @class = "form-control", placeholder = "m.SingleTeam.TeamID", @readonly = "readonly" })
+
+    @Html.LabelFor(m => m.SingleTeam.TeamName)
+    @Html.DisplayFor(m => m.SingleTeam.TeamName)
+    @Html.TextBoxFor(m => m.SingleTeam.TeamName, new { @class = "form-control", placeholder = "Input New Team Name", @type = "text" })
+
+    <input type="submit" value="Submit" />
+}
