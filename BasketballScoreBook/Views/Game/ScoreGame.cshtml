@@ -1,0 +1,49 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.GameViewModel
+@{
+    ViewBag.Title = "ScoreGame";
+}
+
+<h2>ScoreGame</h2>
+
+<h2> Home Team</h2>
+<table>
+    <tr>
+        <th></th>
+
+    </tr>
+    @foreach (PlayerModel player in Model.homeTeamPlayers)
+    {
+        <tr>
+
+            <td> @Html.DisplayFor(m => player.TeamName)</td>
+            <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
+            <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+            <td> @Html.DisplayFor(m => player.PlayerRole)</td>
+            <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+
+        </tr>
+    }
+
+</table>
+
+
+<h2> Away Team</h2>
+<table>
+    <tr>
+        <th> </th>
+
+    </tr>
+    @foreach (PlayerModel player in Model.awayTeamPlayers)
+    {
+        <tr>
+
+            <td> @Html.DisplayFor(m => player.TeamName)</td>
+            <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
+            <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+            <td> @Html.DisplayFor(m => player.PlayerRole)</td>
+            <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+
+        </tr>
+    }
+</table>

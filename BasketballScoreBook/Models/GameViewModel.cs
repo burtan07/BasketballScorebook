@@ -15,5 +15,7 @@ namespace BasketballScoreBook.Models
         public GameModel SingleGame { get; set; }
         public List<GameModel> GamesList { get; set; }
         public List<TeamModel> TeamsList { get; set; }
+        public List<PlayerModel> homeTeamPlayers { get; set; }
+        public List<PlayerModel> awayTeamPlayers { get; set; }
     }
 }
