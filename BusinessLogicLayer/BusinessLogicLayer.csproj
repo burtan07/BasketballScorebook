@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\LogicGame.cs" />
     <Compile Include="BusinessObjects\LogicPlayer.cs" />
     <Compile Include="BusinessObjects\LogicTeam.cs" />
     <Compile Include="BusinessObjects\LogicUser.cs" />
+    <Compile Include="GameBusinessLogic.cs" />
     <Compile Include="PlayerBusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamBusinessLogic.cs" />

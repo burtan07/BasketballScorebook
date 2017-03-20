@@ -1,0 +1,65 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.GameViewModel
+@{
+    ViewBag.Title = "CreateGame";
+}
+
+<h2>CreateGame</h2>
+@using (Html.BeginForm("CreateGame", "Game", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th>Home Team</th>
+            <th>Home Score</th>
+        </tr>
+        <tr>
+            <td>@Html.DropDownListFor(m => m.SingleGame.HomeTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "HomeTeamDropDownList" }) </td>
+            <td>
+                <div id="HomeTeamName">
+                    <label id="HomeTeamNameLabel"> </label>
+                </div>
+            </td>
+            <td>@Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @class = "form-control", placeholder = "Home Score", @type = "number" })</td>
+        </tr>
+
+
+
+    </table>
+
+    <table>
+        <tr>
+            <th>Away Team</th>
+            <th>Away Score</th>
+        </tr>
+
+        <tr>
+            <td>@Html.DropDownListFor(m => m.SingleGame.AwayTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "AwayTeamDropDownList" }) </td>
+            <td>
+                <div id="AwayTeamName">
+                    <label id="AwayTeamNameLabel"> </label>
+                </div>
+            </td>
+            <td>@Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", placeholder = "Away Score", @type = "number" })</td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Submit" />
+
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("ShowHomeTeamName").hide();
+        $("ShowAwayTeamName").hide();
+        $("#HomeTeamDropDownList").click(function () {
+            ShowHomeTeamName()
+        });
+        $("#AwayTeamDropDownList").click(function () {
+            ShowAwayTeamName()
+        });
+    });
+
+
+
+</script>
