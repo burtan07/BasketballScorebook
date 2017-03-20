@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessObjects\DataGame.cs" />
     <Compile Include="DataAccessObjects\DataPlayer.cs" />
     <Compile Include="DataAccessObjects\DataTeam.cs" />
     <Compile Include="DataAccessObjects\DataUser.cs" />
+    <Compile Include="GameDataAccess.cs" />
     <Compile Include="PlayerDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamDataAccess.cs" />

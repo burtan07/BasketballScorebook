@@ -42,6 +42,15 @@ namespace BusinessLogicLayer
         }
 
 
+        public List<LogicPlayer> ViewTeamPlayers(int TeamID)
+        {
+            List<DataPlayer> daPlayers = _playerDAL.ReadPlayersByTeamID(TeamID);
+            List<LogicPlayer> boTeamPlayersList = ListMap(daPlayers);
+
+            return boTeamPlayersList;
+        }
+
+
         static List<LogicPlayer> ListMap(List<DataPlayer> daPlayers)  //Maps daPlayerList to boPlayerList
         {
             List<LogicPlayer> logicPlayers = new List<LogicPlayer>();

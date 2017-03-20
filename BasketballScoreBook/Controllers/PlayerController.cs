@@ -112,6 +112,17 @@ namespace BasketballScoreBook.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult ViewTeamPlayers(int TeamID) //Views Current List of Players on a selected team
+        {
+            PlayerViewModel teamPlayersVM = new PlayerViewModel();
+
+            List<LogicPlayer> boPlayersList = _playerBLL.ViewTeamPlayers(TeamID);
+            teamPlayersVM.Players = ListMap(boPlayersList);
+
+            return View(teamPlayersVM);
+        }
+
 
         static List<TeamModel> Map(List<LogicTeam> boTeams) //Pulls the list of teams from DB to Display in the CreatePlayer View
         {

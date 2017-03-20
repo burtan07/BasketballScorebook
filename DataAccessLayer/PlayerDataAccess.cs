@@ -169,6 +169,59 @@ namespace DataAccessLayer
             }
         }
 
+
+        public List<DataPlayer> ReadPlayersByTeamID(int TeamID)  //Sends player.TeamID and pulls players on that team based off TeamID sent 
+        {
+            List<DataPlayer> ldaPlayerList = new List<DataPlayer>();
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_ReadTeamsANDPlayers", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@Team_ID", TeamID);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        DataPlayer daReadPlayer = new DataPlayer();
+                        daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
+                        daReadPlayer.TeamID = rdr.GetInt32(rdr.GetOrdinal("Team_ID"));
+                        daReadPlayer.TeamName = (string)rdr["TeamName"];
+                        daReadPlayer.PlayerLastName = (string)rdr["PlayerLastName"];
+                        daReadPlayer.PlayerFirstInitial = (string)rdr["PlayerFirstInitial"];
+                        daReadPlayer.PlayerRole = (string)rdr["PlayerRole"];
+                        daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("PlayerJerseyNum"));
+                        //daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));
+                        //daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("PlayerFouls"));
+                        //daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("PlayerPoints"));
+                        //daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
+                        //daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
+                        //daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
+
+                        ldaPlayerList.Add(daReadPlayer);
+                    }
+                }
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+
+            finally
+            {
+                lConnection.Close();
+            }
+            return ldaPlayerList;
+
+        }
+
     }
 
 }

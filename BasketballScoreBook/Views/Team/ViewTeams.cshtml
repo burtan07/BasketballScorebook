@@ -17,9 +17,10 @@
         <tr>
             <td>@Html.DisplayFor(m => team.TeamID)</td>
             <td>@Html.DisplayFor(m => team.TeamName)</td>
-
+            <td>@Html.ActionLink("View Players on this Team", "ViewTeamPlayers", "Player", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
             <td>@Html.ActionLink("Update Team Name", "UpdateTeamName", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
             @*<td>@Html.ActionLink("Delete Team", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>*@
+
         </tr>
 
     }
