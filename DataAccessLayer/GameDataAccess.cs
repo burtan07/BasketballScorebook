@@ -29,10 +29,10 @@ namespace DataAccessLayer
                 lConnection.Open();
 
                 cmd.Parameters.AddWithValue("@HomeTeamID", daGame.HomeTeamID);
-               // cmd.Parameters.AddWithValue("@HomeTeamName", daGame.HomeTeamName);
+                cmd.Parameters.AddWithValue("@HomeTeamName", daGame.HomeTeamName);
                 cmd.Parameters.AddWithValue("@HomeTeamScore", daGame.HomeTeamScore);
                 cmd.Parameters.AddWithValue("@AwayTeamID", daGame.AwayTeamID);
-                //cmd.Parameters.AddWithValue("@AwayTeamName", daGame.AwayTeamName);
+                cmd.Parameters.AddWithValue("@AwayTeamName", daGame.AwayTeamName);
                 cmd.Parameters.AddWithValue("@AwayTeamScore", daGame.AwayTeamScore);
 
                 cmd.ExecuteNonQuery();

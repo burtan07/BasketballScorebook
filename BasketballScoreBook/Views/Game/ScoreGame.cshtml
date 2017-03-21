@@ -4,19 +4,29 @@
     ViewBag.Title = "ScoreGame";
 }
 
-<h2>ScoreGame</h2>
+@using (Html.BeginForm("ScoreGame", "Game", FormMethod.Post))
+{
+<h2>Score Game</h2>
 
 <h2> Home Team</h2>
+    @Html.HiddenFor(m => m.SingleGame.HomeTeamID, new { @id ="HomeTeamID" })
+    @Html.TextBoxFor(m => m.SingleGame.HomeTeamName, new {@class = "form-control", placeholder ="m.SingleGame.HomeTeamName", @readonly="readonly"})
+    
+<button id="home1point" type="button">1 point</button>
+<button  id="home2point" type="button">2 points</button>
+<button  id="home3point" type="button">3 points</button>
+@Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @id = "HomeTeamScore" })
 <table>
     <tr>
-        <th></th>
+        <th>Player Name</th>
+        <th>Player Position</th>
+        <th>Player Number</th>
 
     </tr>
     @foreach (PlayerModel player in Model.homeTeamPlayers)
     {
         <tr>
 
-            <td> @Html.DisplayFor(m => player.TeamName)</td>
             <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
             <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
             <td> @Html.DisplayFor(m => player.PlayerRole)</td>
@@ -29,16 +39,23 @@
 
 
 <h2> Away Team</h2>
+    @Html.HiddenFor(m => m.SingleGame.AwayTeamID, new { @id = "AwayTeamID" })
+    @Html.TextBoxFor(m => m.SingleGame.AwayTeamName, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamName", @readonly = "readonly"})
+<button id="away1point" type="button">1 point</button>
+<button id="away2point" type="button">2 points</button>
+<button id="away3point" type="button">3 points</button>
+@Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @id = "AwayTeamScore" })
 <table>
     <tr>
-        <th> </th>
+        <th>Player Name</th>
+        <th>Player Position</th>
+        <th>Player Number</th>
 
     </tr>
     @foreach (PlayerModel player in Model.awayTeamPlayers)
     {
         <tr>
 
-            <td> @Html.DisplayFor(m => player.TeamName)</td>
             <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
             <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
             <td> @Html.DisplayFor(m => player.PlayerRole)</td>
@@ -47,3 +64,38 @@
         </tr>
     }
 </table>
+<input type="submit" value="Submit Game"/>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#HomeTeamID").hide();
+        $("#AwayTeamID").hide();
+
+        $("#home1point").click(function()
+        {
+            HomeScorePlus1()
+        });
+        $("#home2point").click(function()
+        {
+            HomeScorePlus2()
+        });
+        $("#home3point").click(function()
+        {
+            HomeScorePlus3()
+        });
+        $("#away1point").click(function()
+        {
+            AwayScorePlus1()
+        });
+        $("#away2point").click(function()
+        {
+            AwayScorePlus2()
+        });
+        $("#away3point").click(function()
+        {
+            AwayScorePlus3()
+        });
+
+    });
+</script>

@@ -42,7 +42,7 @@ namespace BasketballScoreBook.Controllers
             LogicPlayer boPlayer = Map(playerVM);
             _playerBLL.CreatePlayer(boPlayer);
 
-            return View();
+            return RedirectToAction("Index","Home");
         }
 
 

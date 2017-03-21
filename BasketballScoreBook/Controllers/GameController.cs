@@ -28,7 +28,7 @@ namespace BasketballScoreBook.Controllers
             GameViewModel gameVM = new GameViewModel();
 
             List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
-            List<GameModel> teamsList = new List<GameModel>();
+            List<TeamModel> teamsList = Map(boTeamList);
             gameVM.TeamsList = new List<TeamModel>();
 
             ViewBag.TeamsList = teamsList;
@@ -39,24 +39,29 @@ namespace BasketballScoreBook.Controllers
         public ActionResult CreateGame(GameViewModel gameTeams)
         {
 
-            return RedirectToAction("ScoreGame", "Game", gameTeams);
+            return ScoreGameTeams(gameTeams);
         }
 
 
 
         [HttpGet]
-        public ActionResult ScoreGameTeams(GameViewModel gameTeams)
+        public ActionResult ScoreGameTeams(GameViewModel gameTeamIDs) //sends down Selected Home & Away TeamIDs, Gets Player Lists for those Teams, Assigns TeamID & teamNames to GameVM
         {
-            
            GameViewModel gameTeamPlayersList = new GameViewModel();
            
-
-            List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeams.SingleGame.HomeTeamID);
+            List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeamIDs.SingleGame.HomeTeamID);
             gameTeamPlayersList.homeTeamPlayers = PlayerListMap(boHomeTeam);
 
-            List<LogicPlayer> boAwayTeam = _playerBLL.ViewTeamPlayers(gameTeams.SingleGame.AwayTeamID);
+            PlayerModel singleHomePlayer = gameTeamPlayersList.homeTeamPlayers[0];
+            gameTeamPlayersList.SingleGame.HomeTeamID = singleHomePlayer.TeamID;
+            gameTeamPlayersList.SingleGame.HomeTeamName = singleHomePlayer.TeamName;
+
+            List<LogicPlayer> boAwayTeam = _playerBLL.ViewTeamPlayers(gameTeamIDs.SingleGame.AwayTeamID);
             gameTeamPlayersList.awayTeamPlayers = PlayerListMap(boAwayTeam);
 
+            PlayerModel singleAwayPlayer = gameTeamPlayersList.awayTeamPlayers[0];
+            gameTeamPlayersList.SingleGame.AwayTeamID = singleAwayPlayer.TeamID;
+            gameTeamPlayersList.SingleGame.AwayTeamName = singleAwayPlayer.TeamName;
 
             return View("ScoreGame", gameTeamPlayersList);
         }
@@ -67,7 +72,7 @@ namespace BasketballScoreBook.Controllers
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);
 
-            return View();
+            return RedirectToAction("CreateGame", "Game");
         }
 
 
