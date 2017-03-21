@@ -13,5 +13,12 @@ namespace BasketballScoreBook.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return View("Index");
+        }
     }
 }

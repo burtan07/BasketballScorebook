@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" rel="stylesheet" type="text/javascript" ></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" rel="stylesheet" type="text/javascript"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-   
+
     <script src="~/Scripts/BasketballScript.js"></script>
-   
+
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
@@ -58,7 +58,8 @@
                         {
                             @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })
                             @Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" })
-
+                            @Html.ActionLink("Create Game", "CreateGame", "Game", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })
 
                         }
                     }
@@ -68,7 +69,9 @@
                 @if (Session["Username"] != null)
                 {
                     <label>Hey @Session["Username"]!</label>
+                    @Html.ActionLink("Log Out", "LogOut", "Home", new { area = "" }, new { @class = "navbar-brand ActionLinksHeader" })
                 }
+
 
             </div>
             <div class="navbar-collapse collapse">
