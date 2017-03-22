@@ -6,102 +6,178 @@
 
 @using (Html.BeginForm("ScoreGame", "Game", FormMethod.Post))
 {
-<h2>Score Game</h2>
+    <h2>Score Game</h2>
+    <div class="HomeTeamTable">
+        <h2> Home Team</h2>
+        @Html.HiddenFor(m => m.SingleGame.HomeTeamID, new { @id = "HomeTeamID" })
+        @Html.TextBoxFor(m => m.SingleGame.HomeTeamName, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamName", @readonly = "readonly" })
+       
+            <div class="ScoreButtons">
+                <button id="home1point" type="button">1 point</button>
+                <button id="home2point" type="button">2 points</button>
+                <br />
+                <button id="home3point" type="button">3 points</button>
+            </div>
+            <div class="ScoreLabel">
+                @Html.LabelFor(m => m.SingleGame.HomeTeamScore)
+            </div>
+        <div class="ScoreBox">
+            @Html.TextBoxFor(m => m.SingleGame.HomeTeamScore,  new { @class = "form-control", @id= "HomeTeamScore", @type = "number" })
+        </div>
+        <br />
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamShotAttempts)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.HomeTeamShotAttempts, new { @class = "form-control", placeholder = "ShotAttempts", @type = "number" })
+            </div>
+        </div>
 
-<h2> Home Team</h2>
-    @Html.HiddenFor(m => m.SingleGame.HomeTeamID, new { @id ="HomeTeamID" })
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamName, new {@class = "form-control", placeholder ="m.SingleGame.HomeTeamName", @readonly="readonly"})
-    
-<button id="home1point" type="button">1 point</button>
-<button  id="home2point" type="button">2 points</button>
-<button  id="home3point" type="button">3 points</button>
-@Html.LabelFor(m => m.SingleGame.HomeTeamScore)
-@Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @id = "HomeTeamScore" })
-    @Html.LabelFor(m => m.SingleGame.HomeTeamShotAttempts)
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamShotAttempts, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamShotAttempts", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.HomeTeamShotMakes)
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamShotMakes, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamShotMakes", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.HomeTeamFouls)
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamFouls, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamFouls", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.HomeTeamTimeOuts)
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamTimeOuts, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamTimeOuts", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.HomeTeamTurnOvers)
-    @Html.TextBoxFor(m => m.SingleGame.HomeTeamTurnOvers, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamTurnOvers", @type = "number" })
-<table>
-    <tr>
-        <th>Player Name</th>
-        <th>Player Position</th>
-        <th>Player Number</th>
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamShotMakes)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.HomeTeamShotMakes, new { @class = "form-control", placeholder = "ShotMakes", @type = "number" })
+            </div>
+        </div>
 
-    </tr>
-    @foreach (PlayerModel player in Model.homeTeamPlayers)
-    {
-        <tr>
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamFouls)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.HomeTeamFouls, new { @class = "form-control", placeholder = "TeamFouls", @type = "number" })
+            </div>
+        </div>
 
-            <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
-            <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-            <td> @Html.DisplayFor(m => player.PlayerRole)</td>
-            <td> @Html.DisplayFor(m => player.JerseyNum)</td>
-            <td></td>
-            <td>@Html.DisplayFor(m => player.QuarterPlayed)</td>
-            <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
-            <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotMakes)</td>
-            <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamTimeOuts)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.HomeTeamTimeOuts, new { @class = "form-control", placeholder = "TimeOuts", @type = "number" })
+            </div>
+        </div>
 
-        </tr>
-    }
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamTurnOvers)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.HomeTeamTurnOvers, new { @class = "form-control", placeholder = "TurnOvers", @type = "number" })
+            </div>
+        </div>
 
-</table>
+        <div class="HomePlayers">
+            <h3>Players</h3>
+            <table>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Player Position</th>
+                    <th>Player Number</th>
 
+                </tr>
+                @foreach (PlayerModel player in Model.homeTeamPlayers)
+                {
+                    <tr>
 
-<h2> Away Team</h2>
-    @Html.HiddenFor(m => m.SingleGame.AwayTeamID, new { @id = "AwayTeamID" })
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamName, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamName", @readonly = "readonly"})
-<button id="away1point" type="button">1 point</button>
-<button id="away2point" type="button">2 points</button>
-<button id="away3point" type="button">3 points</button>
-@Html.LabelFor(m => m.SingleGame.AwayTeamScore)
-@Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @id = "AwayTeamScore" })
-    @Html.LabelFor(m => m.SingleGame.AwayTeamShotAttempts)
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamShotAttempts, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamShotAttempts", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.AwayTeamShotMakes)
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamShotMakes, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamShotMakes", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.AwayTeamFouls)
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamFouls, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamFouls", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.AwayTeamTimeOuts)
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamTimeOuts, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamTimeOuts", @type = "number" })
-    @Html.LabelFor(m => m.SingleGame.AwayTeamTurnOvers)
-    @Html.TextBoxFor(m => m.SingleGame.AwayTeamTurnOvers, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamTurnOvers", @type = "number" })
-<table>
-    <tr>
-        <th>Player Name</th>
-        <th>Player Position</th>
-        <th>Player Number</th>
-        <th></th>
+                        <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
+                        <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+                        <td> @Html.DisplayFor(m => player.PlayerRole)</td>
+                        <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+                        <td></td>
+                        <td>@Html.DisplayFor(m => player.QuarterPlayed)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerShotMakes)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
 
-    </tr>
-    @foreach (PlayerModel player in Model.awayTeamPlayers)
-    {
-        <tr>
+                    </tr>
+                }
 
-            <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
-            <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-            <td> @Html.DisplayFor(m => player.PlayerRole)</td>
-            <td> @Html.DisplayFor(m => player.JerseyNum)</td>
-            <td></td>
-            <td>@Html.DisplayFor(m => player.QuarterPlayed)</td>
-            <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
-            <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotMakes)</td>
-            <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
+            </table>
+        </div>
+    </div>
+    <div class="AwayTeamTable">
+        <h2> Away Team</h2>
+        @Html.HiddenFor(m => m.SingleGame.AwayTeamID, new { @id = "AwayTeamID" })
+        @Html.TextBoxFor(m => m.SingleGame.AwayTeamName, new { @class = "form-control", placeholder = "m.SingleGame.AwayTeamName", @readonly = "readonly" })
 
-        </tr>
-    }
-</table>
-<input type="submit" value="Submit Game"/>
+        <div class="ScoreButtons">
+            <button id="away1point" type="button">1 point</button>
+            <button id="away2point" type="button">2 points</button>
+            <br />
+            <button id="away3point" type="button">3 points</button>
+            </div>
+
+        <div class="ScoreLabel">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamScore)
+            </div>
+        <div class="ScoreBox">
+            @Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", @id= "AwayTeamScore", @type = "number" })
+        </div>
+        <br />
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamShotAttempts)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.AwayTeamShotAttempts, new { @class = "form-control", placeholder = "ShotAttempts", @type = "number" })
+            </div>
+        </div>
+
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamShotMakes)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.AwayTeamShotMakes, new { @class = "form-control", placeholder = "ShotMakes", @type = "number" })
+            </div>
+        </div>
+
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamFouls)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.AwayTeamFouls, new { @class = "form-control", placeholder = "TeamFouls", @type = "number" })
+            </div>
+        </div>
+
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamTimeOuts)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.AwayTeamTimeOuts, new { @class = "form-control", placeholder = "TimeOuts", @type = "number" })
+            </div>
+        </div>
+
+        <div class="LabelTextBox">
+            @Html.LabelFor(m => m.SingleGame.AwayTeamTurnOvers)
+            <div class="TeamTextBox">
+                @Html.TextBoxFor(m => m.SingleGame.AwayTeamTurnOvers, new { @class = "form-control", placeholder = "TurnOvers", @type = "number" })
+            </div>
+        </div>
+        <div class="AwayPlayers">
+            <h3>Players</h3>
+            <table>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Player Position</th>
+                    <th>Player Number</th>
+                    <th></th>
+
+                </tr>
+                @foreach (PlayerModel player in Model.awayTeamPlayers)
+                {
+                    <tr>
+
+                        <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
+                        <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+                        <td> @Html.DisplayFor(m => player.PlayerRole)</td>
+                        <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+                        <td></td>
+                        <td>@Html.DisplayFor(m => player.QuarterPlayed)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerShotMakes)</td>
+                        <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+                    <div class="SubmitButtonPos">
+                        <input type="submit" value="Submit Game" />
+                    </div>
 }
 
 <script>
@@ -109,28 +185,22 @@
         $("#HomeTeamID").hide();
         $("#AwayTeamID").hide();
 
-        $("#home1point").click(function()
-        {
+        $("#home1point").click(function () {
             HomeScorePlus1()
         });
-        $("#home2point").click(function()
-        {
+        $("#home2point").click(function () {
             HomeScorePlus2()
         });
-        $("#home3point").click(function()
-        {
+        $("#home3point").click(function () {
             HomeScorePlus3()
         });
-        $("#away1point").click(function()
-        {
+        $("#away1point").click(function () {
             AwayScorePlus1()
         });
-        $("#away2point").click(function()
-        {
+        $("#away2point").click(function () {
             AwayScorePlus2()
         });
-        $("#away3point").click(function()
-        {
+        $("#away3point").click(function () {
             AwayScorePlus3()
         });
 

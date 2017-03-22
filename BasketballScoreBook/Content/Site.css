@@ -16,19 +16,82 @@ textarea {
     max-width: 280px;
 }
 
-.AdminActionLinks a:link{
-   color: black;
+.AdminActionLinks a:link {
+    color: black;
 }
 
-.ActionLinksHeader a:hover{
-       text-decoration: underline;
-       font-size: larger;
+.ActionLinksHeader a:hover {
+    text-decoration: underline;
+    font-size: larger;
 }
 
-.ViewPlayerTableClass th{
-    width: 30px;
-}
-.ViewPlayerTableClass td{
+.ViewPlayerTableClass th {
     width: 30px;
 }
 
+.ViewPlayerTableClass td {
+    width: 30px;
+}
+
+.TeamTextBox {
+    width: 8%;
+    height: 50px;
+}
+
+.SubmitButtonPos {
+    margin-top: 30px;
+}
+
+.HomeTeamTable {
+    margin-top: 50px;
+    border: solid;
+    border-color: royalblue;
+    padding: 30px;
+    border-width: 5px;
+}
+
+.AwayTeamTable {
+    margin-top: 50px;
+    border: solid;
+    border-color: red;
+    padding: 30px;
+    border-width: 5px;
+}
+
+.HomePlayers {
+    border-top: 3px solid royalblue;
+    background-color: gainsboro;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.AwayPlayers {
+    border-top: 3px solid royalblue;
+    background-color: gainsboro;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.ScoreBox {
+    
+     width: 10%;
+    float: right;
+    margin-top: -5%;
+}
+
+.ScoreLabel {
+    float: right;
+    margin-top: -8%;
+    
+}
+
+
+.ScoreButtons {
+    float: left;
+    margin-top: -6%;
+    margin-left: 70%;
+}
+
+.ScoreButtons #home3point {
+        margin-left: 20%;
+    }
