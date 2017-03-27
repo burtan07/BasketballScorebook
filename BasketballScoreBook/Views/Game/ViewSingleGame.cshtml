@@ -1,0 +1,67 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.GameViewModel
+@{
+    ViewBag.Title = "ViewSingleGame";
+}
+
+<h2>View Single Game</h2>
+<table>
+    <tr>
+        <th>Home Team</th>
+        <th>Home Team Score</th>
+        <th>Home Team Fouls</th>
+        <th>Home Team TimeOuts</th>
+        <th>Home Team TurnOvers</th>
+        <th>Home Team ShotAttempts</th>
+        <th>Home Team Shots Made</th>
+
+
+
+
+    </tr>
+    @foreach (GameModel game in Model.GamesList)
+    {
+        <tr>
+
+            <td>@Html.DisplayFor(m => game.HomeTeamName)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamScore)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamFouls)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamTimeOuts)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamTurnOvers)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamShotAttempts)</td>
+            <td>@Html.DisplayFor(m => game.HomeTeamShotMakes)</td>
+        </tr>
+
+    }
+
+</table>
+
+<br/>
+
+<table>
+
+    <tr>
+        <th>Away Team</th>
+        <th>Away Team Score</th>
+        <th>Away Team Fouls</th>
+        <th>Away Team TimeOuts</th>
+        <th>Away Team TurnOvers</th>
+        <th>Away Team Shot Attempts</th>
+        <th>Away Team Shots Made</th>
+
+    </tr>
+    @foreach (GameModel game in Model.GamesList)
+    {
+
+        <tr>
+
+            <td>@Html.DisplayFor(m => game.AwayTeamName)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamScore)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamFouls)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamTimeOuts)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamTurnOvers)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamShotAttempts)</td>
+            <td>@Html.DisplayFor(m => game.AwayTeamShotMakes)</td>
+        </tr>
+    }
+</table>

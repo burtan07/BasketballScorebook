@@ -179,6 +179,8 @@
     <Content Include="Views\Player\ViewTeamPlayers.cshtml" />
     <Content Include="Views\Game\CreateGame.cshtml" />
     <Content Include="Views\Game\ScoreGame.cshtml" />
+    <Content Include="Views\Game\ViewGames.cshtml" />
+    <Content Include="Views\Game\ViewSingleGame.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

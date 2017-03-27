@@ -8,6 +8,7 @@ namespace BusinessLogicLayer.BusinessObjects
 {
     public class LogicGame
     {
+        public int GameID { get; set; }
         public int HomeTeamID { get; set; }
         public string HomeTeamName { get; set; }
         public int HomeTeamScore { get; set; }

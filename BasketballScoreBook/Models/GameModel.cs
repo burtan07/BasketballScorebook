@@ -8,6 +8,7 @@ namespace BasketballScoreBook.Models
 {
     public class GameModel
     {
+        public int GameID { get; set; }
         public int HomeTeamID { get; set; }
 
         public string HomeTeamName { get; set; }

@@ -75,6 +75,28 @@ namespace BasketballScoreBook.Controllers
             return RedirectToAction("CreateGame", "Game");
         }
 
+        [HttpGet]
+        public ActionResult ViewGames()
+        {
+            GameViewModel gamesVMList = new GameViewModel();
+
+            List<LogicGame> boGames = _gameBLL.ReadGames();
+            gamesVMList.GamesList = GamesListMap(boGames);
+
+            return View("ViewGames", gamesVMList);
+        }
+
+        [HttpGet]
+        public ActionResult ViewSingleGame(int GameID)
+        {
+            GameViewModel gamesVMList = new GameViewModel();
+
+            List<LogicGame> boGames = _gameBLL.ReadGameByGameID(GameID);
+            gamesVMList.GamesList = GamesListMap(boGames);
+
+            return View("ViewSingleGame", gamesVMList);
+        }
+
 
 
 
@@ -142,6 +164,33 @@ namespace BasketballScoreBook.Controllers
                 playersList.Add(playerVM);
             }
             return playersList;
+        }
+
+        static List<GameModel> GamesListMap(List<LogicGame> boGamesList)
+        {
+            List<GameModel> gamesVMList = new List<GameModel>();
+            foreach(LogicGame boGame in boGamesList)
+            {
+                GameModel game = new GameModel();
+
+                var type_boGame = boGame.GetType();
+                var type_game = game.GetType();
+
+                foreach(var field_boGame in type_boGame.GetFields())
+                {
+                    var field_game = type_game.GetField(field_boGame.Name);
+                    field_game.SetValue(game, field_boGame.GetValue(boGame));
+                }
+
+                foreach(var prop_boGame in type_boGame.GetProperties())
+                {
+                    var prop_game = type_game.GetProperty(prop_boGame.Name);
+                    prop_game.SetValue(game, prop_boGame.GetValue(boGame));
+                }
+                gamesVMList.Add(game);
+            }
+            return gamesVMList;
+
         }
     }
 }
