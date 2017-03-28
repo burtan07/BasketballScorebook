@@ -11,18 +11,18 @@
         <h2> Home Team</h2>
         @Html.HiddenFor(m => m.SingleGame.HomeTeamID, new { @id = "HomeTeamID" })
         @Html.TextBoxFor(m => m.SingleGame.HomeTeamName, new { @class = "form-control", placeholder = "m.SingleGame.HomeTeamName", @readonly = "readonly" })
-       
-            <div class="ScoreButtons">
-                <button id="home1point" type="button">1 point</button>
-                <button id="home2point" type="button">2 points</button>
-                <br />
-                <button id="home3point" type="button">3 points</button>
-            </div>
-            <div class="ScoreLabel">
-                @Html.LabelFor(m => m.SingleGame.HomeTeamScore)
-            </div>
+
+        <div class="ScoreButtons">
+            <button id="home1point" type="button">1 point</button>
+            <button id="home2point" type="button">2 points</button>
+            <br />
+            <button id="home3point" type="button">3 points</button>
+        </div>
+        <div class="ScoreLabel">
+            @Html.LabelFor(m => m.SingleGame.HomeTeamScore)
+        </div>
         <div class="ScoreBox">
-            @Html.TextBoxFor(m => m.SingleGame.HomeTeamScore,  new { @class = "form-control", @id= "HomeTeamScore", @type = "number" })
+            @Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @class = "form-control", @id = "HomeTeamScore", @type = "number" })
         </div>
         <br />
 
@@ -65,7 +65,8 @@
             <h3>Players</h3>
             <table>
                 <tr>
-                    <th> Name</th>
+                    <th> Last Name</th>
+                    <th> First Initial</th>
                     <th>Player Position</th>
                     <th> Jersey Number</th>
                     <th>Quarters Played</th>
@@ -80,11 +81,11 @@
                 {
                     <tr>
 
-                        <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
-                        <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-                        <td> @Html.DisplayFor(m => player.PlayerRole)</td>
-                        <td> @Html.DisplayFor(m => player.JerseyNum)</td>
-                       
+                        <td> @Html.TextBoxFor(m => player.PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
+
                         <td>@Html.TextBoxFor(m => player.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
                         <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
                         <td>@Html.TextBoxFor(m => player.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
@@ -94,6 +95,7 @@
 
                     </tr>
                 }
+
 
             </table>
         </div>
@@ -108,13 +110,13 @@
             <button id="away2point" type="button">2 points</button>
             <br />
             <button id="away3point" type="button">3 points</button>
-            </div>
+        </div>
 
         <div class="ScoreLabel">
             @Html.LabelFor(m => m.SingleGame.AwayTeamScore)
-            </div>
+        </div>
         <div class="ScoreBox">
-            @Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", @id= "AwayTeamScore", @type = "number" })
+            @Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", @id = "AwayTeamScore", @type = "number" })
         </div>
         <br />
         <div class="LabelTextBox">
@@ -155,8 +157,9 @@
             <h3>Players</h3>
             <table>
                 <tr>
-                   
-                    <th> Name</th>
+
+                    <th> Last Name</th>
+                    <th> First Initial</th>
                     <th>Player Position</th>
                     <th> Jersey Number</th>
                     <th>Quarters Played</th>
@@ -171,10 +174,10 @@
                 {
                     <tr>
 
-                        <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
-                        <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-                        <td> @Html.DisplayFor(m => player.PlayerRole)</td>
-                        <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+                        <td> @Html.TextBoxFor(m => player.PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(m => player.JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
                         <td></td>
                         <td>@Html.TextBoxFor(m => player.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
                         <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
@@ -188,9 +191,9 @@
             </table>
         </div>
     </div>
-                    <div class="SubmitButtonPos">
-                        <input type="submit" value="Submit Game" />
-                    </div>
+    <div class="SubmitButtonPos">
+        <input type="submit" value="Submit Game" />
+    </div>
 }
 
 <script>

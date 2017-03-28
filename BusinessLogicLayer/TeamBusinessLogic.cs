@@ -39,6 +39,7 @@ namespace BusinessLogicLayer
 
         public void ReadTeamStatsByTeamID(LogicTeam boTeamStats)
         {
+            //TO DO: separate this method to send down TeamID, store returned TeamStats, send return TeamStats to Update Method
             List<DataTeam> daTeamStats = _teamDAL.ReadTeamStatsByTeamID(boTeamStats.TeamID);
             LogicTeam boStoredTeamStats = StatListMap(daTeamStats);
 

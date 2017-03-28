@@ -222,6 +222,52 @@ namespace DataAccessLayer
 
         }
 
+        public DataPlayer ReadPlayerByPlayerID(int PlayerID)
+        {
+            DataPlayer daReadPlayer = new DataPlayer();
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_ReadPlayerByPlayerID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@PlayerID", PlayerID);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
+                        daReadPlayer.TeamID = rdr.GetInt32(rdr.GetOrdinal("Team_ID"));
+                        daReadPlayer.PlayerRole = (string)rdr["PlayerRole"];
+                        daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("PlayerJerseyNum"));
+                        daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));
+                        daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("PlayerFouls"));
+                        daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("PlayerPoints"));
+                        daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
+                        daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
+                        daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
+
+                        
+                    }
+                }
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+            return daReadPlayer;
+        }
+
     }
 
 }

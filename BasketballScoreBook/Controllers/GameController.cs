@@ -73,7 +73,10 @@ namespace BasketballScoreBook.Controllers
             //gameVM.homeTeamPlayers stats gets sent to Player Table
             LogicTeam boTeamStats = StatsMap(gameVM);
             _teamBLL.ReadTeamStatsByTeamID(boTeamStats);
-            
+
+            //List<PlayerModel> gamePlayers = gameVM.homeTeamPlayers;
+            //List<LogicPlayer> boPlayerStats = PlayerStatsMap(gamePlayers);
+            //_playerBLL.ReadPlayersByPlayerID(boPlayerStats);
 
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);
@@ -214,6 +217,29 @@ namespace BasketballScoreBook.Controllers
             boTeamStats.TeamScore = gameTeamStats.HomeTeamScore;
           
             return boTeamStats;
+        }
+
+        static List<LogicPlayer> PlayerStatsMap(List<PlayerModel> gamePlayers)
+        {
+            //had to manually Map bc gameVM.SingleGame has Away Team values and only want to store Home Team values
+           // List<PlayerModel> playerVMStats = gameVM.homeTeamPlayers;
+            List<LogicPlayer> boPlayerStatList = new List<LogicPlayer>();
+
+            foreach (PlayerModel playerStat in gamePlayers)
+            {
+                LogicPlayer boPlayerStats = new LogicPlayer();
+                boPlayerStats.PlayerID = playerStat.PlayerID;
+                boPlayerStats.TeamID = playerStat.TeamID;
+                boPlayerStats.PlayerAssists = playerStat.PlayerAssists;
+                boPlayerStats.PlayerFouls = playerStat.PlayerFouls;
+                boPlayerStats.PlayerPoints = playerStat.PlayerPoints;
+                boPlayerStats.QuarterPlayed = playerStat.QuarterPlayed;
+                boPlayerStats.PlayerShotAttempts = playerStat.PlayerShotAttempts;
+                boPlayerStats.PlayerShotMakes = playerStat.PlayerShotMakes;
+
+                boPlayerStatList.Add(boPlayerStats);
+            }
+            return boPlayerStatList;
         }
     }
 }
