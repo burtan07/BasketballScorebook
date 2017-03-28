@@ -69,6 +69,12 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult ScoreGame(GameViewModel gameVM)
         {
+            //gameVM.SingleGame.HomeTeam stats gets sent to TeamStats Table
+            //gameVM.homeTeamPlayers stats gets sent to Player Table
+            LogicTeam boTeamStats = StatsMap(gameVM);
+            _teamBLL.ReadTeamStatsByTeamID(boTeamStats);
+            
+
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);
 
@@ -191,6 +197,23 @@ namespace BasketballScoreBook.Controllers
             }
             return gamesVMList;
 
+        }
+
+        static LogicTeam StatsMap(GameViewModel gameVM)
+        {
+            //had to manually Map bc gameVM.SingleGame has Away Team values and only want to store Home Team values
+            GameModel gameTeamStats = gameVM.SingleGame;
+            
+               LogicTeam boTeamStats = new LogicTeam();
+            boTeamStats.TeamID = gameTeamStats.HomeTeamID;
+            boTeamStats.TeamName = gameTeamStats.HomeTeamName;
+            boTeamStats.TeamFouls = gameTeamStats.HomeTeamFouls;
+            boTeamStats.TeamTurnovers = gameTeamStats.HomeTeamTurnOvers;
+            boTeamStats.TeamShotAttempts = gameTeamStats.HomeTeamShotAttempts;
+            boTeamStats.TeamShotMakes = gameTeamStats.HomeTeamShotMakes;
+            boTeamStats.TeamScore = gameTeamStats.HomeTeamScore;
+          
+            return boTeamStats;
         }
     }
 }

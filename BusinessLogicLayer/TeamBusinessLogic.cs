@@ -36,11 +36,25 @@ namespace BusinessLogicLayer
         }
 
 
-        //public void DeleteTeamByTeamID(int boTeamIDtoDEL)
-        //{
-          
-        //    _teamDAL.DeleteTeamByTeamID(boTeamIDtoDEL);
-        //}
+
+        public void ReadTeamStatsByTeamID(LogicTeam boTeamStats)
+        {
+            List<DataTeam> daTeamStats = _teamDAL.ReadTeamStatsByTeamID(boTeamStats.TeamID);
+            LogicTeam boStoredTeamStats = StatListMap(daTeamStats);
+
+            LogicTeam updatedTeamStats = boStoredTeamStats;
+            updatedTeamStats.TeamFouls += boTeamStats.TeamFouls;
+            updatedTeamStats.TeamTurnovers += boTeamStats.TeamTurnovers;
+            updatedTeamStats.TeamShotAttempts += boTeamStats.TeamShotAttempts;
+            updatedTeamStats.TeamShotMakes += boTeamStats.TeamShotMakes;
+            updatedTeamStats.TeamScore += boTeamStats.TeamScore;
+
+            DataTeam daUpdatedStats = Map(updatedTeamStats);
+            _teamDAL.UpdateTeamStatsByTeamID(daUpdatedStats);
+
+        }
+
+                
 
         static List<LogicTeam> ListMap(List<DataTeam> daTeams)
         {
@@ -76,6 +90,32 @@ namespace BusinessLogicLayer
             }
             return daTeam;
 
+        }
+
+        static LogicTeam StatListMap(List<DataTeam> daTeams)
+        {
+            LogicTeam boTeamStats = new LogicTeam();
+
+            foreach (DataTeam dTeamStat in daTeams)
+            {
+                var type_daTeamStat = dTeamStat.GetType();
+                var type_boTeamStat = boTeamStats.GetType();
+
+                foreach(var field_daTeamStat in type_daTeamStat.GetFields())
+                {
+                    var field_boTeamStat = type_boTeamStat.GetField(field_daTeamStat.Name);
+                    field_boTeamStat.SetValue(boTeamStats, field_daTeamStat.GetValue(dTeamStat));
+                }
+
+                foreach (var prop_daTeamStat in type_daTeamStat.GetProperties())
+                {
+                    var prop_boTeamStat = type_boTeamStat.GetProperty(prop_daTeamStat.Name);
+                    prop_boTeamStat.SetValue(boTeamStats, prop_daTeamStat.GetValue(dTeamStat));
+                }
+               
+            }
+
+            return boTeamStats;
         }
     }
 }

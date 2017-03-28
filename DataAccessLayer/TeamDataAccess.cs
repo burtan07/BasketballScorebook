@@ -120,32 +120,84 @@ namespace DataAccessLayer
             }
         }
 
-        //public void DeleteTeamByTeamID(int daTeamID)
-        //{
-        //    SqlConnection lConnection = new SqlConnection(_connection);
-        //    SqlCommand cmd = new SqlCommand("sp_DeleteTeamByTeamID", lConnection);
+       
 
-        //    try
-        //    {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        lConnection.Open();
+        public List<DataTeam> ReadTeamStatsByTeamID(int TeamID)
+        {
+            List<DataTeam> ldaTeamStatsList = new List<DataTeam>();
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_ReadTeamStatsByTeamID", lConnection);
 
-        //        cmd.Parameters.AddWithValue("@TeamID", daTeamID);
+            try
+            {
 
-        //        cmd.ExecuteNonQuery();
-        //    }
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
 
-        //    catch (SqlException error)
-        //    {
-        //        using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
-        //        {
-        //            lWriter.WriteLine(error.Message);
-        //        }
-        //    }
-        //    finally
-        //    {
-        //        lConnection.Close();
-        //    }
-        //}
+                cmd.Parameters.AddWithValue("@TeamID", TeamID);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        DataTeam daTeamStats = new DataTeam();
+                        daTeamStats.TeamID = rdr.GetInt32(rdr.GetOrdinal("TeamID"));
+                        daTeamStats.TeamName = (string)rdr["TeamName"];
+                        daTeamStats.TeamFouls = rdr.GetInt32(rdr.GetOrdinal("TeamFouls"));
+                        daTeamStats.TeamTurnovers = rdr.GetInt32(rdr.GetOrdinal("TeamTurnOvers"));
+                        daTeamStats.TeamShotAttempts = rdr.GetInt32(rdr.GetOrdinal("TeamShotAttempts"));
+                        daTeamStats.TeamShotMakes = rdr.GetInt32(rdr.GetOrdinal("TeamShotMakes"));
+                        daTeamStats.TeamScore = rdr.GetInt32(rdr.GetOrdinal("TeamPointsScored"));
+
+                        ldaTeamStatsList.Add(daTeamStats);
+                    }
+                }
+            }
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+            return ldaTeamStatsList;
+        }
+
+        public void UpdateTeamStatsByTeamID(DataTeam updatedTeamStats)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_UpdateTeamStatsByTeamID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+
+                cmd.Parameters.AddWithValue("@TeamID", updatedTeamStats.TeamID);
+                cmd.Parameters.AddWithValue("@TeamFouls", updatedTeamStats.TeamFouls);
+                cmd.Parameters.AddWithValue("@TeamTurnOvers", updatedTeamStats.TeamTurnovers);
+                cmd.Parameters.AddWithValue("@TeamShotAttempts", updatedTeamStats.TeamShotAttempts);
+                cmd.Parameters.AddWithValue("@TeamShotMakes", updatedTeamStats.TeamShotMakes);
+                cmd.Parameters.AddWithValue("@TeamPointsScored", updatedTeamStats.TeamScore);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
     }
 }

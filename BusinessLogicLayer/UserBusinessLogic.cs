@@ -126,7 +126,6 @@ namespace BusinessLogicLayer
         {
             DataUser daReturnUser = _userDAL.GetUserByUsername(Username);
             LogicUser returnedUser = Map(daReturnUser);
-            
 
             return returnedUser;
         }
