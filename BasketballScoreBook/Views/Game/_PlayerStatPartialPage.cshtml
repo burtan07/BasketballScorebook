@@ -1,0 +1,26 @@
+﻿@model BasketballScoreBook.Models.PlayerModel
+<form id="PlayerStatForm">
+    <div id="PlayerStatTable">
+        <table>
+            <tr>
+                <th>Quarters Played</th>
+                <th>Player Fouls</th>
+                <th>Assists</th>
+                <th>Shot Attempts</th>
+                <th>Shots Made</th>
+                <th>Points Scored</th>
+
+            </tr>
+            <tr>
+                <td>@Html.HiddenFor(m => m.SinglePlayer.PlayerID)</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+            </tr>
+
+        </table>
+    </div>
+</form>

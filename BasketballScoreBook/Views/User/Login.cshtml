@@ -3,12 +3,13 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2 class="Headers">Login</h2>
 
 @using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
-    <div class="DivTextBoxPosition">
-        <div>
+
+    <div class="UsernamePasswordBox">
+        <div class="UsernameLabelTextBoxPos">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.UserName)
             </div>
@@ -16,8 +17,8 @@
                 @Html.TextBoxFor(m => m.SingleUser.UserName, new { @class = "form-control", placeholder = "Username", @type = "text" })
             </div>
         </div>
-
-        <div>
+        
+        <div class="PasswordTextBoxPos">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.Password)
             </div>
@@ -27,5 +28,7 @@
         </div>
 
     </div>
-    <input type="submit" value="Submit" />
+    <div id="LoginSubmit">
+        <input type="submit" value="Submit" />
+    </div>
 }

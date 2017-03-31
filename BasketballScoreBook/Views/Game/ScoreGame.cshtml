@@ -69,29 +69,25 @@
                     <th> First Initial</th>
                     <th>Player Position</th>
                     <th> Jersey Number</th>
-                    <th>Quarters Played</th>
-                    <th>Player Fouls</th>
-                    <th>Assists</th>
-                    <th>Shot Attempts</th>
-                    <th>Shots Made</th>
-                    <th>Points Scored</th>
+
 
                 </tr>
-                @foreach (PlayerModel player in Model.homeTeamPlayers)
+                @for(int i = 0; i < Model.homeTeamPlayers.Count; i++)
                 {
                     <tr>
+                        <td>@Html.HiddenFor(Model => Model.homeTeamPlayers[i].PlayerID)</td>
+                        <td> @Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.homeTeamPlayers[i].JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
+                        @*<td><button id="HomePlayerStats" type="button" value="player.PlayerID">Input Player Stats</button></td>*@
 
-                        <td> @Html.TextBoxFor(m => player.PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
-                        <td><button id="HomePlayerStats" type="button" value="player.PlayerID">Input Player Stats</button></td>
-                        @*<td>@Html.TextBoxFor(m => player.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>*@
+                        <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.homeTeamPlayers[i].PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
 
                     </tr>
                 }
@@ -173,18 +169,18 @@
                 @foreach (PlayerModel player in Model.awayTeamPlayers)
                 {
                     <tr>
-
                         <td> @Html.TextBoxFor(m => player.PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
                         <td> @Html.TextBoxFor(m => player.PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
                         <td> @Html.TextBoxFor(m => player.PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
                         <td> @Html.TextBoxFor(m => player.JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
-                        <td><button id="AwayPlayerStats" type="button">Input Player Stats</button></td>
+                        <td><button id="AwayPlayerStats" type="button" value="player.PlayerID">Input Player Stats</button></td>
+
                         @*<td>@Html.TextBoxFor(m => player.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                        <td>@Html.TextBoxFor(m => player.PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>*@
+                            <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(m => player.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(m => player.PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(m => player.PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(m => player.PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>*@
 
                     </tr>
                 }
@@ -194,7 +190,12 @@
     <div class="SubmitButtonPos">
         <input type="submit" value="Submit Game" />
     </div>
-}
+
+    @*<div id="PlayerPartialViewPopup">
+        @{Html.Partial("_PlayerStatPartialPage", Model);}
+
+    </div>*@
+            }
 
 <script>
     $(document).ready(function () {
@@ -220,5 +221,46 @@
             AwayScorePlus3()
         });
 
-    });
+        $("#HomePlayerStats").click(function () {
+            $("#PlayerStatTable").dialog({
+
+                title: 'Add Player Stats',
+                modal: true,
+                open: function () {
+                    $(this).load('@Url.Action("PlayerStatPartialView", "Game")');
+                },
+                buttons: {
+                    "Click to Add Stats": function () {
+                        addPlayerStats();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            return false;
+        });
+
+            
+            //ajax call
+        function addPlayerStats() {
+
+                //gets selected playerID to send to partial view
+                var playerID = $("#HomePlayerStats").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Content("/Game/PlayerStatPartialView/")",
+                    data: $("#PlayerStatForm").serialize(),
+
+                    //success: function (data) {
+                        
+                    //}
+
+                });
+            }
+
+        });
+
+    
 </script>

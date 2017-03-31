@@ -84,6 +84,13 @@ namespace BasketballScoreBook.Controllers
             return RedirectToAction("CreateGame", "Game");
         }
 
+        public ActionResult PlayerStatPartialView( int ID)
+        {
+            PlayerViewModel partialPlayer = new PlayerViewModel();
+            partialPlayer.SinglePlayer.PlayerID = ID;
+            return PartialView("_PlayerStatPartialPage", partialPlayer );
+        }
+
         [HttpGet]
         public ActionResult ViewGames()
         {
