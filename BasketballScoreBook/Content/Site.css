@@ -28,46 +28,23 @@ body {
     height: 100%;
 }
 
-/*.container-fluid {
-    background-image: url('../Images/Basketball-Court_Landscape2.png');
+.container-fluid {
+    /*background-image: url('../Images/Basketball-Court_Landscape2.png');
     min-height: 400px;
-}*/
+    height: 100%;
+    width: 100%;*/
+}
 
 /*   NAV BAR */
 
-#HomeActionLink {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    display: inline-block;
-}
 
-.AdminActionLinks a:link {
-    color: black;
-}
-
-.UsernameLogout {
-    float: right;
-}
-
-    .UsernameLogout a {
-        font-size: 14px;
-    }
-
-.UserLinksDropDown {
-}
-
-.Actionlink-btn-group {
-    display: inline-block;
-}
-
-.btn-group {
-    margin-top: 5px;
+.UsernameLogout a {
+   font-size: 14px;
 }
 
 
 /*   USER RELATED VIEWS */
 .UserHeader {
-    margin-top: 10%;
     text-align: center;
 }
 
@@ -110,6 +87,17 @@ body {
 
 
 /* PLAYER RELATED VIEWS */
+
+.CreatePlayerTable th {
+     padding: 5px;
+        padding-bottom: 5px;
+}
+.CreatePlayerTable td {
+     padding: 5px;
+        padding-bottom: 5px;
+}
+
+
 .ViewPlayerTableClass th {
     width: 30px;
 }
@@ -178,9 +166,6 @@ body {
     .ScoreButtons #home3point {
         margin-left: 20%;
     }
-
-.DivTextBoxPosition {
-}
 
 
 .ViewPlayerTableClass {

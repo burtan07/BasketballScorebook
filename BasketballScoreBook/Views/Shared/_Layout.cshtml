@@ -18,197 +18,119 @@
 
 <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="ActionLinksHeader">
-                    <div class="btn-group">
-                        <div class="btn btn-primary btn-sm">
-                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ActionLinksHeader" })
-                        </div>
+                <a class="navbar-brand" href="#">Game On</a>
+            </div>
 
-                    </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home") <span class="sr-only">(current)</span></li>
+
                     @if ((string)Session["UserName"] == null) //if user hasnt logged in display these links
                     {
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ActionLinksHeader" })
-                        @Html.ActionLink("Register User", "RegisterUser", "User", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+                        <li class="active"> @Html.ActionLink("Register User", "RegisterUser", "User")<span class="sr-only">(current)</span></li>
+                        <li class="active"> @Html.ActionLink("Login", "Login", "User")<span class="sr-only">(current)</span></li>
                     }
 
-                    @if (Session["RoleID"] != null)
+                    @if (Session["RoleID"] != null) //if a user is logged in
                     {
-                        if ((int)Session["RoleID"] == 3)
+                        <ul class="navbar-right">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Hey @Session["Username"]! <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li class="active">@Html.ActionLink("Log Out", "LogOut", "Home")</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        if ((int)Session["RoleID"] == 3) //if RoleID is 3/Admin
                         {
-                            <div class="btn-group">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="active">@Html.ActionLink("View Users", "ViewUsers", "User")</li>
+                                </ul>
+                            </li>
 
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        User
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>@Html.ActionLink("View Users", "ViewUsers", "User", new { area = "" }, new { @class = "navbar-brand AdminActionLinks" }) </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Player<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="active">@Html.ActionLink("Create Player", "CreatePlayer", "Player") </li>
+                                        <li class="active">@Html.ActionLink("View Players", "ViewPlayers", "Player") </li>
                                     </ul>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Player
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
+                                </li>
 
-                                        <li>@Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" }) </li>
-                                        <li>@Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" }) </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Team<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="active"> @Html.ActionLink("Create Team", "CreateTeam", "Team")</li>
+                                        <li class="active"> @Html.ActionLink("View Teams", "ViewTeams", "Team")</li>
                                     </ul>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Team
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
+                                </li>
 
-                                        <li> @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                        <li> @Html.ActionLink("View Teams", "ViewTeams", "Team", new { area = "" }, new { @class = "navbar-brand" })</li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Game<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="active">@Html.ActionLink("Create Game", "CreateGame", "Game")</li>
+                                        <li class="active"> @Html.ActionLink("View Games", "ViewGames", "Game")</li>
                                     </ul>
-                                </div>
-                                <div class="btn-group">
+                                </li>
 
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Game
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-
-                                        <li> @Html.ActionLink("Create Game", "CreateGame", "Game", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                        <li> @Html.ActionLink("View Games", "ViewGames", "Game", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                    </ul>
-                                </div>
-                            </div>
                         }
-
-                        if ((int)Session["RoleID"] == 2)
+                        if ((int)Session["RoleID"] == 2)  //if RoleID = 2/PowerUser
                         {
                             //should be able to change player stats
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-primary">Primary</a>
-                                <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Player<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="active">@Html.ActionLink("Create Player", "CreatePlayer", "Player") </li>
+                                    <li class="active">@Html.ActionLink("View Players", "ViewPlayers", "Player") </li>
                                 </ul>
-                            </div>
-                                    <div class="btn-group">
+                            </li>
 
-                                        <div class="btn-group">
-                                            <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Player
-                                                <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Team<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="active"> @Html.ActionLink("Create Team", "CreateTeam", "Team")</li>
+                                        <li class="active"> @Html.ActionLink("View Teams", "ViewTeams", "Team")</li>
+                                    </ul>
+                                </li>
 
-                                                <li>@Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" }) </li>
-                                                <li class="divider"></li>
-                                                <li>@Html.ActionLink("View Players", "ViewPlayers", "Player", new { area = "" }, new { @class = "navbar-brand" }) </li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="btn-group">
-                                            <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Team
-                                                <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-
-                                                <li> @Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                                <li> @Html.ActionLink("View Teams", "ViewTeams", "Team", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Game
-                                                <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-
-                                                <li> @Html.ActionLink("Create Game", "CreateGame", "Game", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                                <li> @Html.ActionLink("View Games", "ViewGames", "Game", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Game<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="active">@Html.ActionLink("Create Game", "CreateGame", "Game")</li>
+                                        <li class="active"> @Html.ActionLink("View Games", "ViewGames", "Game")</li>
+                                    </ul>
+                                </li>
                         }
-                        if ((int)Session["RoleID"] == 1)
+
+
+                        if ((int)Session["RoleID"] == 1) //if RoleID = 1/User
                         {
-                            <div class="btn-group">
-
-
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Player
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li> @Html.ActionLink("Create Player", "CreatePlayer", "Player", new { area = "" }, new { @class = "navbar-brand" })</li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Team
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>@Html.ActionLink("Create Team", "CreateTeam", "Team", new { area = "" }, new { @class = "navbar-brand" }) </li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Game
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>@Html.ActionLink("Create Game", "CreateGame", "Game", new { area = "" }, new { @class = "navbar-brand" }) </li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                            //can create player,team & game
+                            <li class="active">@Html.ActionLink("Create Player", "CreatePlayer", "Player") </li>
+                            <li class="active"> @Html.ActionLink("Create Team", "CreateTeam", "Team")</li>
+                            <li class="active">@Html.ActionLink("Create Game", "CreateGame", "Game")</li>
                         }
                     }
-                </div>
-            </div>
-            <div class="UsernameLogout">
-                @if (Session["Username"] != null)
-                {
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <label id="UsernameLabel">Hey @Session["Username"]!</label>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Log Out", "LogOut", "Home", new { area = "" }, new { style = "color:red" }) </li>
-                        </ul>
-                    </div>
-                }
-            </div>
-
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                </ul>
             </div>
         </div>
-    </div>
-
+    </nav>
+       
     <div class="container body-content">
-
         @RenderBody()
-    </div><div class="container-fluid">
+    </div>
+    <div class="container-fluid">
         @*<img src="@Url.Content("~/Images/Basketball-Court_Landscape2.png")" id="BackgroundImage" />*@
     </div>
     <hr />

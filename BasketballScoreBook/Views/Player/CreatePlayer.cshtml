@@ -4,49 +4,61 @@
     ViewBag.Title = "CreatePlayer";
 }
 
-<h2>CreatePlayer</h2>
+<h2 class="UserHeader">Create a Player</h2>
 
 @using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
 {
-    <table>
+    <table class="CreatePlayerTable">
         <tr>
             <th>Team Name</th>
-            <th>Player LastName</th>
-            <th>Player First Initial</th>
-            <th>Player Number</th>
-            <th>Player Role</th>
-            <th>Player Points</th>
-            <th>Player Shot Attempts</th>
-            <th>Player Shot Makes</th>
-            <th>Quarters Played</th>
-
+            <td>@Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @class = "form-control" })</td>
+           <td> @Html.ActionLink("Create a Team", "CreateTeam", "Team", new { area = "" }, new { @class = "btn btn-primary btn-sm" })</td>
         </tr>
-
-
         <tr>
-            <td>@Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName")) </td>
-            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerLastName)</td>
-            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial)</td>
+            <th>Last Name</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerLastName, new { @class = "form-control", placeholder = "Last Name", @type = "text" })</td>
+        </tr>
+        <tr>
+            <th>First Initial</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial, new { @class = "form-control", placeholder = "First Initial", @type = "text" })</td>
+        </tr>
+        <tr>
+            <th>Jersey Number</th>
             <td>@Html.TextBoxFor(m => m.SinglePlayer.JerseyNum, new { @class = "form-control", placeholder = "Jersey Number", @type = "number" })</td>
+        </tr>
+        <tr>
+            <th>Team Role</th>
             <td>
                 @Html.DropDownListFor(m => m.SinglePlayer.PlayerRole, new List<SelectListItem>
-                    {
-                    new SelectListItem {Text=" -- ", },
-                    new SelectListItem {Text="Point Guard" },
-                    new SelectListItem {Text="Shooting Guard" },
-                    new SelectListItem {Text="Small Forward" },
-                    new SelectListItem {Text="Power Forward" },
-                    new SelectListItem {Text="Center" }})
+                                    {  new SelectListItem {Text=" -- ", },
+                                       new SelectListItem {Text="Point Guard" },
+                                       new SelectListItem {Text="Shooting Guard" },
+                                       new SelectListItem {Text="Small Forward" },
+                                       new SelectListItem {Text="Power Forward" },
+                                       new SelectListItem {Text="Center" }}, new { @class = "form-control" })
             </td>
-
-            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control", placeholder = "Player Points", @type = "number" })</td>
-            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control", placeholder = "Player Shot Attempts", @type = "number" })</td>
-            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control", placeholder = "Player Shot Makes", @type = "number" })</td>
+        </tr>
+        <tr><th>---------- If the Player does not have any stats, please input a "0" in the boxes ---------- </th> </tr>
+        <tr>
+            <th>Quarters Played</th>
             <td>@Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control", placeholder = "Quarters Played", @type = "number" })</td>
-
+        </tr>
+        <tr>
+            <th>Shots Attempted</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control", placeholder = "Shot Attempts", @type = "number" })</td>
+        </tr>
+        <tr>
+            <th>Shots Made</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control", placeholder = "Shots Made", @type = "number" })</td>
+        </tr>
+        <tr>
+            <th>Points Scored</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control", placeholder = "Points Scored", @type = "number" })</td>
         </tr>
 
     </table>
-    <input type="submit" value="Submit" />
+   <div class="SubmitButtonPos">
+    <input type="submit" value="Submit"/>
+      </div>
 }
 
