@@ -241,6 +241,8 @@ namespace DataAccessLayer
                     {
                         daReadPlayer.PlayerID = rdr.GetInt32(rdr.GetOrdinal("PlayerID"));
                         daReadPlayer.TeamID = rdr.GetInt32(rdr.GetOrdinal("Team_ID"));
+                        daReadPlayer.PlayerLastName = (string)rdr["PlayerLastName"];
+                        daReadPlayer.PlayerFirstInitial = (string)rdr["PlayerFirstInitial"];
                         daReadPlayer.PlayerRole = (string)rdr["PlayerRole"];
                         daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("PlayerJerseyNum"));
                         daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));

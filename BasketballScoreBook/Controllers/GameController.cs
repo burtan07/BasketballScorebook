@@ -74,9 +74,9 @@ namespace BasketballScoreBook.Controllers
             LogicTeam boTeamStats = StatsMap(gameVM);
             _teamBLL.ReadTeamStatsByTeamID(boTeamStats);
 
-            //List<PlayerModel> gamePlayers = gameVM.homeTeamPlayers;
-            //List<LogicPlayer> boPlayerStats = PlayerStatsMap(gamePlayers);
-            //_playerBLL.ReadPlayersByPlayerID(boPlayerStats);
+            List<PlayerModel> gamePlayers = gameVM.homeTeamPlayers;
+            List<LogicPlayer> boPlayerStats = PlayerStatsMap(gamePlayers);
+            _playerBLL.ReadPlayersByPlayerID(boPlayerStats);
 
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);

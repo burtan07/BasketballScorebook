@@ -5,31 +5,30 @@
     ViewBag.Title = "UpdateUser";
 }
 
-<h2>UpdateUser</h2>
+<h2 class="UserHeader">Update User</h2>
 
 @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
 {
     <div class="UserInfoBox">
         <div class="LabelDisplayTextBoxPos">
             <div class="LabelSpacing">
-                @Html.LabelFor(m => m.SingleUser.UserID)
-                @Html.DisplayFor(m => m.SingleUser.UserID)
+                @Html.HiddenFor(m => m.SingleUser.UserID)
             </div>
         </div>
 
-        <div class="LabelDisplayTextBoxPos">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.UserName)
-                @Html.DisplayFor(m => m.SingleUser.UserName)
+                @Html.TextBoxFor(m => m.SingleUser.UserName, new { @class = "form-control", placeholder = "m.SingleUser.UserName", @readonly = "readonly" })
             </div>
         </div>
 
-        <div class="LabelDisplayTextBoxPos">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.RoleID)
-                @Html.DisplayFor(m => m.SingleUser.RoleID)
+                @Html.TextBoxFor(m => m.SingleUser.RoleID, new { @class = "form-control", placeholder = "m.SingleUser.RoleID", @readonly = "readonly" })
             </div>
-            <div class="TextBoxPos">
+            <div class="dropdown-menu">
                 @Html.DropDownListFor(m => m.SingleUser.RoleID, new List<SelectListItem>
                     {
                     new SelectListItem {Text=" -- ", },

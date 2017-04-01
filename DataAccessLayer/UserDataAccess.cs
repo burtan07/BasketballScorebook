@@ -26,6 +26,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 lConnection.Open();
 
+                cmd.Parameters.AddWithValue("@RoleID", daUser.RoleID);
                 cmd.Parameters.AddWithValue("@UserName", daUser.UserName);
                 cmd.Parameters.AddWithValue("@UserPassword", daUser.Password);
                 cmd.Parameters.AddWithValue("@FirstName", daUser.FirstName);

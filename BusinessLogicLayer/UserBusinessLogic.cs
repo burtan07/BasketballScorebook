@@ -84,6 +84,7 @@ namespace BusinessLogicLayer
         public void CreateUser(LogicUser boUser)  //Creates User Calls Mapper BOuser to DAuser & sends down to DAL
         {
             DataUser daUser = Map(boUser);
+            daUser.RoleID = 1;
             _userDAL.CreateUser(daUser);
         }
 
@@ -110,7 +111,7 @@ namespace BusinessLogicLayer
             //returnedCheckeduser catches return from CheckLogin in DAL, returnedCheckeduser is Mapped to LogicUser and sent back up to Presentation
 
             bool passwordCorrect = false;
-            
+
             if (LoginPassword == StoredPassword)
             {
                 passwordCorrect = true;

@@ -3,13 +3,13 @@
     ViewBag.Title = "RegisterUser";
 }
 
-<h2 class="Headers">Register</h2>
+<h2 class="UserHeader">Register</h2>
 
 @using (Html.BeginForm("RegisterUser", "User", FormMethod.Post))
 {
     <div class="RegisterBox">
 
-        <div class="FNameLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.FirstName)
             </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="LNameLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.LastName)
             </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="EmailLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.EmailAddress)
             </div>
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="UsernameLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.UserName)
             </div>
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="PasswordLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.Password)
             </div>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="SecQLabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.SecurityQuestion)
             </div>
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="SecALabelTextBox">
+        <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.SecurityAnswer)
             </div>
@@ -78,8 +78,8 @@
         </div>
 
     </div>
-
-    <input type="submit" value="Submit" />
-
+    <div class="UserSubmitBox">
+        <input type="submit" value="Submit" />
+    </div>
 }
 

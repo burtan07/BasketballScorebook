@@ -17,9 +17,7 @@ namespace BasketballScoreBook.Controllers
         {
             return View();
         }
-
-
-
+        
 
         [HttpGet]
         public ActionResult Login()

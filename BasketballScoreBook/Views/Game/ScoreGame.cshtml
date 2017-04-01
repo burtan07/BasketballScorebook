@@ -65,10 +65,17 @@
             <h3>Players</h3>
             <table>
                 <tr>
+                    <th></th>
                     <th> Last Name</th>
                     <th> First Initial</th>
                     <th>Player Position</th>
                     <th> Jersey Number</th>
+                    <th>Quarters Played</th>
+                    <th>Player Fouls</th>
+                    <th>Assists</th>
+                    <th>Shot Attempts</th>
+                    <th>Shots Made</th>
+                    <th>Points Scored</th>
 
 
                 </tr>
@@ -166,21 +173,21 @@
                     <th>Points Scored</th>
 
                 </tr>
-                @foreach (PlayerModel player in Model.awayTeamPlayers)
+                @for (int a = 0; a < Model.homeTeamPlayers.Count; a++)
                 {
                     <tr>
-                        <td> @Html.TextBoxFor(m => player.PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.PlayerFirstInitial, new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
-                        <td> @Html.TextBoxFor(m => player.JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
-                        <td><button id="AwayPlayerStats" type="button" value="player.PlayerID">Input Player Stats</button></td>
-
-                        @*<td>@Html.TextBoxFor(m => player.QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                            <td>@Html.TextBoxFor(m => player.PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                            <td>@Html.TextBoxFor(m => player.PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                            <td>@Html.TextBoxFor(m => player.PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                            <td>@Html.TextBoxFor(m => player.PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
-                            <td>@Html.TextBoxFor(m => player.PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>*@
+                        <td>@Html.HiddenFor(Model => Model.awayTeamPlayers[a].PlayerID)</td>
+                        <td> @Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerLastName, new { @class = "form-control", placeholder = "player.PlayerLastName", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerFirstInitial new { @class = "form-control", placeholder = "player.PlayerFirstInitial", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerRole, new { @class = "form-control", placeholder = "player.PlayerRole", @readonly = "readonly" })</td>
+                        <td> @Html.TextBoxFor(Model => Model.awayTeamPlayers[a].JerseyNum, new { @class = "form-control", placeholder = "player.JerseyNum", @readonly = "readonly" })</td>
+                        
+                        <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].QuarterPlayed, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerFouls, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerAssists, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerShotAttempts, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerShotMakes, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
+                            <td>@Html.TextBoxFor(Model => Model.awayTeamPlayers[a].PlayerPoints, new { @class = "form-control", placeholder = " ", @type = "number" })</td>
 
                     </tr>
                 }

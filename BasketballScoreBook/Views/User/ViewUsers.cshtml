@@ -4,26 +4,33 @@
         ViewBag.Title = "ViewUsers";
     }
 
-    <h2>ViewUsers</h2>
+    <h2 class="UserHeader">View Users</h2>
 
-    <table>
+    <table class="UserTable">
         <tr>
-            <th>User ID</th>
+            <th></th>
             <th>Username</th>
             <th>Role ID</th>
         </tr>
         @foreach(UserModel user in Model.Users)
         {  
             <tr>
-                <td>@Html.DisplayFor(m => user.UserID)</td>
+                <td>@Html.HiddenFor(m => user.UserID)</td>
                 <td>@Html.DisplayFor(m => user.UserName)</td>
                 <td>@Html.DisplayFor(m => user.RoleID)</td>
-                <td>@Html.ActionLink("Update User", "UpdateUser", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName, RoleID = user.RoleID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-                <td>@Html.ActionLink("Password Reset", "PasswordReset", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-                <td>@Html.ActionLink("Delete User", "DeleteUser", "User", routeValues: new { UserID = user.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+                <td>@Html.ActionLink("Update User", "UpdateUser", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName, RoleID = user.RoleID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
+                <td>@Html.ActionLink("Password Reset", "PasswordReset", "User", routeValues: new { UserID = user.UserID, UserName = user.UserName }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
+                <td>@Html.ActionLink("Delete User", "DeleteUser", "User", routeValues: new { UserID = user.UserID }, htmlAttributes: new { @class = "btn btn-primary btn-sm", onclick = "return confirm('Are you sure you want to delete this user?')" } )</td>
                 
             </tr>
 
         }
 
     </table>
+<script>
+    $("#").click(function deleteAlert(){
+        {
+            alert("Are you sure you want to delete this User?");
+        }
+    });
+</script>
