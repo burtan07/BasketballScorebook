@@ -4,55 +4,64 @@
     ViewBag.Title = "UpdatePlayer";
 }
 
-<h2>UpdatePlayer</h2>
+<h2 class="UserHeader">Update a Player</h2>
 
 @using (Html.BeginForm("UpdatePlayer", "Player", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.SinglePlayer.PlayerID)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerID)
-    @Html.TextBoxFor(m => m.SinglePlayer.PlayerID, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerID", @readonly="readonly" })
+    <table class="CreatePlayerTable">
+        <tr>
+            <td>@Html.HiddenFor(m => m.SinglePlayer.PlayerID)</td>
+        </tr>
 
-    @Html.LabelFor(m => m.SinglePlayer.PlayerLastName)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerLastName)
+        <tr>
 
+            <th>Player Last Name</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerLastName, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerLastName", @readonly = "readonly" })</td>
+        </tr>
+        <tr>
+            <th>Player First Initial </th>
+            <td> @Html.TextBoxFor(m => m.SinglePlayer.PlayerFirstInitial, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerFirstInitial", @readonly = "readonly" })</td>
 
-    @Html.LabelFor(m => m.SinglePlayer.PlayerFirstInitial)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerFirstInitial)
+        </tr>
 
-    @Html.LabelFor(m => m.SinglePlayer.TeamName)
-    @Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList (ViewBag.TeamsList, "TeamID", "TeamName"))
-
-    @Html.LabelFor(m => m.SinglePlayer.JerseyNum)
-    @Html.DisplayFor(m => m.SinglePlayer.JerseyNum)
-    @Html.TextBoxFor(m => m.SinglePlayer.JerseyNum, new { @class = "form-control", placeholder = "Jersey Number", @type = "number" })
-
-    @Html.LabelFor(m => m.SinglePlayer.PlayerRole)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerRole)
-   @Html.DropDownListFor(m => m.SinglePlayer.PlayerRole, new List<SelectListItem>
+        <tr>
+            <th>Team Name </th>
+            <td>  @Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <th> Jersey Number</th>
+            <td> @Html.TextBoxFor(m => m.SinglePlayer.JerseyNum, new { @class = "form-control", placeholder = "m.SinglePlayer.JerseyNum", @type = "number" })</td>
+        </tr>
+        <tr>
+            <th>Player Role</th>
+            <td>
+                @Html.DropDownListFor(m => m.SinglePlayer.PlayerRole, new List<SelectListItem>
                     {
                     new SelectListItem {Text=" -- ", },
                     new SelectListItem {Text="Point Guard" },
                     new SelectListItem {Text="Shooting Guard" },
                     new SelectListItem {Text="Small Forward" },
                     new SelectListItem {Text="Power Forward" },
-                    new SelectListItem {Text="Center" }})
+                    new SelectListItem {Text="Center" }}, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <th>Quarters Played </th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control", placeholder = "m.SinglePlayer.QuarterPlayed", @type = "number" }) </td>
+        </tr>
+        <tr>
+            <th>Shot Attempts</th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerShotAttempts", @type = "number" }) </td>
+        </tr>
+        <tr>
+            <th>Shots Made </th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerShotMakes", @type = "number" }) </td>
+        </tr>
 
-    @Html.LabelFor(m => m.SinglePlayer.PlayerPoints)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerPoints)
-    @Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerPoints", @type = "number" })
-
-
-    @Html.LabelFor(m => m.SinglePlayer.PlayerShotAttempts)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerShotAttempts)
-    @Html.TextBoxFor(m => m.SinglePlayer.PlayerShotAttempts, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerShotAttempts", @type = "number" })
-
-    @Html.LabelFor(m => m.SinglePlayer.PlayerShotMakes)
-    @Html.DisplayFor(m => m.SinglePlayer.PlayerShotMakes)
-    @Html.TextBoxFor(m => m.SinglePlayer.PlayerShotMakes, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.PlayerShotMakes", @type = "number" })
-
-    @Html.LabelFor(m => m.SinglePlayer.QuarterPlayed)
-    @Html.DisplayFor(m => m.SinglePlayer.QuarterPlayed)
-    @Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control bfh-number", placeholder = "m.SinglePlayer.QuarterPlayed", @type = "number" })
-
+        <tr>
+            <th>Points Scored </th>
+            <td>@Html.TextBoxFor(m => m.SinglePlayer.PlayerPoints, new { @class = "form-control", placeholder = "m.SinglePlayer.PlayerPoints", @type = "number" }) </td>
+        </tr>
+    </table>
     <input type="submit" value="Submit" />
 }

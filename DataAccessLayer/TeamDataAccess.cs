@@ -120,7 +120,32 @@ namespace DataAccessLayer
             }
         }
 
-       
+        public void DeleteTeamByTeamID(int TeamID)
+        {
+            SqlConnection lConnection = new SqlConnection(_connection);
+            SqlCommand cmd = new SqlCommand("sp_DeleteTeamByTeamID", lConnection);
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                lConnection.Open();
+                cmd.Parameters.AddWithValue("@TeamID", TeamID);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException error)
+            {
+                using (StreamWriter lWriter = new StreamWriter(_FileLocation, true))
+                {
+                    lWriter.WriteLine(error.Message);
+                }
+            }
+            finally
+            {
+                lConnection.Close();
+            }
+        }
 
         public List<DataTeam> ReadTeamStatsByTeamID(int TeamID)
         {

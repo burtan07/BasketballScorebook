@@ -13,6 +13,7 @@ namespace BusinessLogicLayer
     {
 
         static TeamDataAccess _teamDAL = new TeamDataAccess();
+       
 
         public void CreateTeam(LogicTeam boTeam)
         {
@@ -35,6 +36,10 @@ namespace BusinessLogicLayer
             _teamDAL.UpdateTeamName(daUpdatedTeam);
         }
 
+        public void DeleteTeamByTeamID(int TeamID)
+        {
+            _teamDAL.DeleteTeamByTeamID(TeamID);
+        }
 
 
         public void ReadTeamStatsByTeamID(LogicTeam boTeamStats)

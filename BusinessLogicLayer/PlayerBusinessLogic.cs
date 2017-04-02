@@ -13,7 +13,7 @@ namespace BusinessLogicLayer
     public class PlayerBusinessLogic
     {
         static PlayerDataAccess _playerDAL = new PlayerDataAccess();
-
+        static TeamBusinessLogic _teamBLL = new TeamBusinessLogic();
 
         public void CreatePlayer(LogicPlayer boPlayer)
         {
@@ -39,6 +39,17 @@ namespace BusinessLogicLayer
         public void DeletePlayerByPlayerID(int playerToDelete)
         {
             _playerDAL.DeletePlayerByPlayerID(playerToDelete);
+        }
+
+        public void DeletePlayerByTeamID (int TeamID)
+        {
+           List<LogicPlayer> playersOnTeam =  ViewTeamPlayers(TeamID);
+            foreach(LogicPlayer teamPlayer in playersOnTeam)
+            {
+                DeletePlayerByPlayerID(teamPlayer.PlayerID);
+            }
+            _teamBLL.DeleteTeamByTeamID(TeamID);
+
         }
 
 

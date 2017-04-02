@@ -4,17 +4,23 @@
     ViewBag.Title = "UpdateTeamName";
 }
 
-<h2>UpdateTeamName</h2>
+<h2 class="UserHeader">Update Team Name</h2>
 
 @using (Html.BeginForm("UpdateTeamName", "Team", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.SingleTeam.TeamID)
-    @Html.DisplayFor(m => m.SingleTeam.TeamID)
-    @Html.TextBoxFor(m => m.SingleTeam.TeamID, new { @class = "form-control", placeholder = "m.SingleTeam.TeamID", @readonly = "readonly" })
+    <table class="CreatePlayerTable">
+        <tr>
+            <td>@Html.HiddenFor(m => m.SingleTeam.TeamID)</td>
+        </tr>
+        <tr>
+            <th> Current Team Name</th>
+            <td> @Html.DisplayFor(m => m.SingleTeam.TeamName)</td>
+        </tr>
+        <tr>
+            <th> Input New Team Name </th>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamName, new { @class = "form-control", placeholder = "Input New Team Name", @type = "text" }) </td>
+        </tr>
 
-    @Html.LabelFor(m => m.SingleTeam.TeamName)
-    @Html.DisplayFor(m => m.SingleTeam.TeamName)
-    @Html.TextBoxFor(m => m.SingleTeam.TeamName, new { @class = "form-control", placeholder = "Input New Team Name", @type = "text" })
-
-    <input type="submit" value="Submit" />
+    </table>
+        <input type="submit" value="Submit" />
 }

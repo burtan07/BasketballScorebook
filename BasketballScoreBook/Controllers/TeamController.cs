@@ -12,6 +12,7 @@ namespace BasketballScoreBook.Controllers
     public class TeamController : Controller
     {
         static TeamBusinessLogic _teamBLL = new TeamBusinessLogic();
+        static PlayerBusinessLogic _playerBLL = new PlayerBusinessLogic();
         // GET: Team
         public ActionResult Index()
         {
@@ -77,13 +78,14 @@ namespace BasketballScoreBook.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult DeleteTeam(int TeamID)
-        //{
-        //    _teamBLL.DeleteTeamByTeamID(TeamID);
+        [HttpGet]
+        public ActionResult DeleteTeam(int TeamID)
+        {
+            _playerBLL.DeletePlayerByTeamID(TeamID);
+           // _teamBLL.DeleteTeamByTeamID(TeamID);
 
-        //    return RedirectToAction("ViewTeams", "Team");
-        //}
+            return RedirectToAction("ViewTeams", "Team");
+        }
 
 
         static LogicTeam Map(TeamViewModel teamVM)

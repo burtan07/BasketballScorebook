@@ -5,22 +5,24 @@
     ViewBag.Title = "ViewTeams";
 }
 
-<h2>View Teams</h2>
+<h2 class="UserHeader">View Teams</h2>
 
 <table class="ViewTeamTable">
     <tr>
+        <th> </th>
         <th>Team Name</th>
 
     </tr>
     @foreach (TeamModel team in Model.TeamList)
     {
         <tr>
-            <td>@Html.DisplayFor(m => team.TeamID)</td>
+            <td>@Html.HiddenFor(m => team.TeamID)</td>
             <td>@Html.DisplayFor(m => team.TeamName)</td>
-            <td>@Html.ActionLink("View Players on this Team", "ViewTeamPlayers", "Player", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-            <td>@Html.ActionLink("Update Team Name", "UpdateTeamName", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-            @*<td>@Html.ActionLink("Delete Team", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>*@
-
+            <td>@Html.ActionLink("View Players on this Team", "ViewTeamPlayers", "Player", routeValues: new { Area = "", TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
+           @*view team stats*@
+            <td>@Html.ActionLink("Update Team Name", "UpdateTeamName", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
+            <td>@Html.ActionLink("Delete Team & Players", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm", onclick = "return confirm('Are you sure you want to delete this team and its players?')" })</td>
+           
         </tr>
 
     }

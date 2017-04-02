@@ -4,31 +4,34 @@
     ViewBag.Title = "ViewTeamPlayers";
 }
 
-<h2>View Team Players</h2>
+<h2 class="UserHeader">View Team Players</h2>
 
-<table>
-    <tr>
-        <th> PlayerID</th>
-        <th> TeamID</th>
-        <th> Team Name</th>
-        <th> Player Last Name</th>
-        <th> Player First Initial</th>
-        <th> Player Role</th>
-        <th> Jersey Number</th>
-         
-    </tr>
-    @foreach(PlayerModel player in Model.Players)
-    {
+<table class="table table-striped table-hover ">
+    <thead>
         <tr>
-            <td> @Html.DisplayFor(m => player.PlayerID)</td>
-            <td> @Html.DisplayFor(m => player.TeamID)</td>
-            <td> @Html.DisplayFor(m => player.TeamName)</td>
-            <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
-            <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-            <td> @Html.DisplayFor(m => player.PlayerRole)</td>
-            <td> @Html.DisplayFor(m => player.JerseyNum)</td>
+            <th> </th>
+            <th> </th>
+            <th> Team Name</th>
+            <th> Player Last Name</th>
+            <th> Player First Initial</th>
+            <th> Player Role</th>
+            <th> Jersey Number</th>
 
         </tr>
-    }
+        </thead>
+    <tbody>
+        @foreach (PlayerModel player in Model.Players)
+        {
+            <tr>
+                <td> @Html.HiddenFor(m => player.PlayerID)</td>
+                <td> @Html.HiddenFor(m => player.TeamID)</td>
+                <td> @Html.DisplayFor(m => player.TeamName)</td>
+                <td> @Html.DisplayFor(m => player.PlayerLastName)</td>
+                <td> @Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+                <td> @Html.DisplayFor(m => player.PlayerRole)</td>
+                <td> @Html.DisplayFor(m => player.JerseyNum)</td>
 
+            </tr>
+        }
+    </tbody>
 </table>

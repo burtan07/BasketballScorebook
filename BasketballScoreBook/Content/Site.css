@@ -99,11 +99,32 @@ body {
 
 
 .ViewPlayerTableClass th {
-    width: 30px;
+    padding: 5px;
+        padding-bottom: 5px;
 }
 
 .ViewPlayerTableClass td {
-    width: 30px;
+     padding: 1px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid;
+}
+.PlayerLabelTextBoxSet {
+
+}
+
+
+
+
+/*  TEAM */
+
+.ViewTeamTable th,td {
+            padding: 5px;
+        padding-bottom: 5px;
+}
+.ViewTeamTable td {
+            padding: 2px;
+        padding-bottom: 5px;
 }
 
 .TeamTextBox {

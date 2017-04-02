@@ -4,9 +4,9 @@
     ViewBag.Title = "ViewPlayers";
 }
 
-<h2>ViewPlayers</h2>
-
-<table class="ViewPlayerTableClass">
+<h2 class="UserHeader">View Players</h2>
+<table class="table table-striped table-hover ">
+<thead>
     <tr>
         <th>Team Name</th>
         <th>Last Name</th>
@@ -20,25 +20,30 @@
         <th>Shot Makes</th>
         <th>Quarters Played</th>
     </tr>
+</thead>
+    <tbody>
+        @foreach (PlayerModel player in Model.Players)
+        {
 
-    @foreach (PlayerModel player in Model.Players)
-    {
-        <tr>
-            <td>@Html.DisplayFor(m => player.TeamName) </td>
-            <td>@Html.DisplayFor(m => player.PlayerLastName) </td>
-            <td>@Html.DisplayFor(m => player.PlayerFirstInitial)</td>
-            <td>@Html.DisplayFor(m => player.JerseyNum)</td>
-            <td>@Html.DisplayFor(m => player.PlayerRole)</td>
-            <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
-            <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
-            <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
-            <td>@Html.DisplayFor(m => player.PlayerShotMakes) </td>
-            <td>@Html.DisplayFor(m => player.QuarterPlayed) </td>
+            <tr>
 
-            <td>@Html.ActionLink("Update Player", "UpdatePlayer", "Player", routeValues: new { PlayerID = player.PlayerID}, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-            <td>@Html.ActionLink("Delete Player", "DeletePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
-        </tr>
-    }
+                <td>@Html.DisplayFor(m => player.TeamName) </td>
+                <td>@Html.DisplayFor(m => player.PlayerLastName) </td>
+                <td>@Html.DisplayFor(m => player.PlayerFirstInitial)</td>
+                <td>@Html.DisplayFor(m => player.JerseyNum)</td>
+                <td>@Html.DisplayFor(m => player.PlayerRole)</td>
+                <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
+                <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
+                <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
+                <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
+                <td>@Html.DisplayFor(m => player.PlayerShotMakes) </td>
+                <td>@Html.DisplayFor(m => player.QuarterPlayed) </td>
 
-</table>
+                <td>@Html.ActionLink("Update Player", "UpdatePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+                <td>@Html.ActionLink("Delete Player", "DeletePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large", onclick = "return confirm('Are you sure you want to delete this player?')" })</td>
+            </tr>
+
+        }
+    </tbody>
+        
+</table> 

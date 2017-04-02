@@ -12,7 +12,7 @@
         <tr>
             <th>Team Name</th>
             <td>@Html.DropDownListFor(m => m.SinglePlayer.TeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @class = "form-control" })</td>
-           <td> @Html.ActionLink("Create a Team", "CreateTeam", "Team", new { area = "" }, new { @class = "btn btn-primary btn-sm" })</td>
+            <td> @Html.ActionLink("Create a Team", "CreateTeam", "Team", new { area = "" }, new { @class = "btn btn-primary btn-sm" })</td>
         </tr>
         <tr>
             <th>Last Name</th>
@@ -38,7 +38,9 @@
                                        new SelectListItem {Text="Center" }}, new { @class = "form-control" })
             </td>
         </tr>
-        <tr><th>---------- If the Player does not have any stats, please input a "0" in the boxes ---------- </th> </tr>
+    </table>
+    @*<p>----------If the Player does not have a stat, please input a "0" in the box ----------</p>*@
+         <table class="CreatePlayerTable">
         <tr>
             <th>Quarters Played</th>
             <td>@Html.TextBoxFor(m => m.SinglePlayer.QuarterPlayed, new { @class = "form-control", placeholder = "Quarters Played", @type = "number" })</td>
