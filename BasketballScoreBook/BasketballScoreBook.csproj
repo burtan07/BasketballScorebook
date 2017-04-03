@@ -183,6 +183,7 @@
     <Content Include="Views\Game\ViewGames.cshtml" />
     <Content Include="Views\Game\ViewSingleGame.cshtml" />
     <Content Include="Views\Game\_PlayerStatPartialPage.cshtml" />
+    <Content Include="Views\Team\ViewTeamStats.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

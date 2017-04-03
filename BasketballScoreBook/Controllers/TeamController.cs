@@ -81,12 +81,21 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult DeleteTeam(int TeamID)
         {
+
             _playerBLL.DeletePlayerByTeamID(TeamID);
            // _teamBLL.DeleteTeamByTeamID(TeamID);
 
             return RedirectToAction("ViewTeams", "Team");
         }
 
+        [HttpGet]
+        public ActionResult ViewTeamStats(int TeamID)
+        {
+            LogicTeam boTeamStats = _teamBLL.ReadTeamStatsByTeamID(TeamID);
+            TeamViewModel teamStats = Map(boTeamStats);
+            
+            return View(teamStats);
+        }
 
         static LogicTeam Map(TeamViewModel teamVM)
         {
@@ -122,6 +131,27 @@ namespace BasketballScoreBook.Controllers
                 teamsList.Add(team);
             }
             return teamsList;
+        }
+
+        static TeamViewModel Map(LogicTeam boTeam)
+        {
+            TeamViewModel teamM = new TeamViewModel();
+
+            var type_boTeam = boTeam.GetType();
+            var type_teamM = teamM.SingleTeam.GetType();
+
+            foreach(var field_boTeam in type_boTeam.GetFields())
+            {
+                var field_teamM = type_teamM.GetField(field_boTeam.Name);
+                field_teamM.SetValue(teamM.SingleTeam, field_boTeam.GetValue(boTeam));
+            }
+            foreach(var prop_boTeam in type_boTeam.GetProperties())
+            {
+                var prop_teamM = type_teamM.GetProperty(prop_boTeam.Name);
+                prop_teamM.SetValue(teamM.SingleTeam, prop_boTeam.GetValue(boTeam));
+            }
+            return teamM;
+
         }
 
     }

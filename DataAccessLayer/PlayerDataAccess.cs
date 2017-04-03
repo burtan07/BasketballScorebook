@@ -195,12 +195,12 @@ namespace DataAccessLayer
                         daReadPlayer.PlayerFirstInitial = (string)rdr["PlayerFirstInitial"];
                         daReadPlayer.PlayerRole = (string)rdr["PlayerRole"];
                         daReadPlayer.JerseyNum = rdr.GetInt32(rdr.GetOrdinal("PlayerJerseyNum"));
-                        //daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));
-                        //daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("PlayerFouls"));
-                        //daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("PlayerPoints"));
-                        //daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
-                        //daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
-                        //daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
+                        daReadPlayer.PlayerAssists = rdr.GetInt32(rdr.GetOrdinal("PlayerAssists"));
+                        daReadPlayer.PlayerFouls = rdr.GetInt32(rdr.GetOrdinal("PlayerFouls"));
+                        daReadPlayer.PlayerPoints = rdr.GetInt32(rdr.GetOrdinal("PlayerPoints"));
+                        daReadPlayer.QuarterPlayed = rdr.GetInt32(rdr.GetOrdinal("PlayerQuartersPlayed"));
+                        daReadPlayer.PlayerShotAttempts = rdr.GetInt32(rdr.GetOrdinal("PlayerShotAttempts"));
+                        daReadPlayer.PlayerShotMakes = rdr.GetInt32(rdr.GetOrdinal("PlayerShotMakes"));
 
                         ldaPlayerList.Add(daReadPlayer);
                     }

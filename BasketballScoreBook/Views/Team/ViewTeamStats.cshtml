@@ -1,0 +1,36 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.TeamViewModel
+
+@{
+    ViewBag.Title = "ViewTeamStats";
+}
+
+<h2>Team Stats</h2>
+
+<table class="ViewTeamTable">
+    <tr>
+        <th> </th>
+        <th>Team Name</th>
+        <th>Team Fouls</th>
+        <th>Team Turnovers</th>
+        <th>Team Shots Attempted</th>
+        <th>Team Shots Made</th>
+        <th>Team Points Scored</th>
+
+
+    </tr>
+  
+        <tr>
+            <td>@Html.HiddenFor(m => m.SingleTeam.TeamID)</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamName, new { @class = "form-control", placeholder = "m.SingleTeam.TeamName", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamFouls, new { @class = "form-control", placeholder = "m.SingleTeam.TeamFouls", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamTurnovers, new { @class = "form-control", placeholder = "m.SingleTeam.TeamTurnOvers", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotAttempts, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotAttempts", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotMakes, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotMakes", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamScore, new { @class = "form-control", placeholder = "m.SingleTeam.TeamScore", @readonly = "readonly" })</td>
+
+        </tr>
+
+    
+</table>
+

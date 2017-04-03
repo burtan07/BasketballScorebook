@@ -41,10 +41,17 @@ namespace BusinessLogicLayer
             _teamDAL.DeleteTeamByTeamID(TeamID);
         }
 
+        public LogicTeam ReadTeamStatsByTeamID(int TeamID)
+        {
+            List<DataTeam> daTeamStats = _teamDAL.ReadTeamStatsByTeamID(TeamID);
+            LogicTeam boTeamStats = StatListMap(daTeamStats);
 
-        public void ReadTeamStatsByTeamID(LogicTeam boTeamStats)
+            return boTeamStats;
+        }
+        public void UpdateTeamStatsByTeamID(LogicTeam boTeamStats)
         {
             //TO DO: separate this method to send down TeamID, store returned TeamStats, send return TeamStats to Update Method
+
             List<DataTeam> daTeamStats = _teamDAL.ReadTeamStatsByTeamID(boTeamStats.TeamID);
             LogicTeam boStoredTeamStats = StatListMap(daTeamStats);
 

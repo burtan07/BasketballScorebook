@@ -47,8 +47,8 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult ScoreGameTeams(GameViewModel gameTeamIDs) //sends down Selected Home & Away TeamIDs, Gets Player Lists for those Teams, Assigns TeamID & teamNames to GameVM
         {
-           GameViewModel gameTeamPlayersList = new GameViewModel();
-           
+            GameViewModel gameTeamPlayersList = new GameViewModel();
+
             List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeamIDs.SingleGame.HomeTeamID);
             gameTeamPlayersList.homeTeamPlayers = PlayerListMap(boHomeTeam);
 
@@ -69,14 +69,21 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult ScoreGame(GameViewModel gameVM)
         {
-            //gameVM.SingleGame.HomeTeam stats gets sent to TeamStats Table
+            //gameVM.SingleGame.Team stats gets sent to TeamStats Table
             //gameVM.homeTeamPlayers stats gets sent to Player Table
-            LogicTeam boTeamStats = StatsMap(gameVM);
-            _teamBLL.ReadTeamStatsByTeamID(boTeamStats);
+            LogicTeam boHomeTeamStats = HomeStatsMap(gameVM);
+            _teamBLL.UpdateTeamStatsByTeamID(boHomeTeamStats);
 
-            List<PlayerModel> gamePlayers = gameVM.homeTeamPlayers;
-            List<LogicPlayer> boPlayerStats = PlayerStatsMap(gamePlayers);
-            _playerBLL.ReadPlayersByPlayerID(boPlayerStats);
+            LogicTeam boAwayTeamStats = AwayStatsMap(gameVM);
+            _teamBLL.UpdateTeamStatsByTeamID(boAwayTeamStats);
+
+            List<PlayerModel> gameHomePlayers = gameVM.homeTeamPlayers;
+            List<LogicPlayer> boHomePlayerStats = PlayerStatsMap(gameHomePlayers);
+            _playerBLL.ReadPlayersByPlayerID(boHomePlayerStats);
+
+            List<PlayerModel> gameAwayPlayers = gameVM.awayTeamPlayers;
+            List<LogicPlayer> boAwayPlayerStats = PlayerStatsMap(gameAwayPlayers);
+            _playerBLL.ReadPlayersByPlayerID(boAwayPlayerStats);
 
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);
@@ -84,11 +91,11 @@ namespace BasketballScoreBook.Controllers
             return RedirectToAction("CreateGame", "Game");
         }
 
-        public ActionResult PlayerStatPartialView( int ID)
+        public ActionResult PlayerStatPartialView(int ID)
         {
             PlayerViewModel partialPlayer = new PlayerViewModel();
             partialPlayer.SinglePlayer.PlayerID = ID;
-            return PartialView("_PlayerStatPartialPage", partialPlayer );
+            return PartialView("_PlayerStatPartialPage", partialPlayer);
         }
 
         [HttpGet]
@@ -185,20 +192,20 @@ namespace BasketballScoreBook.Controllers
         static List<GameModel> GamesListMap(List<LogicGame> boGamesList)
         {
             List<GameModel> gamesVMList = new List<GameModel>();
-            foreach(LogicGame boGame in boGamesList)
+            foreach (LogicGame boGame in boGamesList)
             {
                 GameModel game = new GameModel();
 
                 var type_boGame = boGame.GetType();
                 var type_game = game.GetType();
 
-                foreach(var field_boGame in type_boGame.GetFields())
+                foreach (var field_boGame in type_boGame.GetFields())
                 {
                     var field_game = type_game.GetField(field_boGame.Name);
                     field_game.SetValue(game, field_boGame.GetValue(boGame));
                 }
 
-                foreach(var prop_boGame in type_boGame.GetProperties())
+                foreach (var prop_boGame in type_boGame.GetProperties())
                 {
                     var prop_game = type_game.GetProperty(prop_boGame.Name);
                     prop_game.SetValue(game, prop_boGame.GetValue(boGame));
@@ -209,12 +216,12 @@ namespace BasketballScoreBook.Controllers
 
         }
 
-        static LogicTeam StatsMap(GameViewModel gameVM)
+        static LogicTeam HomeStatsMap(GameViewModel gameVM)
         {
-            //had to manually Map bc gameVM.SingleGame has Away Team values and only want to store Home Team values
+            //had to manually Map bc gameVM.SingleGame has Away Team values and wanted to separately send down Home & Away Team Stats
             GameModel gameTeamStats = gameVM.SingleGame;
-            
-               LogicTeam boTeamStats = new LogicTeam();
+
+            LogicTeam boTeamStats = new LogicTeam();
             boTeamStats.TeamID = gameTeamStats.HomeTeamID;
             boTeamStats.TeamName = gameTeamStats.HomeTeamName;
             boTeamStats.TeamFouls = gameTeamStats.HomeTeamFouls;
@@ -222,14 +229,30 @@ namespace BasketballScoreBook.Controllers
             boTeamStats.TeamShotAttempts = gameTeamStats.HomeTeamShotAttempts;
             boTeamStats.TeamShotMakes = gameTeamStats.HomeTeamShotMakes;
             boTeamStats.TeamScore = gameTeamStats.HomeTeamScore;
-          
+
             return boTeamStats;
+        }
+
+        static LogicTeam AwayStatsMap(GameViewModel gameVM)
+        {
+            GameModel gameTeamStats = gameVM.SingleGame;
+
+            LogicTeam boAwayStats = new LogicTeam();
+            boAwayStats.TeamID = gameTeamStats.AwayTeamID;
+            boAwayStats.TeamName = gameTeamStats.AwayTeamName;
+            boAwayStats.TeamFouls = gameTeamStats.AwayTeamFouls;
+            boAwayStats.TeamTurnovers = gameTeamStats.AwayTeamTurnOvers;
+            boAwayStats.TeamShotAttempts = gameTeamStats.AwayTeamShotAttempts;
+            boAwayStats.TeamShotMakes = gameTeamStats.AwayTeamShotMakes;
+            boAwayStats.TeamScore = gameTeamStats.AwayTeamScore;
+            return boAwayStats;
+
         }
 
         static List<LogicPlayer> PlayerStatsMap(List<PlayerModel> gamePlayers)
         {
             //had to manually Map bc gameVM.SingleGame has Away Team values and only want to store Home Team values
-           // List<PlayerModel> playerVMStats = gameVM.homeTeamPlayers;
+            // List<PlayerModel> playerVMStats = gameVM.homeTeamPlayers;
             List<LogicPlayer> boPlayerStatList = new List<LogicPlayer>();
 
             foreach (PlayerModel playerStat in gamePlayers)

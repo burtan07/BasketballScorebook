@@ -19,9 +19,9 @@
             <td>@Html.HiddenFor(m => team.TeamID)</td>
             <td>@Html.DisplayFor(m => team.TeamName)</td>
             <td>@Html.ActionLink("View Players on this Team", "ViewTeamPlayers", "Player", routeValues: new { Area = "", TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
-           @*view team stats*@
+            <td>@Html.ActionLink("View Team Stats", "ViewTeamStats", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
             <td>@Html.ActionLink("Update Team Name", "UpdateTeamName", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
-            <td>@Html.ActionLink("Delete Team & Players", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm", onclick = "return confirm('Are you sure you want to delete this team and its players?')" })</td>
+            <td>@Html.ActionLink("Delete Team & Players", "DeleteTeam", "Team", routeValues: new { TeamID = team.TeamID }, htmlAttributes: new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Are you sure you want to delete this team and its players? This will also delete any game this team has participated in.')" })</td>
            
         </tr>
 

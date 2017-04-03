@@ -148,7 +148,7 @@ body {
 .HomeTeamSpan {
         color: royalblue;
 }
-.HomeTeamTable {
+.HomeTeamBorder {
     margin-top: 50px;
     border: solid;
     border-color: royalblue;
@@ -156,8 +156,14 @@ body {
     border-width: 5px;
 }
 
-
-
+.HomeTeamTable th {
+    padding: 5px;
+        padding-bottom: 5px;
+}
+.HomeTeamTable td {
+    padding: 5px;
+        padding-bottom: 5px;
+}
 
 .HomePlayers {
     border-top: 3px solid royalblue;
@@ -165,21 +171,42 @@ body {
     margin-top: 20px;
     padding: 20px;
 }
-.AwayTeamTable {
+
+
+.AwayTeamSpan {
+        color: red;
+}
+.AwayTeamBorder {
     margin-top: 50px;
     border: solid;
     border-color: red;
     padding: 30px;
     border-width: 5px;
 }
-
-
+.AwayTeamTable th {
+    padding: 5px;
+        padding-bottom: 5px;
+}
+.AwayTeamTable td {
+    padding: 5px;
+        padding-bottom: 5px;
+}
 
 .AwayPlayers {
     border-top: 3px solid royalblue;
     background-color: gainsboro;
     margin-top: 20px;
     padding: 20px;
+}
+.AwayPlayersTable th {
+    padding: 5px;
+        padding-bottom: 5px;
+        
+}
+.AwayPlayersTable td {
+    padding: 5px;
+        padding-bottom: 5px;
+      
 }
 
 .ScoreBox {

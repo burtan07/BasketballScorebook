@@ -36,15 +36,17 @@ namespace BusinessLogicLayer
 
         }
 
-        public void DeletePlayerByPlayerID(int playerToDelete)
+        public void DeletePlayerByPlayerID(int playerToDelete)  //Deletes Player by PlayerID (player selected), sends to DAL
         {
             _playerDAL.DeletePlayerByPlayerID(playerToDelete);
         }
 
-        public void DeletePlayerByTeamID (int TeamID)
+        public void DeletePlayerByTeamID(int TeamID)
         {
-           List<LogicPlayer> playersOnTeam =  ViewTeamPlayers(TeamID);
-            foreach(LogicPlayer teamPlayer in playersOnTeam)
+            //Deletes Players on Certain Team, Calls ViewTeamPlayers Method, sends in TeamID, Loops thru that list & sends playerID to DeletePLayer
+
+            List<LogicPlayer> playersOnTeam = ViewTeamPlayers(TeamID);
+            foreach (LogicPlayer teamPlayer in playersOnTeam)
             {
                 DeletePlayerByPlayerID(teamPlayer.PlayerID);
             }
@@ -62,9 +64,9 @@ namespace BusinessLogicLayer
                 LogicPlayer boStoredPlayer = Map(daStoredPlayer);
 
                 LogicPlayer boUpdatedPlayer = boStoredPlayer;
-                boUpdatedPlayer.TeamID = boPlayer.TeamID;
-                boUpdatedPlayer.PlayerRole = boPlayer.PlayerRole;
-                boUpdatedPlayer.JerseyNum = boPlayer.JerseyNum;
+               // boUpdatedPlayer.TeamID = boPlayer.TeamID;
+               // boUpdatedPlayer.PlayerRole = boPlayer.PlayerRole;
+                //boUpdatedPlayer.JerseyNum = boPlayer.JerseyNum;
                 boUpdatedPlayer.PlayerAssists += boPlayer.PlayerAssists;
                 boUpdatedPlayer.PlayerFouls += boPlayer.PlayerFouls;
                 boUpdatedPlayer.PlayerPoints += boPlayer.PlayerPoints;
@@ -150,13 +152,13 @@ namespace BusinessLogicLayer
             var type_daPlayer = daPlayer.GetType();
             var type_boPlayer = boPlayer.GetType();
 
-            foreach(var field_daPlayer in type_daPlayer.GetFields())
+            foreach (var field_daPlayer in type_daPlayer.GetFields())
             {
                 var field_boPlayer = type_boPlayer.GetField(field_daPlayer.Name);
                 field_boPlayer.SetValue(boPlayer, field_daPlayer.GetValue(daPlayer));
             }
 
-            foreach(var prop_daPlayer in type_daPlayer.GetProperties())
+            foreach (var prop_daPlayer in type_daPlayer.GetProperties())
             {
                 var prop_boPlayer = type_boPlayer.GetProperty(prop_daPlayer.Name);
                 prop_boPlayer.SetValue(boPlayer, prop_daPlayer.GetValue(daPlayer));
