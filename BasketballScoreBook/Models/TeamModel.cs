@@ -17,8 +17,8 @@ namespace BasketballScoreBook.Models
         public int TeamShotAttempts { get; set; }
         public int TeamShotMakes { get; set; }
         public int TeamScore { get; set; }
-        public PlayerModel SingleTeamPlayer { get; set; }
-        public List<PlayerModel> TeamPlayers { get; set; }
+        //public PlayerModel SingleTeamPlayer { get; set; }
+        //public List<PlayerModel> TeamPlayers { get; set; }
         
 
     }

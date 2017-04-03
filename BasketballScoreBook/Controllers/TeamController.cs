@@ -91,9 +91,10 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult ViewTeamStats(int TeamID)
         {
+            TeamViewModel teamStats = new TeamViewModel();
             LogicTeam boTeamStats = _teamBLL.ReadTeamStatsByTeamID(TeamID);
-            TeamViewModel teamStats = Map(boTeamStats);
-            
+           teamStats.SingleTeam = Map(boTeamStats);
+
             return View(teamStats);
         }
 
@@ -133,22 +134,22 @@ namespace BasketballScoreBook.Controllers
             return teamsList;
         }
 
-        static TeamViewModel Map(LogicTeam boTeam)
+        static TeamModel Map(LogicTeam boTeam)
         {
-            TeamViewModel teamM = new TeamViewModel();
+            TeamModel teamM = new TeamModel();
 
             var type_boTeam = boTeam.GetType();
-            var type_teamM = teamM.SingleTeam.GetType();
+            var type_teamM = teamM.GetType();
 
             foreach(var field_boTeam in type_boTeam.GetFields())
             {
                 var field_teamM = type_teamM.GetField(field_boTeam.Name);
-                field_teamM.SetValue(teamM.SingleTeam, field_boTeam.GetValue(boTeam));
+                field_teamM.SetValue(teamM, field_boTeam.GetValue(boTeam));
             }
             foreach(var prop_boTeam in type_boTeam.GetProperties())
             {
                 var prop_teamM = type_teamM.GetProperty(prop_boTeam.Name);
-                prop_teamM.SetValue(teamM.SingleTeam, prop_boTeam.GetValue(boTeam));
+                prop_teamM.SetValue(teamM, prop_boTeam.GetValue(boTeam));
             }
             return teamM;
 

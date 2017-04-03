@@ -18,9 +18,9 @@ namespace DataAccessLayer.DataAccessObjects
         public int TeamShotAttempts { get; set; }
         public int TeamShotMakes { get; set; }
         public int TeamScore { get; set; }
-        public DataPlayer SingleTeamPlayer { get; set; }
-        public List<DataPlayer> TeamPlayers { get; set; }
+        //public DataPlayer SingleTeamPlayer { get; set; }
+        //public List<DataPlayer> TeamPlayers { get; set; }
 
-        public List<DataTeam> TeamList { get; set; }
+        //public List<DataTeam> TeamList { get; set; }
     }
 }
