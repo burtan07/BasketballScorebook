@@ -3,5 +3,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="Headers">Welcome to the Online Basketball Scorebook!</h2>
+    <div >
+        <h2 class="UserHeader">Welcome to <span class="BrandName">Game On</span>!</h2>
+    </div>
+ 
+<div class="container">
+    <div class="GameOnDescription">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#GameOnModal">About <span class="BrandName">Game On</span></button>
 
+        <!-- Game On Description Modal -->
+        <div class="modal fade" id="GameOnModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span class="BrandName">Game On</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4> What is it?</h4>
+                        <p><span class="BrandName">Game On</span> is an Online Basketball ScoreBook, designed to make basketball scorekeeping convenient and less error-prone. </p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div class="modal-body">
+                        <h4> How do I use it?</h4>
+                        <p> First, you'll need to Register as a User and sign in using your registered username and password. You'll need to create a team and any players on that team. Once the team and players are created, you can create a game by selecting the Home and Away Team and the players on each team will automatically be displayed and it's <span class="BrandName">Game On</span>!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+</div>

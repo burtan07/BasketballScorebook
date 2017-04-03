@@ -13,12 +13,8 @@
             
         </tr>
         <tr>
-            <td>@Html.DropDownListFor(m => m.SingleGame.HomeTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "HomeTeamDropDownList" }) </td>
-            <td>
-                <div id="HomeTeamName">
-                    <label id="HomeTeamNameLabel"> </label>
-                </div>
-            </td>
+            <td>@Html.DropDownListFor(m => m.SingleGame.HomeTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "HomeTeamDropDownList", @class="form-control" }) </td>
+           
         </tr>
 
 
@@ -32,18 +28,13 @@
         </tr>
 
         <tr>
-            <td>@Html.DropDownListFor(m => m.SingleGame.AwayTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "AwayTeamDropDownList" }) </td>
-            <td>
-                <div id="AwayTeamName">
-                    <label id="AwayTeamNameLabel"> </label>
-                </div>
-            </td>
-            
+            <td>@Html.DropDownListFor(m => m.SingleGame.AwayTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "AwayTeamDropDownList", @class = "form-control" }) </td>
+        
         </tr>
     </table>
-
-    <input type="submit" value="Submit" />
-
+    <div class="UserSubmitBox">
+        <input type="submit" value="Submit" />
+    </div>
 }
 
 

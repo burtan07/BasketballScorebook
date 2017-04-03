@@ -37,10 +37,17 @@ body {
 
 /*   NAV BAR */
 
-
+#BrandName {
+    color: orangered;
+}
+.BrandName {
+    color: orangered;
+}
 .UsernameLogout a {
    font-size: 14px;
 }
+
+/* Home View*/
 
 
 /*   USER RELATED VIEWS */
@@ -118,7 +125,7 @@ body {
 
 /*  TEAM */
 
-.ViewTeamTable th,td {
+.ViewTeamTable th {
             padding: 5px;
         padding-bottom: 5px;
 }
@@ -127,23 +134,37 @@ body {
         padding-bottom: 5px;
 }
 
-.TeamTextBox {
-    width: 8%;
-    height: 50px;
-}
+
 
 .SubmitButtonPos {
     margin-top: 30px;
 }
 
+
+/* GAME  */
+#HomeTeamName {
+    color: royalblue;
+}
+.HomeTeamSpan {
+        color: royalblue;
+}
 .HomeTeamTable {
     margin-top: 50px;
     border: solid;
     border-color: royalblue;
-    padding: 30px;
+    padding: 20px;
     border-width: 5px;
 }
 
+
+
+
+.HomePlayers {
+    border-top: 3px solid royalblue;
+    background-color: gainsboro;
+    margin-top: 20px;
+    padding: 20px;
+}
 .AwayTeamTable {
     margin-top: 50px;
     border: solid;
@@ -152,12 +173,7 @@ body {
     border-width: 5px;
 }
 
-.HomePlayers {
-    border-top: 3px solid royalblue;
-    background-color: gainsboro;
-    margin-top: 20px;
-    padding: 20px;
-}
+
 
 .AwayPlayers {
     border-top: 3px solid royalblue;
