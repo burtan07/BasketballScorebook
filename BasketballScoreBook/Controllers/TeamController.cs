@@ -31,7 +31,7 @@ namespace BasketballScoreBook.Controllers
             LogicTeam boTeam = Map(teamVM);
             _teamBLL.CreateTeam(boTeam);
 
-            return RedirectToAction("ViewTeams", "Team"); //redirect to action()
+            return RedirectToAction("Index", "Home"); //redirect to action()
         }
 
         [HttpGet]

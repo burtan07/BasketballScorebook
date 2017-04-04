@@ -26,9 +26,9 @@
         <div class="LabelTextBoxSet">
             <div class="LabelSpacing">
                 @Html.LabelFor(m => m.SingleUser.RoleID)
-                @Html.TextBoxFor(m => m.SingleUser.RoleID, new { @class = "form-control", placeholder = "m.SingleUser.RoleID", @readonly = "readonly" })
+                @Html.TextBoxFor(m => m.SingleUser.RoleID, new { @class = "form-control", placeholder = "m.SingleUser.RoleID", @type = "number" })
             </div>
-            <div class="dropdown-menu">
+            @*<div class="">
                 @Html.DropDownListFor(m => m.SingleUser.RoleID, new List<SelectListItem>
                     {
                     new SelectListItem {Text=" -- ", },
@@ -36,7 +36,7 @@
                     new SelectListItem {Text="2" },
                     new SelectListItem {Text="3" } })
 
-            </div>
+            </div>*@
         </div>
 
     </div>
