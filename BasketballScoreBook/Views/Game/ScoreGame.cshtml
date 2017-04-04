@@ -156,7 +156,7 @@
                 <th>Points Scored</th>
 
             </tr>
-            @for (int a = 0; a < Model.homeTeamPlayers.Count; a++)
+            @for (int a = 0; a < Model.awayTeamPlayers.Count; a++)
             {
                 <tr>
                     <td>@Html.HiddenFor(Model => Model.awayTeamPlayers[a].PlayerID)</td>

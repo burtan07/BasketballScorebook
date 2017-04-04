@@ -8,8 +8,10 @@
 
 <table class="ViewGamesTable">
     <tr>
+        <th></th>
         <th>Home Team</th>
         <th>Home Team Score</th>
+        
         <th>Away Team</th>
         <th>Away Team Score</th>
 
@@ -20,6 +22,7 @@
             <td>@Html.HiddenFor(m => game.GameID)</td>
             <td>@Html.DisplayFor(m => game.HomeTeamName)</td>
             <td>@Html.DisplayFor(m => game.HomeTeamScore)</td>
+           
             <td>@Html.DisplayFor(m => game.AwayTeamName)</td>
             <td>@Html.DisplayFor(m => game.AwayTeamScore)</td>
             <td>@Html.ActionLink("View This Game", "ViewSingleGame", "Game", routeValues: new { GameID = game.GameID }, htmlAttributes: new { @class = "btn btn-primary btn-large" }) </td>

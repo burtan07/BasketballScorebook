@@ -232,5 +232,15 @@ body {
     }
 
 
-.ViewPlayerTableClass {
+.ViewGamesTable th {
+    padding: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+
+}
+.ViewGamesTable td {
+    padding: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+
 }
