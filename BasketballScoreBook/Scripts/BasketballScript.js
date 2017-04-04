@@ -58,6 +58,10 @@ function HomeScorePlus3() {
     HomeTeamScore += 3;
     $("#HomeTeamScore").val(HomeTeamScore);
 };
+function HomeScoreMinus1() {
+    HomeTeamScore -= 1;
+    $("#HomeTeamScore").val(HomeTeamScore);
+};
 
 function AwayScorePlus1() {
     AwayTeamScore += 1;
@@ -71,5 +75,9 @@ function AwayScorePlus2() {
 
 function AwayScorePlus3() {
     AwayTeamScore += 3;
+    $("#AwayTeamScore").val(AwayTeamScore);
+};
+function AwayScoreMinus1() {
+    AwayTeamScore -= 1;
     $("#AwayTeamScore").val(AwayTeamScore);
 };

@@ -13,12 +13,7 @@
         <th>First Initial</th>
         <th>Jersey Number</th>
         <th>Position</th>
-        <th>Fouls</th>
-        <th>Assists</th>
-        <th>Points Scored</th>
-        <th>Shot Attempts</th>
-        <th>Shot Makes</th>
-        <th>Quarters Played</th>
+       
     </tr>
 </thead>
     <tbody>
@@ -32,13 +27,7 @@
                 <td>@Html.DisplayFor(m => player.PlayerFirstInitial)</td>
                 <td>@Html.DisplayFor(m => player.JerseyNum)</td>
                 <td>@Html.DisplayFor(m => player.PlayerRole)</td>
-                <td>@Html.DisplayFor(m => player.PlayerFouls)</td>
-                <td>@Html.DisplayFor(m => player.PlayerAssists)</td>
-                <td>@Html.DisplayFor(m => player.PlayerPoints)</td>
-                <td>@Html.DisplayFor(m => player.PlayerShotAttempts)</td>
-                <td>@Html.DisplayFor(m => player.PlayerShotMakes) </td>
-                <td>@Html.DisplayFor(m => player.QuarterPlayed) </td>
-
+                <td>@Html.ActionLink("View Player Stats", "ViewPlayerStats", "Player", routeValues: new { PlayerID = player.PlayerID, TeamName = player.TeamName }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
                 <td>@Html.ActionLink("Update Player", "UpdatePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
                 <td>@Html.ActionLink("Delete Player", "DeletePlayer", "Player", routeValues: new { PlayerID = player.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large", onclick = "return confirm('Are you sure you want to delete this player?')" })</td>
             </tr>

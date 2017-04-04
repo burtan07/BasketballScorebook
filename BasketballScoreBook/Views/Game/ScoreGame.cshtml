@@ -19,14 +19,15 @@
             <button id="home2point" type="button">2 points</button>
             <br />
             <button id="home3point" type="button">3 points</button>
+            @*<button id="homeMinus1" type="button">-1 point</button>*@
         </div>
         <div class="ScoreLabel">
             @Html.LabelFor(m => m.SingleGame.HomeTeamScore)
         </div>
         <div class="ScoreBox">
-            @Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @class = "form-control", @id = "HomeTeamScore", @type = "number" })
+            @Html.TextBoxFor(m => m.SingleGame.HomeTeamScore, new { @class = "form-control", @id = "HomeTeamScore", @readonly = "readonly" })
         </div>
-
+        
         <h3 class="UserHeader"> <span class="HomeTeamSpan"> Team Stats </span> </h3>
         <table class="HomeTeamTable">
 
@@ -104,13 +105,14 @@
         <button id="away2point" type="button">2 points</button>
         <br />
         <button id="away3point" type="button">3 points</button>
+        @*<button id="awayMinus1" type="button">-1 point</button>*@
     </div>
 
     <div class="ScoreLabel">
         @Html.LabelFor(m => m.SingleGame.AwayTeamScore)
     </div>
     <div class="ScoreBox">
-        @Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", @id = "AwayTeamScore", @type = "number" })
+        @Html.TextBoxFor(m => m.SingleGame.AwayTeamScore, new { @class = "form-control", @id = "AwayTeamScore", @readonly = "readonly" })
     </div>
 
     <h3 class="UserHeader"> <span class="AwayTeamSpan"> Team Stats</span></h3>
@@ -202,6 +204,9 @@
         $("#home3point").click(function () {
             HomeScorePlus3()
         });
+        $("#homeMinus1").click(function () {
+            HomeScoreMinus1()
+        });
         $("#away1point").click(function () {
             AwayScorePlus1()
         });
@@ -211,6 +216,10 @@
         $("#away3point").click(function () {
             AwayScorePlus3()
         });
+        $("#awayMinus1").click(function () {
+           AwayScoreMinus1()
+        });
+
 
         $("#HomePlayerStats").click(function () {
             $("#PlayerStatTable").dialog({

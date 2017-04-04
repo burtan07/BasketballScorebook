@@ -57,6 +57,16 @@ namespace BasketballScoreBook.Controllers
             return View(playerVM);
         }
 
+        [HttpGet]
+        public ActionResult ViewPlayerStats(int PlayerID, string TeamName)
+        {
+            PlayerViewModel playerStatsVM = new PlayerViewModel();
+            LogicPlayer boPlayerStats = _playerBLL.ReadPlayerByPlayerID(PlayerID);
+            playerStatsVM.SinglePlayer = Map(boPlayerStats);
+            playerStatsVM.SinglePlayer.TeamName = TeamName;
+            return View(playerStatsVM);
+        }
+
 
         [HttpGet]
         public ActionResult UpdatePlayer(int PlayerID)  
@@ -137,7 +147,7 @@ namespace BasketballScoreBook.Controllers
             }
             return playerTeams;
         }
-        static LogicPlayer Map(PlayerViewModel playerVM)  //Maps userVM to boUser
+        static LogicPlayer Map(PlayerViewModel playerVM)  //Maps playerVM to boPLayer
         {
             LogicPlayer boPlayer = new LogicPlayer();
 
@@ -156,6 +166,28 @@ namespace BasketballScoreBook.Controllers
                 prop_boPlayer.SetValue(boPlayer, prop_playerVM.GetValue(playerVM.SinglePlayer));
             }
             return boPlayer;
+        }
+
+        static PlayerModel Map(LogicPlayer boPlayer)
+        {
+            PlayerModel player = new PlayerModel();
+
+            var type_boPlayer = boPlayer.GetType();
+            var type_player = player.GetType();
+
+            foreach(var field_boPlayer in type_boPlayer.GetFields())
+            {
+                var field_player = type_player.GetField(field_boPlayer.Name);
+                field_player.SetValue(player, field_boPlayer.GetValue(boPlayer));
+            }
+
+            foreach (var prop_boPlayer in type_boPlayer.GetProperties())
+            {
+                var prop_player = type_player.GetProperty(prop_boPlayer.Name);
+                prop_player.SetValue(player, prop_boPlayer.GetValue(boPlayer));
+            }
+            return player;
+
         }
 
         static List<PlayerModel> ListMap(List<LogicPlayer> boPlayersList)

@@ -79,11 +79,11 @@ namespace BasketballScoreBook.Controllers
 
             List<PlayerModel> gameHomePlayers = gameVM.homeTeamPlayers;
             List<LogicPlayer> boHomePlayerStats = PlayerStatsMap(gameHomePlayers);
-            _playerBLL.ReadPlayersByPlayerID(boHomePlayerStats);
+            _playerBLL.UpdatePlayerStatsByPlayerID(boHomePlayerStats);
 
             List<PlayerModel> gameAwayPlayers = gameVM.awayTeamPlayers;
             List<LogicPlayer> boAwayPlayerStats = PlayerStatsMap(gameAwayPlayers);
-            _playerBLL.ReadPlayersByPlayerID(boAwayPlayerStats);
+            _playerBLL.UpdatePlayerStatsByPlayerID(boAwayPlayerStats);
 
             LogicGame boGame = Map(gameVM);
             _gameBLL.CreateGame(boGame);

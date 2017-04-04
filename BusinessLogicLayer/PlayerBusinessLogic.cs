@@ -55,7 +55,7 @@ namespace BusinessLogicLayer
         }
 
 
-        public void ReadPlayersByPlayerID(List<LogicPlayer> gamePlayers)
+        public void UpdatePlayerStatsByPlayerID(List<LogicPlayer> gamePlayers)
         {
 
             foreach (LogicPlayer boPlayer in gamePlayers)
@@ -84,6 +84,14 @@ namespace BusinessLogicLayer
         //{
 
         //}
+
+            public LogicPlayer ReadPlayerByPlayerID (int PlayerID)
+        {
+           DataPlayer daPlayer = _playerDAL.ReadPlayerByPlayerID(PlayerID);
+            LogicPlayer boPlayer = Map(daPlayer);
+
+            return boPlayer;
+        }
 
 
         public List<LogicPlayer> ViewTeamPlayers(int TeamID)

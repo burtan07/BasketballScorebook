@@ -1,0 +1,47 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.PlayerViewModel
+@{
+    ViewBag.Title = "ViewPlayerStats";
+}
+
+<h2>View Player Stats</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Team Name</th>
+            <th>Last Name</th>
+            <th>First Initial</th>
+            <th>Jersey Number</th>
+            <th>Position</th>
+            <th>Fouls</th>
+            <th>Assists</th>
+            <th>Points Scored</th>
+            <th>Shot Attempts</th>
+            <th>Shot Makes</th>
+            <th>Quarters Played</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Html.DisplayFor(m => m.SinglePlayer.TeamName) </td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerLastName) </td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerFirstInitial)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.JerseyNum)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerRole)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerFouls)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerAssists)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerPoints)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerShotAttempts)</td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.PlayerShotMakes) </td>
+            <td>@Html.DisplayFor(m => m.SinglePlayer.QuarterPlayed) </td>
+
+            <td>@Html.ActionLink("Update Player", "UpdatePlayer", "Player", routeValues: new { PlayerID = Model.SinglePlayer.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })</td>
+            <td>@Html.ActionLink("Delete Player", "DeletePlayer", "Player", routeValues: new { PlayerID = Model.SinglePlayer.PlayerID }, htmlAttributes: new { @class = "btn btn-primary btn-large", onclick = "return confirm('Are you sure you want to delete this player?')" })</td>
+        </tr>
+
+        }
+    </tbody>
+
+</table> 
