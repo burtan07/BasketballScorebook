@@ -17,7 +17,7 @@ namespace BasketballScoreBook.Controllers
         {
             return View();
         }
-        
+
 
         [HttpGet]
         public ActionResult Login()
@@ -62,9 +62,24 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult RegisterUser(UserViewModel userVM)
         {
-            LogicUser boUser = Map(userVM);
-            _userBLL.CreateUser(boUser);
-            return View("Login");
+            string returnView = "";
+            List<LogicUser> boUserList = _userBLL.ViewUsers();
+            List<UserModel> userList = MapUser(boUserList);
+            foreach (UserModel user in userList)
+            {
+                if (userVM.SingleUser.UserName == user.UserName)
+                {
+                    returnView = "ErrorMessage";
+                }
+                else
+                {
+                    LogicUser boUser = Map(userVM);
+                    _userBLL.CreateUser(boUser);
+
+                    returnView = "Login";
+                }
+            }
+            return View(returnView);
 
         }
 
@@ -135,21 +150,6 @@ namespace BasketballScoreBook.Controllers
             return RedirectToAction("ViewUsers", "User");
         }
 
-
-
-
-
-        //[HttpGet]
-        //public ActionResult Game()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Game()
-        //{
-        //    return View(); 
-        //}
 
         [HttpGet]
         public ActionResult ViewUsers()

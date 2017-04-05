@@ -50,7 +50,7 @@ namespace BasketballScoreBook.Controllers
             }
             else
             {
-                return ScoreGame(gameTeams);
+                return ScoreGameTeams(gameTeams);
             }
 
         }

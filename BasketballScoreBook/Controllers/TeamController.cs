@@ -31,7 +31,7 @@ namespace BasketballScoreBook.Controllers
             LogicTeam boTeam = Map(teamVM);
             _teamBLL.CreateTeam(boTeam);
 
-            return RedirectToAction("Index", "Home"); //redirect to action()
+            return RedirectToAction("CreatePlayer", "Player"); //redirect to action()
         }
 
         [HttpGet]
@@ -105,14 +105,14 @@ namespace BasketballScoreBook.Controllers
             LogicTeam boTeamStats = _teamBLL.ReadTeamStatsByTeamID(TeamID);
             teamStats.SingleTeam = Map(boTeamStats);
 
-            return View(teamStats);
+            return View("UpdateTeamStats",teamStats);
         }
         [HttpPost]
         public ActionResult UpdateTeamStats(TeamViewModel updatedTeamStats)
         {
             _teamBLL.UpdateTeamStatsByTeamID(Map(updatedTeamStats));
 
-            return RedirectToAction("ViewTeamStats","Team");
+            return RedirectToAction("ViewTeams", "Team");
         }
 
         static LogicTeam Map(TeamViewModel teamVM)
