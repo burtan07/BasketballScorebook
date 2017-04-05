@@ -9,11 +9,11 @@ using BusinessLogicLayer.BusinessObjects;
 
 namespace BusinessLogicLayer
 {
-   public  class TeamBusinessLogic
+    public class TeamBusinessLogic
     {
 
         static TeamDataAccess _teamDAL = new TeamDataAccess();
-       
+
 
         public void CreateTeam(LogicTeam boTeam)
         {
@@ -68,7 +68,7 @@ namespace BusinessLogicLayer
 
         }
 
-        public void UpdateTeamStatsByTeamID (LogicTeam boTeamStats)
+        public void UpdateTeamStatsByTeamID(LogicTeam boTeamStats)
         {
             _teamDAL.UpdateTeamStatsByTeamID(Map(boTeamStats));
         }
@@ -81,7 +81,7 @@ namespace BusinessLogicLayer
                 LogicTeam lTeam = new LogicTeam();
                 lTeam.TeamID = dTeam.TeamID;
                 lTeam.TeamName = dTeam.TeamName;
-               
+
                 boTeams.Add(lTeam);
             }
 
@@ -94,13 +94,13 @@ namespace BusinessLogicLayer
             var type_boTeam = boTeam.GetType();
             var type_daTeam = daTeam.GetType();
 
-            foreach(var field_boTeam in type_boTeam.GetFields())
+            foreach (var field_boTeam in type_boTeam.GetFields())
             {
                 var field_daTeam = type_daTeam.GetField(field_boTeam.Name);
                 field_daTeam.SetValue(daTeam, field_boTeam.GetValue(boTeam));
             }
 
-            foreach(var prop_boTeam in type_boTeam.GetProperties())
+            foreach (var prop_boTeam in type_boTeam.GetProperties())
             {
                 var prop_daTeam = type_daTeam.GetProperty(prop_boTeam.Name);
                 prop_daTeam.SetValue(daTeam, prop_boTeam.GetValue(boTeam));
@@ -118,7 +118,7 @@ namespace BusinessLogicLayer
                 var type_daTeamStat = dTeamStat.GetType();
                 var type_boTeamStat = boTeamStats.GetType();
 
-                foreach(var field_daTeamStat in type_daTeamStat.GetFields())
+                foreach (var field_daTeamStat in type_daTeamStat.GetFields())
                 {
                     var field_boTeamStat = type_boTeamStat.GetField(field_daTeamStat.Name);
                     field_boTeamStat.SetValue(boTeamStats, field_daTeamStat.GetValue(dTeamStat));
@@ -129,7 +129,7 @@ namespace BusinessLogicLayer
                     var prop_boTeamStat = type_boTeamStat.GetProperty(prop_daTeamStat.Name);
                     prop_boTeamStat.SetValue(boTeamStats, prop_daTeamStat.GetValue(dTeamStat));
                 }
-               
+
             }
 
             return boTeamStats;

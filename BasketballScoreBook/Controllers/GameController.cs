@@ -23,8 +23,9 @@ namespace BasketballScoreBook.Controllers
 
 
         [HttpGet]
-        public ActionResult CreateGame() //Displays list of teams, pulls user selection for Home & Away TeamNames & TeamIDs
+        public ActionResult CreateGame() 
         {
+            //Displays list of teams, pulls user selection for Home & Away TeamNames & TeamIDs
             GameViewModel gameVM = new GameViewModel();
 
             List<LogicTeam> boTeamList = _teamBLL.ReadTeams();
@@ -38,6 +39,7 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult CreateGame(GameViewModel gameTeams)
         {
+            //posts selected teams by teamID, checks if there are players on selected teams and sends to scoreGameTeams if players exist
             GameViewModel teamPlayers = new GameViewModel();
 
             List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeams.SingleGame.HomeTeamID);
@@ -60,6 +62,7 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult ScoreGameTeams(GameViewModel gameTeamIDs) //sends down Selected Home & Away TeamIDs, Gets Player Lists for those Teams, Assigns TeamID & teamNames to GameVM
         {
+            //pulls selected teams and its players and sends them to ScoreGame View
             GameViewModel gameTeamPlayersList = new GameViewModel();
 
             List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeamIDs.SingleGame.HomeTeamID);
@@ -82,8 +85,10 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult ScoreGame(GameViewModel gameVM)
         {
+
             //gameVM.SingleGame.Team stats gets sent to TeamStats Table
             //gameVM.homeTeamPlayers stats gets sent to Player Table
+            //gameVM.SingleGame gets sent to Games Table
             LogicTeam boHomeTeamStats = HomeStatsMap(gameVM);
             _teamBLL.AddTeamStatsByTeamID(boHomeTeamStats);
 
@@ -104,16 +109,17 @@ namespace BasketballScoreBook.Controllers
             return RedirectToAction("CreateGame", "Game");
         }
 
-        public ActionResult PlayerStatPartialView(int ID)
-        {
-            PlayerViewModel partialPlayer = new PlayerViewModel();
-            partialPlayer.SinglePlayer.PlayerID = ID;
-            return PartialView("_PlayerStatPartialPage", partialPlayer);
-        }
+        //public ActionResult PlayerStatPartialView(int ID)
+        //{
+        //    PlayerViewModel partialPlayer = new PlayerViewModel();
+        //    partialPlayer.SinglePlayer.PlayerID = ID;
+        //    return PartialView("_PlayerStatPartialPage", partialPlayer);
+        //}
 
         [HttpGet]
         public ActionResult ViewGames()
         {
+            //view all games
             GameViewModel gamesVMList = new GameViewModel();
 
             List<LogicGame> boGames = _gameBLL.ReadGames();
@@ -125,6 +131,7 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult ViewSingleGame(int GameID)
         {
+            //sends selected game to viewSingleGame view
             GameViewModel gamesVMList = new GameViewModel();
 
             List<LogicGame> boGames = _gameBLL.ReadGameByGameID(GameID);
