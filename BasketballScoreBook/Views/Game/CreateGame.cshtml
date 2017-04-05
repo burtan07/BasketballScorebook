@@ -10,26 +10,23 @@
     <table>
         <tr>
             <th>Home Team</th>
-            
+
         </tr>
         <tr>
-            <td>@Html.DropDownListFor(m => m.SingleGame.HomeTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "HomeTeamDropDownList", @class="form-control" }) </td>
-           
+            <td>@Html.DropDownListFor(m => m.SingleGame.HomeTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "HomeTeamDropDownList", @class = "form-control" }) </td>
+
         </tr>
-
-
 
     </table>
 
     <table>
         <tr>
             <th>Away Team</th>
-            
         </tr>
 
         <tr>
             <td>@Html.DropDownListFor(m => m.SingleGame.AwayTeamID, new SelectList(ViewBag.TeamsList, "TeamID", "TeamName"), new { @id = "AwayTeamDropDownList", @class = "form-control" }) </td>
-        
+
         </tr>
     </table>
     <div class="UserSubmitBox">
@@ -49,7 +46,5 @@
             ShowAwayTeamName()
         });
     });
-
-
 
 </script>

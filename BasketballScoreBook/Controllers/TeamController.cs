@@ -98,6 +98,23 @@ namespace BasketballScoreBook.Controllers
             return View(teamStats);
         }
 
+        [HttpGet]
+        public ActionResult UpdateTeamStats(int TeamID)
+        {
+            TeamViewModel teamStats = new TeamViewModel();
+            LogicTeam boTeamStats = _teamBLL.ReadTeamStatsByTeamID(TeamID);
+            teamStats.SingleTeam = Map(boTeamStats);
+
+            return View(teamStats);
+        }
+        [HttpPost]
+        public ActionResult UpdateTeamStats(TeamViewModel updatedTeamStats)
+        {
+            _teamBLL.UpdateTeamStatsByTeamID(Map(updatedTeamStats));
+
+            return RedirectToAction("ViewTeamStats","Team");
+        }
+
         static LogicTeam Map(TeamViewModel teamVM)
         {
             LogicTeam boTeam = new LogicTeam();

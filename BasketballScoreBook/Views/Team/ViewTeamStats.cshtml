@@ -28,7 +28,7 @@
             <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotAttempts, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotAttempts", @readonly = "readonly" })</td>
             <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotMakes, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotMakes", @readonly = "readonly" })</td>
             <td>@Html.TextBoxFor(m => m.SingleTeam.TeamScore, new { @class = "form-control", placeholder = "m.SingleTeam.TeamScore", @readonly = "readonly" })</td>
-
+            <td>@Html.ActionLink("Update Team Stats", "UpdateTeamStats", "Team", routeValues: new { TeamID = Model.SingleTeam.TeamID }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })</td>
         </tr>
 
     

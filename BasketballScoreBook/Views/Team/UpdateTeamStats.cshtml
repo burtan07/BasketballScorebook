@@ -1,0 +1,34 @@
+﻿@using BasketballScoreBook.Models
+@model BasketballScoreBook.Models.TeamViewModel
+@{
+    ViewBag.Title = "UpdateTeamStats";
+}
+
+<h2>Update Team Stats</h2>
+@using (Html.BeginForm("UpdateTeamStats", "Team", FormMethod.Post))
+{
+
+    <table class="ViewTeamTable">
+        <tr>
+            <th> </th>
+            <th>Team Name</th>
+            <th>Team Fouls</th>
+            <th>Team Turnovers</th>
+            <th>Team Shots Attempted</th>
+            <th>Team Shots Made</th>
+            <th>Team Points Scored</th>
+        </tr>
+
+        <tr>
+            <td>@Html.HiddenFor(m => m.SingleTeam.TeamID)</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamName, new { @class = "form-control", placeholder = "m.SingleTeam.TeamName", @readonly = "readonly" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamFouls, new { @class = "form-control", placeholder = "m.SingleTeam.TeamFouls", @type = "number" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamTurnovers, new { @class = "form-control", placeholder = "m.SingleTeam.TeamTurnOvers", @type = "number" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotAttempts, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotAttempts", @type = "number" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamShotMakes, new { @class = "form-control", placeholder = "m.SingleTeam.TeamShotMakes", @type = "number" })</td>
+            <td>@Html.TextBoxFor(m => m.SingleTeam.TeamScore, new { @class = "form-control", placeholder = "m.SingleTeam.TeamScore", @type = "number" })</td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Submit" />
+}

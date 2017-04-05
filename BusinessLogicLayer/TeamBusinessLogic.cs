@@ -49,7 +49,7 @@ namespace BusinessLogicLayer
             return boTeamStats;
         }
 
-        public void UpdateTeamStatsByTeamID(LogicTeam boTeamStats)
+        public void AddTeamStatsByTeamID(LogicTeam boTeamStats)
         {
             //TO DO: separate this method to send down TeamID, store returned TeamStats, send return TeamStats to Update Method
 
@@ -68,7 +68,10 @@ namespace BusinessLogicLayer
 
         }
 
-                
+        public void UpdateTeamStatsByTeamID (LogicTeam boTeamStats)
+        {
+            _teamDAL.UpdateTeamStatsByTeamID(Map(boTeamStats));
+        }
 
         static List<LogicTeam> ListMap(List<DataTeam> daTeams)
         {

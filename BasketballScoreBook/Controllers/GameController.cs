@@ -38,8 +38,21 @@ namespace BasketballScoreBook.Controllers
         [HttpPost]
         public ActionResult CreateGame(GameViewModel gameTeams)
         {
+            GameViewModel teamPlayers = new GameViewModel();
 
-            return ScoreGameTeams(gameTeams);
+            List<LogicPlayer> boHomeTeam = _playerBLL.ViewTeamPlayers(gameTeams.SingleGame.HomeTeamID);
+
+            List<LogicPlayer> boAwayTeam = _playerBLL.ViewTeamPlayers(gameTeams.SingleGame.AwayTeamID);
+
+            if ( boHomeTeam.Count == 0 || boAwayTeam.Count == 0 )
+            {
+                return View("ErrorMessage");
+            }
+            else
+            {
+                return ScoreGame(gameTeams);
+            }
+
         }
 
 
@@ -72,10 +85,10 @@ namespace BasketballScoreBook.Controllers
             //gameVM.SingleGame.Team stats gets sent to TeamStats Table
             //gameVM.homeTeamPlayers stats gets sent to Player Table
             LogicTeam boHomeTeamStats = HomeStatsMap(gameVM);
-            _teamBLL.UpdateTeamStatsByTeamID(boHomeTeamStats);
+            _teamBLL.AddTeamStatsByTeamID(boHomeTeamStats);
 
             LogicTeam boAwayTeamStats = AwayStatsMap(gameVM);
-            _teamBLL.UpdateTeamStatsByTeamID(boAwayTeamStats);
+            _teamBLL.AddTeamStatsByTeamID(boAwayTeamStats);
 
             List<PlayerModel> gameHomePlayers = gameVM.homeTeamPlayers;
             List<LogicPlayer> boHomePlayerStats = PlayerStatsMap(gameHomePlayers);

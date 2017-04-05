@@ -20,5 +20,6 @@ namespace BasketballScoreBook.Controllers
             Session.Clear();
             return View("Index");
         }
+
     }
 }
