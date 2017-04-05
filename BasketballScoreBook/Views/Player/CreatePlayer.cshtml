@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
 {
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <table class="CreatePlayerTable">
         <tr>
             <th>Team Name</th>

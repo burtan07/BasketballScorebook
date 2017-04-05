@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
 {
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
     <div class="UserInfoBox">
         <div class="LabelDisplayTextBoxPos">
             <div class="LabelSpacing">

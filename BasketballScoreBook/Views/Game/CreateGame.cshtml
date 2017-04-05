@@ -7,6 +7,7 @@
 <h2>CreateGame</h2>
 @using (Html.BeginForm("CreateGame", "Game", FormMethod.Post))
 {
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <table>
         <tr>
             <th>Home Team</th>

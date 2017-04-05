@@ -8,6 +8,8 @@
 
 @using (Html.BeginForm("UpdateTeamName", "Team", FormMethod.Post))
 {
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
     <table class="CreatePlayerTable">
         <tr>
             <td>@Html.HiddenFor(m => m.SingleTeam.TeamID)</td>
