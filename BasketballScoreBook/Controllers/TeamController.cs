@@ -49,6 +49,7 @@ namespace BasketballScoreBook.Controllers
         [HttpGet]
         public ActionResult UpdateTeamName(int TeamID)
         {
+            //updates teamName by teamID
             TeamViewModel teamsListVM = new TeamViewModel();
             TeamViewModel teamNameToUpdate = new TeamViewModel();
 
